@@ -38,20 +38,20 @@ export function Process() {
     },
   }
 
-  const itemVariants = {
+  const itemVariants: any = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
+        ease: "easeInOut"
       }
     },
   }
 
   return (
-    <section id="process" className="py-24 px-4 sm:px-6 lg:px-8 bg-black text-white relative overflow-hidden">
+    <section id="process" className="py-14 sm:py-16 px-4 sm:px-5 lg:px-8 bg-black text-white relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-lime-500/5 blur-[120px]" />
@@ -60,16 +60,16 @@ export function Process() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div 
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-black mb-6 uppercase tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-5 uppercase tracking-tight text-white">
             Our <span className="text-lime-400">Process</span>
           </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto font-medium">
+          <p className="text-base sm:text-lg text-neutral-400 max-w-xl sm:max-w-2xl mx-auto font-medium leading-relaxed">
             Four simple steps to bring your exhibition vision to life with precision and speed.
           </p>
         </motion.div>
@@ -79,10 +79,9 @@ export function Process() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-4 gap-8 relative"
+          className="grid grid-cols-4 gap-2 sm:gap-3 relative"
         >
-          {/* Connecting line for desktop */}
-          <div className="hidden md:block absolute top-[2.5rem] left-[10%] right-[10%] h-[2px] bg-neutral-800 -z-10" />
+          <div className="absolute top-14 sm:top-6  max-lg:top-6 left-[5%] sm:left-[6%] right-[5%] sm:right-[6%] h-px bg-neutral-800 -z-10" />
 
           {processes.map((item, idx) => (
             <motion.div 
@@ -92,22 +91,17 @@ export function Process() {
             >
               <div className="flex flex-col items-center text-center">
                 <motion.div 
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  className="flex items-center justify-center w-20 h-20 rounded-full bg-neutral-900 border-2 border-neutral-800 group-hover:border-lime-400 text-lime-400 font-bold mb-6 text-2xl shadow-lg transition-colors duration-300 relative z-10 box-border"
+                  whileHover={{ scale: 1.03, rotate: 4 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 12 }}
+                  className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-neutral-900 border border-neutral-800 sm:border-2 group-hover:border-lime-400 text-lime-400 font-bold mb-3 sm:mb-4 text-base sm:text-xl shadow-md transition-colors duration-300 relative z-10 box-border"
                 >
                   {item.step}
                 </motion.div>
-                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-lime-400 transition-colors duration-300 uppercase tracking-wide">{item.title}</h3>
-                <p className="text-neutral-400 leading-relaxed text-sm">{item.description}</p>
+                <h3 className="text-sm sm:text-base font-bold mb-1.5 sm:mb-2 text-white group-hover:text-lime-400 transition-colors duration-300 uppercase tracking-wider">{item.title}</h3>
+                <p className="text-neutral-400 leading-relaxed text-[10px] sm:text-xs max-w-36">{item.description}</p>
               </div>
               
-              {/* Arrow indicators for mobile */}
-              {idx < 3 && (
-                <div className="md:hidden flex justify-center mt-6">
-                  <ChevronRight className="w-8 h-8 text-neutral-700" />
-                </div>
-              )}
+            
             </motion.div>
           ))}
         </motion.div>

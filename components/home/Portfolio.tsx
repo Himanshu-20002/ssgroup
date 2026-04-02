@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -23,11 +23,14 @@ const portfolioImages = [
 ]
 
 export function Portfolio() {
+  const [showAllMobile, setShowAllMobile] = useState(false)
   const rootRef = useRef<HTMLElement>(null)
   const scrollSectionRef = useRef<HTMLDivElement>(null)
   const pinContainerRef = useRef<HTMLDivElement>(null)
   const entryContainerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
+
+  const mobileImages = showAllMobile ? portfolioImages : portfolioImages.slice(0, 5)
 
   useGSAP(() => {
     const track = trackRef.current
@@ -84,34 +87,57 @@ export function Portfolio() {
   return (
     <section id="portfolio" ref={rootRef} className="bg-[#1a1c1a] text-[#e0e0d5] relative z-10 rounded-t-3xl sm:rounded-t-[4rem]">
 
-      {/* Background SVG Animation - Full Section Height */}
-      <div className="absolute inset-0 pointer-events-none opacity-20 overflow-hidden rounded-t-3xl sm:rounded-t-[4rem]">
+      {/* Background SVG Animation - Lightweight Minimalist Indian Motif */}
+      <div className="absolute inset-0 pointer-events-none opacity-30 overflow-hidden rounded-t-3xl sm:rounded-t-[4rem] flex items-center justify-center">
         <svg
-          className="w-full h-full object-cover animate-[spin_120s_linear_infinite]"
+          className="min-w-[150vw] min-h-[150vw] md:min-w-[100vw] md:min-h-[100vw] object-cover animate-[spin_240s_linear_infinite] origin-center mix-blend-screen opacity-50"
           viewBox="0 0 1000 1000"
           xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
         >
-          <path d="M0,500 Q250,200 500,500 T1000,500" fill="none" stroke="#a3e635" strokeWidth="2" />
-          <path d="M0,600 Q250,300 500,600 T1000,600" fill="none" stroke="#a3e635" strokeWidth="1" />
-          <path d="M0,700 Q250,400 500,700 T1000,700" fill="none" stroke="#a3e635" strokeWidth="1.5" />
-          <path d="M0,400 Q250,700 500,400 T1000,400" fill="none" stroke="#a3e635" strokeWidth="1" />
+          <g stroke="#bbff1bff" fill="none" transform="translate(500, 500)">
+            {/* Minimal Background Rings */}
+            <circle r="250" strokeWidth="0.5" strokeDasharray="3 12" className="opacity-40" />
+            <circle r="420" strokeWidth="1" className="opacity-20" />
+            
+            {/* 8 Elegant, Widely Spaced Lotus Petals */}
+            {Array.from({ length: 8 }).map((_, i) => (
+              <g key={`lotus-${i}`} transform={`rotate(${i * 45})`}>
+                {/* Thin, graceful outer petal */}
+                <path d="M 0,-250 C 40,-320 80,-360 0,-420 C -80,-360 -40,-320 0,-250 Z" strokeWidth="1" className="opacity-50" />
+                
+                {/* Minimal inner teardrop stem */}
+                <path d="M 0,-150 C 20,-190 30,-220 0,-250 C -30,-220 -20,-190 0,-150 Z" strokeWidth="0.5" className="opacity-40" />
+                
+                {/* Delicate accent lines extending outwards */}
+                <path d="M 0,-420 L 0,-440" strokeWidth="1" className="opacity-60" />
+                
+                {/* Elegant accent dots (retaining user's orange) */}
+                <circle cx="0" cy="-455" r="3.5" fill="#ff9d1cff" stroke="none" className="opacity-90" />
+                <circle cx="0" cy="-470" r="1.5" fill="#bbff1bff" stroke="none" className="opacity-60" />
+              </g>
+            ))}
+            
+            {/* Simple Central Starburst for focus */}
+            {Array.from({ length: 8 }).map((_, i) => (
+              <path key={`star-${i}`} transform={`rotate(${i * 45})`} d="M 0,-30 L 0,-100" strokeWidth="0.5" strokeDasharray="1 4" className="opacity-50" />
+            ))}
+          </g>
         </svg>
       </div>
 
       {/* Intro Block - Has normal vertical scroll flow, NOT pinned */}
-      <div className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-32 z-20 overflow-hidden">
+      <div className="relative w-full min-h-[70vh] lg:min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 z-20 overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          className="max-w-7xl mx-auto text-center font-serif pointer-events-none"
+          className="max-w-6xl mx-auto text-center font-serif pointer-events-none"
         >
           <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[1.1] font-bold tracking-tight uppercase">
-            CRAFTING <span className="text-lime-400 italic">SPACES</span>,<br />
+            {/* CRAFTING <span className="text-lime-400 italic">SPACES</span>,<br />
             DEFINING FOR <span className="text-lime-400 italic">BRANDS</span>,<br />
-            BRINGING IT ALL TO <span className="text-[#cceb99]">LIFE</span>.<br />
+            BRINGING IT ALL TO <span className="text-[#cceb99]">LIFE</span>.<br /> */}
             BUILDING A <span className="text-lime-400 italic">LEGACY</span> IN EXHIBITIONS<br />
             ON AND OFF THE EVENT FLOOR.
           </h2>
@@ -199,23 +225,32 @@ export function Portfolio() {
       </div>
 
       {/* VERTICAL STACK SECTION FOR MOBILE */}
-      <div className="lg:hidden flex flex-col gap-12 px-4 sm:px-6 py-24 z-20 relative">
-        <h3 className="text-3xl font-serif text-lime-400 mb-8 italic">Selected Work</h3>
-        {portfolioImages.slice(0, 6).map((img, idx) => (
+      <div className="lg:hidden flex flex-col gap-4 px-3 sm:px-5 py-10 z-20 relative">
+        <h3 className="text-2xl sm:text-3xl font-serif text-lime-400 mb-4 italic">Selected Work</h3>
+        {mobileImages.map((img, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col gap-3"
+            transition={{ duration: 0.5 }}
+            className="flex flex-col gap-2"
           >
-            <div className="relative w-full aspect-video overflow-hidden rounded-sm group">
+            <div className="relative w-full aspect-video overflow-hidden rounded-lg group">
               <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
-            <div className="text-xs tracking-widest uppercase font-mono text-neutral-400">{img.text}</div>
+            <div className="text-xs uppercase font-mono text-neutral-300">{img.text}</div>
           </motion.div>
         ))}
+
+        <div className="pt-4">
+          <button
+            onClick={() => setShowAllMobile((prev) => !prev)}
+            className="w-full inline-flex items-center justify-center px-4 py-3 text-sm font-bold text-black bg-[#bbff1bff] rounded-full shadow-lg hover:bg-[#bbff1bff]/90 transition-all duration-300"
+          >
+            {showAllMobile ? 'Show Less Portfolio' : 'Show All Portfolio'}
+          </button>
+        </div>
       </div>
 
     </section>

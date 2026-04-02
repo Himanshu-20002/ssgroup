@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { Card } from '@/components/ui/card'
 import { Hammer, Layout, Wrench, Headset, MonitorPlay, Users } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -44,72 +43,94 @@ export function Services() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
-      y: 0,
+      scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.5,
         ease: [0.22, 1, 0.36, 1]
       },
     },
   }
 
   return (
-    <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 bg-background relative overflow-hidden">
-      {/* Decorative background element for the dynamic lime feel */}
-      <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="services" className="py-16 sm:py-24 md:py-32 px-3 sm:px-6 lg:px-8 bg-[#0d0e0c] relative overflow-hidden">
+      {/* Refined Background Texture */}
+      <div className="absolute top-0 right-0 w-[50rem] h-[50rem] bg-[#bbff1bff]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#bbff1b 0.5px, transparent 0.5px)', backgroundSize: '30px 30px' }}></div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-[1400px] mx-auto relative z-10">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-12 sm:mb-16 md:mb-20 text-center"
         >
-          <h2 className="text-4xl sm:text-5xl font-black mb-6 uppercase tracking-tight">
-            Exhibition & <span className="text-primary">Event Services</span>
+          <span className="text-[#bbff1bff] font-mono text-xs tracking-[0.3em] sm:tracking-[0.5em] uppercase mb-3 sm:mb-6 block font-black">
+            / CORE CAPABILITIES
+          </span>
+          <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 md:mb-8 uppercase tracking-tighter text-white leading-tight">
+            ENGINEERED <span className="text-[#bbff1bff]">SERVICES.</span>
           </h2>
-          <p className="text-lg text-muted-foreground w-full max-w-2xl mx-auto">
-            Complete solutions for your brand presence at trade shows, expos and corporate events. We bring the fight to the floor.
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-neutral-500 max-w-3xl mx-auto font-medium">
+            We provide a complete tactical ecosystem for brand dominance at every major expo venue across India.
           </p>
         </motion.div>
 
         <motion.div 
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true }}
         >
           {servicesList.map((service, idx) => {
             const Icon = service.icon
             return (
-              <motion.div key={idx} variants={itemVariants} className="h-full">
-                <Card className="h-full p-8 md:p-10 border-border/50 bg-card/60 backdrop-blur-sm hover:bg-card hover:border-primary/50 transition-all duration-300 group rounded-3xl flex flex-col justify-start relative overflow-hidden">
+              <motion.div 
+                key={idx} 
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative"
+              >
+                {/* 3-Column Wide Rectangles */}
+                <div className="h-full p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl md:rounded-[2rem] bg-[#11120f] border border-white/5 hover:border-[#bbff1bff]/50 transition-all duration-500 shadow-lg md:shadow-2xl overflow-hidden flex flex-col gap-3 sm:gap-4 md:gap-6">
                   
-                  {/* Hover gradient effect behind icon */}
-                  <div className="absolute top-8 left-8 w-16 h-16 bg-primary/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <div className="mb-8 relative shrink-0">
-                    <div className="w-14 h-14 rounded-full border border-primary/30 flex items-center justify-center bg-background group-hover:bg-primary z-10 relative transition-colors duration-300">
-                      <Icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                  {/* Top Bar: Icon + Index */}
+                  <div className="flex items-center justify-between">
+                    <div className="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-lg sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#bbff1bff] transition-all duration-500 group-hover:rotate-12">
+                      <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-neutral-400 group-hover:text-[#11120f] transition-colors duration-500" />
                     </div>
+                    <span className="text-white/5 text-2xl sm:text-3xl md:text-4xl font-black group-hover:text-[#bbff1bff]/10 transition-colors">
+                      0{idx + 1}
+                    </span>
                   </div>
-                  
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed flex-grow">
-                    {service.description}
-                  </p>
-                </Card>
+
+                  {/* Content Area */}
+                  <div className="space-y-2 sm:space-y-3">
+                    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-white tracking-tight sm:tracking-widest uppercase group-hover:text-[#bbff1bff] transition-colors duration-300 leading-tight">
+                      {service.title}
+                    </h3>
+                    <p className="text-neutral-500 leading-relaxed font-medium group-hover:text-neutral-300 transition-colors duration-300 italic text-xs sm:text-sm">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  {/* Aesthetic Scanning Accents */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#bbff1bff]/5 to-transparent rounded-tr-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                </div>
+
+                {/* Bottom Highlight Line */}
+                <div className="absolute bottom-0 left-10 right-10 h-1 bg-[#bbff1bff] transform scale-x-0 group-hover:scale-x-100 origin-center transition-transform duration-700 rounded-full blur-[1px]"></div>
               </motion.div>
             )
           })}

@@ -3,9 +3,11 @@
 import React, { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useContact } from '@/context/ContactContext'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const { openContact } = useContact()
 
   const navLinks = [
     { name: 'Services', href: '#services' },
@@ -21,7 +23,7 @@ export function Header() {
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-              <span className="text-sm font-bold text-white">SS</span>
+              <span className="text-sm font-bold text-black">SS</span>
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               SS Group
@@ -31,17 +33,33 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                className="text-sm text-muted-foreground hover:text-foreground transition font-medium"
-              >
-                {link.name}
-              </a>
+              link.name === 'Contact' ? (
+                <button
+                  key={link.name}
+                  onClick={openContact}
+                  className="text-sm text-muted-foreground hover:text-foreground transition font-medium"
+                >
+                  {link.name}
+                </button>
+              ) : (
+                <a 
+                  key={link.name} 
+                  href={link.href} 
+                  className="text-sm text-muted-foreground hover:text-foreground transition font-medium"
+                >
+                  {link.name}
+                </a>
+              )
             ))}
           </nav>
 
-          {/* Desktop Action Button (Optional, can hide on very small screens if we had one) */}
+          {/* Desktop Action Button */}
+          <button 
+            onClick={openContact}
+            className="hidden md:inline-flex px-6 py-2 bg-lime-400 text-black font-bold rounded-lg hover:bg-lime-300 transition shadow-lg"
+          >
+            Get Free Quote
+          </button>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
@@ -65,19 +83,33 @@ export function Header() {
         <div className="px-6 py-6 space-y-6 flex flex-col bg-card/95 backdrop-blur-2xl">
           <div className="flex flex-col space-y-4">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-lg font-semibold text-foreground hover:text-primary transition py-2 border-b border-border/40"
-              >
-                {link.name}
-              </a>
+              link.name === 'Contact' ? (
+                <button
+                  key={link.name}
+                  onClick={() => {
+                    setIsOpen(false)
+                    openContact()
+                  }}
+                  className="text-lg font-semibold text-foreground hover:text-primary transition py-2 border-b border-border/40"
+                >
+                  {link.name}
+                </button>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-semibold text-foreground hover:text-primary transition py-2 border-b border-border/40"
+                >
+                  {link.name}
+                </a>
+              )
             ))}
           </div>
           
           <Button 
-            className="w-full text-lg px-8 h-12 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-lg shadow-lg shadow-primary/20 mt-4 active:scale-95 transition-transform"
+            onClick={openContact}
+            className="w-full text-lg px-8 h-12 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-black rounded-lg shadow-lg shadow-primary/20 mt-4 active:scale-95 transition-transform"
           >
             Get Stall Quote
           </Button>

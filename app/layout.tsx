@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
+import { ContactProvider } from '@/context/ContactContext'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -33,8 +34,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
-        {children}
-        <Analytics />
+        <ContactProvider>
+          {children}
+          <Analytics />
+        </ContactProvider>
       </body>
     </html>
   )
