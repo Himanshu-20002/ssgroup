@@ -4,9 +4,16 @@ import { ContactProvider } from '@/context/ContactContext'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'SS Group - Exhibition Stall Fabrication & Design',
-  description: 'Premium exhibition stall fabrication, design, installation and on-site support. Transform your brand presence at exhibitions.',
-  generator: 'v0.app',
+  title: 'SS Group - Premium Exhibition Stall Fabrication & Design',
+  description: 'Elevate your brand with SS Group. We specialize in world-class exhibition stall fabrication, custom design, installation, and on-site support.',
+  keywords: ['exhibition stall', 'stall design', 'fabrication', 'trade show booth', 'event management', 'SS Group'],
+  openGraph: {
+    title: 'SS Group - Exhibition Stall Fabrication',
+    description: 'World-class exhibition stall fabrication combining precision, aesthetics, and structural integrity.',
+    type: 'website',
+    url: 'https://ssgroup.com',
+    siteName: 'SS Group Events',
+  },
   icons: {
     icon: [
       {

@@ -106,32 +106,33 @@ export function WhyChooseUs() {
                 key={idx}
                 variants={itemVariants}
                 whileHover={{ y: -10 }}
-                className="group relative h-[220px] sm:h-[400px] p-6 sm:p-8 rounded-[2rem] flex flex-col justify-end bg-[#11120f] border overflow-hidden transition-colors duration-500 border-[#bbff1b]/50 shadow-2xl"
+                whileTap={{ y: -5, scale: 0.98 }}
+                className="group relative cursor-pointer select-none h-[220px] sm:h-[400px] p-6 sm:p-8 rounded-[2rem] flex flex-col justify-end bg-[#11120f] border overflow-hidden transition-colors duration-500 border-[#bbff1b]/50 shadow-2xl"
               >
                 {/* Visual Depth Background */}
-                <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-700">
+                <div className="absolute inset-0 opacity-20 group-hover:opacity-40 group-active:opacity-40 transition-opacity duration-700">
                   <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(187,255,27,0.15),transparent_70%)]"></div>
                 </div>
 
                 {/* Animated Accent Line */}
-                <div className="absolute top-0 left-0 w-0 h-1 bg-[#bbff1b] group-hover:w-full transition-all duration-700"></div>
+                <div className="absolute top-0 left-0 w-0 h-1 bg-[#bbff1b] group-hover:w-full group-active:w-full transition-all duration-700"></div>
 
                 <div className="relative z-10">
                   {/* Floating Icon */}
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-[#bbff1b] group-hover:border-[#bbff1b] transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-12">
-                    <Icon className="w-6 h-6 text-white group-hover:text-[#11120f] transition-colors duration-500" strokeWidth={1.5} />
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-[#bbff1b] group-active:bg-[#bbff1b] group-hover:border-[#bbff1b] group-active:border-[#bbff1b] transition-all duration-500 transform group-hover:scale-110 group-active:scale-110 group-hover:rotate-12 group-active:rotate-12">
+                    <Icon className="w-6 h-6 text-white group-hover:text-[#11120f] group-active:text-[#11120f] transition-colors duration-500" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-4 text-white tracking-tight group-hover:text-[#bbff1b] transition-colors duration-500">
+                  <h3 className="text-2xl font-bold mb-4 text-white tracking-tight group-hover:text-[#bbff1b] group-active:text-[#bbff1b] transition-colors duration-500">
                     {feature.title}
                   </h3>
-                  <p className="text-neutral-400 text-sm leading-relaxed group-hover:text-neutral-200 transition-colors duration-500">
+                  <p className="text-neutral-400 text-sm leading-relaxed group-hover:text-neutral-200 group-active:text-neutral-200 transition-colors duration-500">
                     {feature.desc}
                   </p>
                 </div>
 
                 {/* Index Number */}
-                <span className="absolute top-8 right-8 text-white/5 text-6xl font-black group-hover:text-[#bbff1b]/10 transition-colors">
+                <span className="absolute top-8 right-8 text-white/5 text-6xl font-black group-hover:text-[#bbff1b]/10 group-active:text-[#bbff1b]/10 transition-colors">
                   0{idx + 1}
                 </span>
               </motion.div>

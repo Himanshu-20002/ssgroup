@@ -100,37 +100,37 @@ export function Services() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative"
+                className="group relative cursor-pointer select-none"
               >
                 {/* 3-Column Wide Rectangles */}
-                <div className="h-full p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl md:rounded-[2rem] bg-[#11120f] border border-white/5 hover:border-[#bbff1bff]/50 transition-all duration-500 shadow-lg md:shadow-2xl overflow-hidden flex flex-col gap-3 sm:gap-4 md:gap-6">
+                <div className="h-full p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl md:rounded-[2rem] bg-[#11120f] border border-white/5 hover:border-[#bbff1bff]/50 active:border-[#bbff1bff]/50 transition-all duration-500 shadow-lg md:shadow-2xl overflow-hidden flex flex-col gap-3 sm:gap-4 md:gap-6">
                   
                   {/* Top Bar: Icon + Index */}
                   <div className="flex items-center justify-between">
-                    <div className="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-lg sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#bbff1bff] transition-all duration-500 group-hover:rotate-12">
-                      <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-neutral-400 group-hover:text-[#11120f] transition-colors duration-500" />
+                    <div className="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-lg sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#bbff1bff] group-active:bg-[#bbff1bff] transition-all duration-500 group-hover:rotate-12 group-active:rotate-12">
+                      <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-neutral-400 group-hover:text-[#11120f] group-active:text-[#11120f] transition-colors duration-500" />
                     </div>
-                    <span className="text-white/5 text-2xl sm:text-3xl md:text-4xl font-black group-hover:text-[#bbff1bff]/10 transition-colors">
+                    <span className="text-white/5 text-2xl sm:text-3xl md:text-4xl font-black group-hover:text-[#bbff1bff]/10 group-active:text-[#bbff1bff]/10 transition-colors">
                       0{idx + 1}
                     </span>
                   </div>
 
                   {/* Content Area */}
                   <div className="space-y-2 sm:space-y-3">
-                    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-white tracking-tight sm:tracking-widest uppercase group-hover:text-[#bbff1bff] transition-colors duration-300 leading-tight">
+                    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-white tracking-tight sm:tracking-widest uppercase group-hover:text-[#bbff1bff] group-active:text-[#bbff1bff] transition-colors duration-300 leading-tight">
                       {service.title}
                     </h3>
-                    <p className="text-neutral-500 leading-relaxed font-medium group-hover:text-neutral-300 transition-colors duration-300 italic text-xs sm:text-sm">
+                    <p className="text-neutral-500 leading-relaxed font-medium group-hover:text-neutral-300 group-active:text-neutral-300 transition-colors duration-300 italic text-xs sm:text-sm">
                       {service.description}
                     </p>
                   </div>
 
                   {/* Aesthetic Scanning Accents */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#bbff1bff]/5 to-transparent rounded-tr-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#bbff1bff]/5 to-transparent rounded-tr-[2rem] opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
                 </div>
 
                 {/* Bottom Highlight Line */}
-                <div className="absolute bottom-0 left-10 right-10 h-1 bg-[#bbff1bff] transform scale-x-0 group-hover:scale-x-100 origin-center transition-transform duration-700 rounded-full blur-[1px]"></div>
+                <div className="absolute bottom-0 left-10 right-10 h-1 bg-[#bbff1bff] transform scale-x-0 group-hover:scale-x-100 group-active:scale-x-100 origin-center transition-transform duration-700 rounded-full blur-[1px]"></div>
               </motion.div>
             )
           })}
