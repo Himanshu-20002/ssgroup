@@ -132,9 +132,6 @@ export function Portfolio() {
           className="max-w-6xl mx-auto text-center font-serif pointer-events-none"
         >
           <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[1.1] font-bold tracking-tight uppercase">
-            {/* CRAFTING <span className="text-lime-400 italic">SPACES</span>,<br />
-            DEFINING FOR <span className="text-lime-400 italic">BRANDS</span>,<br />
-            BRINGING IT ALL TO <span className="text-[#cceb99]">LIFE</span>.<br /> */}
             BUILDING A <span className="text-lime-400 italic">LEGACY</span> IN EXHIBITIONS<br />
             ON AND OFF THE EVENT FLOOR.
           </h2>
@@ -154,7 +151,7 @@ export function Portfolio() {
               <div className="relative w-[35rem] h-[25rem] shrink-0 flex items-center justify-center mt-12">
                 <div className="absolute -top-8 left-0 text-xs tracking-widest uppercase font-mono text-lime-400 drop-shadow-md">{portfolioImages[0].text}</div>
                 <div className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                  <Image src={portfolioImages[0].src} alt={portfolioImages[0].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <Image src={portfolioImages[0].src} alt={portfolioImages[0].alt} fill sizes="(max-width: 1024px) 100vw, 560px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
               </div>
 
@@ -163,13 +160,13 @@ export function Portfolio() {
                 <div className="relative w-full self-start">
                   <div className="absolute -top-6 right-0 z-10 text-xs tracking-widest uppercase font-mono text-neutral-400">{portfolioImages[1].text}</div>
                   <div className="w-full h-[22rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                    <Image src={portfolioImages[1].src} alt={portfolioImages[1].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <Image src={portfolioImages[1].src} alt={portfolioImages[1].alt} fill sizes="(max-width: 1024px) 100vw, 480px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
                 </div>
 
                 <div className="relative self-start">
                   <div className="w-[18rem] h-[18rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                    <Image src={portfolioImages[2].src} alt={portfolioImages[2].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <Image src={portfolioImages[2].src} alt={portfolioImages[2].alt} fill sizes="(max-width: 1024px) 100vw, 300px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
                   <div className="absolute top-0 -right-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] tracking-[0.3em]">{portfolioImages[2].text}</div>
                 </div>
@@ -185,7 +182,7 @@ export function Portfolio() {
               <div className="relative w-[50rem] h-[45rem] shrink-0 flex items-center justify-center">
                 <div className="absolute top-0 -left-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] -rotate-180 tracking-[0.3em]">{portfolioImages[3].text}</div>
                 <div className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl shadow-lime-900/10" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                  <Image src={portfolioImages[3].src} alt={portfolioImages[3].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <Image src={portfolioImages[3].src} alt={portfolioImages[3].alt} fill sizes="(max-width: 1024px) 100vw, 800px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
               </div>
 
@@ -194,13 +191,13 @@ export function Portfolio() {
                 <div className="relative self-end">
                   <div className="absolute top-0 -left-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] -rotate-180 tracking-[0.3em]">{portfolioImages[4].text}</div>
                   <div className="w-[20rem] h-[20rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                    <Image src={portfolioImages[4].src} alt={portfolioImages[4].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <Image src={portfolioImages[4].src} alt={portfolioImages[4].alt} fill sizes="(max-width: 1024px) 100vw, 350px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
                 </div>
 
                 <div className="relative w-full self-start">
                   <div className="w-full h-[22rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                    <Image src={portfolioImages[5].src} alt={portfolioImages[5].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <Image src={portfolioImages[5].src} alt={portfolioImages[5].alt} fill sizes="(max-width: 1024px) 100vw, 450px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
                   <div className="absolute -bottom-8 right-0 z-10 text-xs tracking-widest uppercase font-mono text-neutral-400">{portfolioImages[5].text}</div>
                 </div>
@@ -211,7 +208,7 @@ export function Portfolio() {
                 <div className="relative w-full h-full">
                   <div className="absolute top-4 -right-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] tracking-[0.3em]">{portfolioImages[6].text}</div>
                   <div className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                    <Image src={portfolioImages[6].src} alt={portfolioImages[6].alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <Image src={portfolioImages[6].src} alt={portfolioImages[6].alt} fill sizes="(max-width: 1024px) 100vw, 350px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
                 </div>
               </div>
@@ -244,7 +241,7 @@ export function Portfolio() {
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               className="min-w-[82vw] snap-center relative rounded-3xl overflow-hidden aspect-[4/5] bg-neutral-900 border border-white/5 shadow-2xl"
             >
-              <Image src={img.src} alt={img.alt} fill className="object-cover" />
+              <Image src={img.src} alt={img.alt} fill sizes="(max-width: 768px) 85vw, 400px" loading="lazy" className="object-cover" />
 
               {/* Glassmorphic Card Info */}
               <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/90 via-black/40 to-transparent">

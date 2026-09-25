@@ -56,16 +56,6 @@ export function Footer() {
              Build exhibition <span className="font-serif italic text-neutral-400 font-medium">stalls </span>that<br />
              <span className="text-[#bbff1bff] font-serif italic  md:border-b-[6px] border-[#bbff1bff]/60 font-medium z-10 relative">stand out.</span>
           </motion.h2>
-           {/* <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotate: 0 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0}}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-[#ccf125] font-serif italic text-4xl sm:text-6xl lg:text-2xl -mb-6 sm:-mb-10  origin-center   drop-shadow-xl select-none"
-            style={{ textShadow: "0 0 20px rgba(187,255,27,0.4)" }}
-          >
-            Easy process, no surprises
-          </motion.div> */}
         </div>
 
         {/* The Central Exhibition Hero Graphic */}
@@ -77,8 +67,7 @@ export function Footer() {
           onClick={() => openContact()}
           className="absolute top-[28%] sm:top-[33%] left-1/2 -translate-x-1/2 z-20 w-[14rem] h-[18rem] sm:w-[18rem] sm:h-[22rem] md:w-[22rem] md:h-[28rem] rounded-[2rem] sm:rounded-[3rem] overflow-hidden border-8 border-[#11120f] shadow-[0_0_50px_rgba(0,0,0,0.8)] filter hover:brightness-110 transition-all duration-700 pointer-events-auto group cursor-pointer"
         >
-          {/* Replace this src with any other strong image like the helmet in the reference */}
-          <Image src="/hero-stall.png" fill alt="Mastering the Show" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+          <Image src="/hero-stall.png" fill sizes="(max-width: 640px) 280px, (max-width: 768px) 350px, 450px" loading="lazy" alt="Mastering the Show" className="object-cover group-hover:scale-110 transition-transform duration-700" />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#bbff1bff] via-[#bbff1bff]/30 to-transparent flex items-end justify-center pb-6 sm:pb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             <span className="font-black text-[#11120f] text-xl sm:text-2xl tracking-widest uppercase text-center flex flex-col items-center mb-2 sm:mb-4 drop-shadow-[0_0_5px_rgba(187,255,27,0.8)]">
               <span className="text-xs sm:text-sm tracking-[0.3em] opacity-80 mb-1 sm:mb-2 text-[#11120f]">BUILT BY</span>

@@ -50,12 +50,7 @@ export function WhyChooseUs() {
         {/* Animated grid line */}
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#bbff1b 0.5px, transparent 0.5px)', backgroundSize: '30px 30px' }}></div>
 
-        {/* Floating glow blobs - Refined for premium depth and better mesmerism */}
-        {/* <motion.div
-          animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-1/4 -right-1/4 w-[60rem] h-[60rem] bg-[#bbff1bff]/15 rounded-full blur-[160px]"
-        /> */}
+        {/* Floating glow blob */}
         <motion.div
           animate={{ x: [0, -60, 0], y: [0, 100, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}

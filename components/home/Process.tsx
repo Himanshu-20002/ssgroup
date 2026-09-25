@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ChevronRight } from 'lucide-react'
 
 export function Process() {
   const processes = [
