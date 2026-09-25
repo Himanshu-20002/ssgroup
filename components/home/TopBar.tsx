@@ -4,26 +4,23 @@ import WhatsAppIcon from '../icons/WhatsAppIcon';
 
 export default function TopBar() {
   return (
-    <div className="bg-[#11120f] text-neutral-300 text-xs py-1.5 sm:py-2 px-3 sm:px-4 border-b border-white/10">
-      <div className="max-w-7xl mx-auto flex justify-between items-center gap-2">
+    <div className="bg-[#11120f] text-neutral-300 text-xs py-2 px-4 border-b border-white/10">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
         {/* Left Side: Status & Contact */}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-5 overflow-hidden">
-          <span className="inline-flex items-center gap-1.5 text-neutral-300 text-[11px] sm:text-xs shrink-0">
+        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-5">
+          <span className="inline-flex items-center gap-2 text-neutral-300">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#bbff1bff] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#bbff1bff]" />
             </span>
-            <strong className="text-white font-semibold">
-              <span className="sm:hidden">24/7 Support</span>
-              <span className="hidden sm:inline">24/7 Stall Fabrication & Support Active</span>
-            </strong>
+            <strong className="text-white font-semibold">24/7 Stall Fabrication & Support Active</strong>
           </span>
-          <span className="text-neutral-600">|</span>
+          <span className="hidden sm:inline-block text-neutral-600">|</span>
           <a
             href="tel:+919876543210"
-            className="hover:text-[#bbff1bff] transition-colors flex items-center gap-1 text-[11px] sm:text-xs whitespace-nowrap"
+            className="hover:text-[#bbff1bff] transition-colors flex items-center gap-1.5"
           >
-            <Phone className="w-3 h-3 text-[#bbff1bff]" /> +91 (0) 98765 43210
+            <Phone className="w-3.5 h-3.5 text-[#bbff1bff]" /> +91 (0) 98765 43210
           </a>
           <a
             href="mailto:hello@ssgroup.com"
@@ -34,11 +31,11 @@ export default function TopBar() {
         </div>
 
         {/* Right Side: Location & Social */}
-        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+        <div className="flex items-center gap-4">
           <span className="text-neutral-400 hidden lg:inline-flex items-center gap-1">
             <MapPin className="w-3.5 h-3.5 text-[#bbff1bff]" /> HQ: Delhi, India
           </span>
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-3">
             <a
               href="https://www.instagram.com"
               target="_blank"
@@ -52,10 +49,9 @@ export default function TopBar() {
               href="https://wa.me/919876543210"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 font-medium text-[11px] sm:text-xs"
+              className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5 font-medium"
             >
-              <WhatsAppIcon className="w-3.5 h-3.5 fill-[#25D366]" />
-              <span className="hidden xs:inline">WhatsApp</span>
+              <WhatsAppIcon className="w-3.5 h-3.5 fill-[#25D366]" /> WhatsApp
             </a>
           </div>
         </div>

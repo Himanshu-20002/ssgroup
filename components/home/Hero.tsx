@@ -16,7 +16,7 @@ export function Hero() {
   ]
 
   return (
-    <section className="relative pt-36 sm:pt-40 lg:pt-36 pb-14 px-3 sm:px-6 lg:px-8 overflow-hidden min-h-[calc(100vh-1rem)] lg:min-h-dvh flex items-start sm:items-center bg-gradient-to-b from-[#fcfbf9] via-[#f8f5ee] to-[#f0eae0]">
+    <section className="relative pt-28 sm:pt-32 lg:pt-32 pb-14 px-3 sm:px-6 lg:px-8 overflow-hidden min-h-[calc(100vh-1rem)] lg:min-h-dvh flex items-start sm:items-center bg-gradient-to-b from-[#fcfbf9] via-[#f8f5ee] to-[#f0eae0]">
       {/* Background Polish with Gold & Warm Brown Ambiance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full bg-gradient-to-l from-amber-200/20 via-[#bbff1bff]/5 to-transparent"></div>
@@ -29,7 +29,7 @@ export function Hero() {
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-14 items-start">
 
           {/* Left Side Content - Light Theme Polish */}
-          <div className="order-1 lg:order-1 space-y-6 lg:space-y-10 pt-4 sm:pt-3">
+          <div className="order-1 lg:order-1 space-y-6 lg:space-y-10 pt-9">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -92,7 +92,7 @@ export function Hero() {
               className="pt-2 space-y-6"
             >
               <div className="flex flex-wrap items-center gap-4">
-                <button 
+                <button
                   onClick={openContact}
                   className="w-full sm:w-auto text-base sm:text-lg px-9 h-14 bg-[#bbff1bff] hover:bg-[#a8f000] text-[#1a1209] font-black rounded-xl shadow-lg shadow-[#bbff1bff]/30 transition-all hover:scale-105 active:scale-95 border border-[#a0e800]/50"
                 >
