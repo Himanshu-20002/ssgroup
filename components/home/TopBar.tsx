@@ -4,8 +4,8 @@ import WhatsAppIcon from '../icons/WhatsAppIcon';
 
 export default function TopBar() {
   return (
-    <div className="bg-[#11120f] text-neutral-300 text-xs py-1.5 sm:py-2 px-3 sm:px-4 border-b border-white/10">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-2">
+    <div className="bg-[#11120f] text-neutral-300 text-xs py-2 px-4 border-b border-white/10">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
         {/* Left Side: Status & Contact */}
         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-5">
           <span className="inline-flex items-center gap-2 text-neutral-300">
