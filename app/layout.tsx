@@ -29,7 +29,11 @@ export const metadata: Metadata = {
         url: '/icon.svg',
         type: 'image/svg+xml',
       },
+      {
+        url: '/logo/white-logo.png',
+      },
     ],
+    shortcut: '/favicon.ico',
     apple: '/apple-icon.png',
   },
 }
