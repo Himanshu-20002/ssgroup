@@ -12,9 +12,9 @@ export function Header() {
   const { openContact } = useContact()
 
   const navLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'Process', href: '#process' },
-    { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Services', href: '/#services' },
+    { name: 'Process', href: '/#process' },
+    { name: 'Portfolio', href: '/portfolio' },
     { name: 'Contact', href: '#contact' },
   ]
 

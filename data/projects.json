@@ -1,0 +1,290 @@
+[
+  {
+    "id": "octanorm-modular-solutions-booth",
+    "slug": "octanorm-modular-solutions-booth",
+    "title": "Classic Octanorm Modular Shell Scheme Stall",
+    "category": "octanorm-stall",
+    "categoryLabel": "Octanorm Modular",
+    "client": "Octanorm Solutions India",
+    "venue": "Pragati Maidan, New Delhi",
+    "hall": "Hall 11, Booth B-04",
+    "dimensions": "6m × 3m (18 sqm)",
+    "turnaround": "12 Hours Rapid Handover",
+    "completionYear": "2024",
+    "featured": true,
+    "status": "published",
+    "primaryImage": "/uploads/projects/octanorm_modular_stall.jpg",
+    "gallery": [
+      "/uploads/projects/octanorm_modular_stall.jpg",
+      "/modular_shell_upgrade_png_1774886735919.png"
+    ],
+    "videoUrl": "",
+    "shortDescription": "Standard German-engineered 8-sided aluminum extrusion shell scheme stall with branded header fascia, lockable reception desk, and spotlight arms.",
+    "description": "Precision-assembled for Pragati Maidan Hall 11. Designed using authentic Octanorm 4.3mm groove extrusion uprights and quick-tension locks, delivering a clean, sustainable, and 100% reusable exhibition space within a tight 12-hour build window.",
+    "features": [
+      "Original 8-Sided Anodized Aluminium Vertical Uprights (40mm)",
+      "Modular Tension Lock Beam Fastening Mechanism",
+      "Overhead Aluminium Long-Arm Halogen/LED Spotlights",
+      "Lockable Octanorm Reception Desk with Brochure Rack",
+      "Seamless Vinyl Laminated High-Density PVC Infill Panels"
+    ],
+    "materials": [
+      "Anodized Aluminum Alloy Extrusions (EN AW-6063)",
+      "4mm PVC-Laminated Hardboard Infill Sheets",
+      "Modular Lockable Laminated Countertop",
+      "Flame-Retardant Expo Needle-Punch Carpet"
+    ]
+  },
+  {
+    "id": "octanorm-maxima-hybrid-stand",
+    "slug": "octanorm-maxima-hybrid-stand",
+    "title": "Octanorm Maxima 80 Hybrid Corner Pavilion",
+    "category": "octanorm-stall",
+    "categoryLabel": "Octanorm Modular",
+    "client": "Maxima Tech Expo",
+    "venue": "India Expo Mart (IEML), Greater Noida",
+    "hall": "Hall 3, Corner Stall C-15",
+    "dimensions": "9m × 6m (54 sqm)",
+    "turnaround": "24 Hours Turnkey Setup",
+    "completionYear": "2024",
+    "featured": true,
+    "status": "published",
+    "primaryImage": "/uploads/projects/octanorm_hybrid_upgrade.jpg",
+    "gallery": [
+      "/uploads/projects/octanorm_hybrid_upgrade.jpg",
+      "/uploads/projects/octanorm_modular_stall.jpg"
+    ],
+    "videoUrl": "",
+    "shortDescription": "Architectural Maxima 80 heavy aluminum frame hybrid stall featuring backlit SEG tension fabric lightboxes, glass display vitrines, and wooden oak accents.",
+    "description": "Constructed for India Expo Mart (IEML) Hall 3. Combines heavy 80mm Octanorm Maxima architectural aluminum beams with custom warm timber feature walls and silicone edge graphic (SEG) backlit lightboxes for a striking corner presence.",
+    "features": [
+      "Heavy-Duty Octanorm Maxima 80mm Square Aluminum Columns",
+      "Integrated Frameless Silicone Edge Graphics (SEG) Lightbox",
+      "Lockable Tempered Glass Showcase Display Vitrines",
+      "Private Discussion Lounge with Acoustic Charcoal Felt Partitions",
+      "Raised Wooden Platform Flooring with Perimeter Warm LED Glow"
+    ],
+    "materials": [
+      "Heavy Gauge Maxima 80 Aluminum Structural Beams",
+      "Dye-Sublimated Fire-Retardant Backlit Stretch Fabric",
+      "Real Oak Timber Veneer Wall Paneling",
+      "8mm Tempered Safety Glass Showcases"
+    ]
+  },
+  {
+    "id": "bespoke-tech-pavilion",
+    "slug": "bespoke-tech-pavilion",
+    "title": "Bespoke Enterprise 3D Tech Pavilion",
+    "category": "custom-wooden",
+    "categoryLabel": "Custom Wooden",
+    "client": "Global Tech Expo",
+    "venue": "Pragati Maidan, New Delhi",
+    "hall": "Hall 5, Booth A-12",
+    "dimensions": "15m × 12m (180 sqm)",
+    "turnaround": "48 Hours On-Site Setup",
+    "completionYear": "2024",
+    "featured": true,
+    "primaryImage": "/img/RENDER-01.jpg",
+    "gallery": [
+      "/img/RENDER-01.jpg",
+      "/img/RENDER-01_01.jpg",
+      "/img/RENDER-01_02.jpg",
+      "/img/RENDER-01_03.jpg",
+      "/img/RENDER-01_04.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "shortDescription": "A turnkey 180 sqm enterprise pavilion featuring seamless curved wood architecture, acrylic backlit logos, and experiential customer demo zones.",
+    "description": "Engineered and fabricated from ground up for Global Tech Expo at Pragati Maidan. The brief required a towering presence with 360-degree brand visibility, dedicated private lounge for B2B buyer meetings, and 4 interactive product demonstration pods.",
+    "features": [
+      "Seamless High-Gloss Duco Finish Wooden Walls",
+      "P3 Ultra-HD Curved LED Video Screen Integration",
+      "Private Sound-Dampened VIP Buyer Lounge",
+      "Integrated Lockable Pantry & Storage Room",
+      "Concealed Under-Floor Electrical & Cable Management"
+    ],
+    "materials": [
+      "Commercial Grade Plywood & MDF Core",
+      "Polyurethane (PU) High-Gloss Spray Coating",
+      "Tempered Glass Guardrails & Partitions",
+      "12mm Raised Platform with HPL Laminate Flooring"
+    ]
+  },
+  {
+    "id": "two-story-vip-pavilion",
+    "slug": "two-story-vip-pavilion",
+    "title": "Two-Story Double Decker VIP Pavilion",
+    "category": "double-decker",
+    "categoryLabel": "Double Decker",
+    "client": "Apex Industrial Engineering",
+    "venue": "India Expo Mart (IEML), Greater Noida",
+    "hall": "Hall 3, Stall D-08",
+    "dimensions": "12m × 10m (120 sqm Ground + 60 sqm Mezzanine)",
+    "turnaround": "72 Hours Certified Erection",
+    "completionYear": "2024",
+    "featured": true,
+    "primaryImage": "/double_decker_stall_png_1774886790718.png",
+    "gallery": [
+      "/double_decker_stall_png_1774886790718.png",
+      "/img/RENDER-01_05.jpg",
+      "/img/RENDER-01_06.jpg"
+    ],
+    "videoUrl": "",
+    "shortDescription": "Heavy-duty certified steel & wood mezzanine stand with executive buyer lounge, panoramic upper terrace, and ground-level machinery display.",
+    "description": "Built for maximum footprint efficiency at IEML Greater Noida. The double-decker structural framework was precision-calculated with certified load-bearing safety, granting the client double the usable area within the same paid booth perimeter.",
+    "features": [
+      "Structural Safety & Load-Bearing Engineer Certified",
+      "Upper-Deck VIP Lounge with Coffee Bar",
+      "Acoustic Ceiling Panels for Quiet Negotiations",
+      "Open Panoramic Balcony Overlooking Expo Hall",
+      "Heavy Machinery Floor Load Reinforcement"
+    ],
+    "materials": [
+      "ISMC Heavy Structural Mild Steel Columns & Beams",
+      "Marine Grade Anti-Slip Wooden Staircase",
+      "Frosted Privacy Glass Panels & Stainless Handrails",
+      "Fire-Retardant Wall Paneling"
+    ]
+  },
+  {
+    "id": "island-four-side-stand",
+    "slug": "island-four-side-stand",
+    "title": "4-Side Open Island Footfall Stand",
+    "category": "island",
+    "categoryLabel": "Island & Corner",
+    "client": "Horizon Real Estate & Infra",
+    "venue": "Jio World Convention Centre, Mumbai",
+    "hall": "Pavilion 2, Island Stall #1",
+    "dimensions": "14m × 10m (140 sqm)",
+    "turnaround": "36 Hours Turnkey Delivery",
+    "completionYear": "2024",
+    "featured": true,
+    "primaryImage": "/island_corner_stall_png_1774886772675.png",
+    "gallery": [
+      "/island_corner_stall_png_1774886772675.png",
+      "/img/RENDER-01_07.jpg",
+      "/img/RENDER-01_08.jpg"
+    ],
+    "videoUrl": "",
+    "shortDescription": "An unobstructed 4-side open island booth engineered with a towering central illuminated fascia, model display plinths, and 8 consultation tables.",
+    "description": "Designed to capture maximum foot traffic from all 4 primary aisles. The central suspended truss structure featured 360-degree backlit fabric branding that could be seen from anywhere across the expo hall.",
+    "features": [
+      "Towering 5.5-Meter Central Illuminated Pylon",
+      "Unobstructed Footfall Circulation from All 4 Aisles",
+      "Integrated Architectural Scale-Model Display Pods",
+      "Warm Ambient Hospitality Lighting",
+      "Private Secure Reception Counters"
+    ],
+    "materials": [
+      "Backlit Fabric Lightbox Modules",
+      "CNC Router-Carved Wooden Panels",
+      "Matte Satin Enamel Paint Finish",
+      "Commercial Heavy Traffic Vinyl Flooring"
+    ]
+  },
+  {
+    "id": "modular-octanorm-hybrid",
+    "slug": "modular-octanorm-hybrid",
+    "title": "Rapid Modular & Octanorm Hybrid Stall",
+    "category": "modular",
+    "categoryLabel": "Modular & Shell Upgrades",
+    "client": "GreenTech Solutions",
+    "venue": "BIEC, Bengaluru",
+    "hall": "Hall 1, Booth G-14",
+    "dimensions": "9m × 6m (54 sqm)",
+    "turnaround": "24 Hours Rapid Handover",
+    "completionYear": "2024",
+    "featured": false,
+    "primaryImage": "/modular_shell_upgrade_png_1774886735919.png",
+    "gallery": [
+      "/modular_shell_upgrade_png_1774886735919.png",
+      "/img/RENDER-01_09.jpg"
+    ],
+    "videoUrl": "",
+    "shortDescription": "A sustainable, reconfigurable hybrid stall combining engineered aluminum extrusion profiles with bespoke wooden brand fascias.",
+    "description": "Constructed for an urgent 24-hour setup window at BIEC Bengaluru. Enabled the client to stand out dramatically from neighboring shell scheme booths at half the carbon footprint and budget of full wooden fabrication.",
+    "features": [
+      "24-Hour Rapid Installation & Zero Waste Teardown",
+      "Re-usable Engineered Aluminium System Profiles",
+      "Seamless Tension Fabric Dye-Sublimated Graphics",
+      "Energy Efficient Cool-White LED Downlighters",
+      "Custom Fabricated Wooden Reception Desk"
+    ],
+    "materials": [
+      "German-Spec Anodized Aluminum Extrusions",
+      "Non-Crease Eco Stretch Fabric Graphics",
+      "Laminated Wood Accents",
+      "Modular Interlocking Floor Deck"
+    ]
+  },
+  {
+    "id": "interactive-av-experience-booth",
+    "slug": "interactive-av-experience-booth",
+    "title": "Interactive Product Launch & AV Booth",
+    "category": "av-tech",
+    "categoryLabel": "Tech & AV Integrated",
+    "client": "CyberPulse Technologies",
+    "venue": "HITEX Exhibition Centre, Hyderabad",
+    "hall": "Hall 4, Stall B-03",
+    "dimensions": "10m × 8m (80 sqm)",
+    "turnaround": "36 Hours Full Calibration",
+    "completionYear": "2024",
+    "featured": true,
+    "primaryImage": "/product_launch_booth_png_1774886810577.png",
+    "gallery": [
+      "/product_launch_booth_png_1774886810577.png",
+      "/experience_demo_zone_png_1774886856936.png",
+      "/img/RENDER-01_10.jpg"
+    ],
+    "videoUrl": "",
+    "shortDescription": "Dark-aesthetic futuristic booth with seamless LED video walls, interactive touchscreen demo pods, and synchronized RGB accent lighting.",
+    "description": "Fabricated for a major software and hardware unveil. The layout featured an enclosed theater section for keynote product demos, paired with open-access hands-on testing kiosks.",
+    "features": [
+      "P2.5 High-Contrast Seamless LED Video Wall (6m × 3m)",
+      "Interactive 55\" Multi-Touch Screen Demo Pedestals",
+      "Synchronized DMX LED Channel Lighting Effects",
+      "Integrated Audio System with Directed Speakers",
+      "Dark Matte Finish with Neon Lime Accents"
+    ],
+    "materials": [
+      "Acoustic Felt Wall Liners",
+      "Matte Black Rubberized Texture Finish",
+      "Translucent Acrylic Edge-Lit Panels",
+      "Heavy Duty Raised Platform with Anti-Static Coating"
+    ]
+  },
+  {
+    "id": "corporate-conference-symposium-stand",
+    "slug": "corporate-conference-symposium-stand",
+    "title": "Corporate Conference & Symposium Lounge",
+    "category": "custom-wooden",
+    "categoryLabel": "Custom Wooden",
+    "client": "BioPharma Healthcare Summit",
+    "venue": "Pragati Maidan, New Delhi",
+    "hall": "Hall 2, Stall C-22",
+    "dimensions": "12m × 8m (96 sqm)",
+    "turnaround": "36 Hours On-Time Delivery",
+    "completionYear": "2023",
+    "featured": false,
+    "primaryImage": "/conference_seminar_booth_png_1774886833646.png",
+    "gallery": [
+      "/conference_seminar_booth_png_1774886833646.png",
+      "/custom_fabricated_stall_png_1774886755662.png"
+    ],
+    "videoUrl": "",
+    "shortDescription": "Sleek, minimalist Scandinavian-inspired executive booth featuring warm oak slat accents, open discussion lounges, and private meeting pods.",
+    "description": "Tailored for the healthcare and pharmaceutical industry where quiet, professional conversations and literature distribution are paramount. Delivered on schedule at Pragati Maidan.",
+    "features": [
+      "Real Wood Fluted Slat Feature Walls",
+      "3 Private Semi-Enclosed Discussion Cabins",
+      "Dedicated Literature Dispensers & Sample Showcases",
+      "Warm 3000K Architectural Downlighting",
+      "Custom Branded Barista Coffee Station"
+    ],
+    "materials": [
+      "Natural White Oak Timber Slats",
+      "Brushed Brass Metal Inlays",
+      "Matte Alabaster Paintwork",
+      "Plush Sound-Absorbing Commercial Carpet"
+    ]
+  }
+]

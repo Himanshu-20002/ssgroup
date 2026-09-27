@@ -113,6 +113,8 @@ export function StallSolutions() {
                     src={solution.img}
                     alt={solution.title}
                     fill
+                    priority={idx < 2}
+                    loading={idx < 2 ? "eager" : "lazy"}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-80"
                   />

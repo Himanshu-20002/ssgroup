@@ -25,7 +25,7 @@ export function Footer() {
 
 
       {/* Main Dark Footer Container */}
-      <div className="relative max-w-8xl max-lg:py-15  py-18 mx-auto w-full bg-[#11120f] rounded-[3rem] sm:rounded-[4rem] footer-mask">      
+      <div className="relative max-w-8xl max-lg:py-15 py-18 mx-auto w-full bg-[#11120f] text-white rounded-[3rem] sm:rounded-[4rem] footer-mask">      
         <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden rounded-[2.5rem] sm:rounded-[4rem]">
           <svg className="w-full h-full object-cover" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
             <path d="M-100,200 Q 150,50 300,250 T 700,100 T 1100,300" fill="none" stroke="#bbff1bff" strokeWidth="1.5" />
@@ -51,7 +51,7 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            className="text-[2.5rem] sm:text-6xl md:text-7xl lg:text-[4rem] font-black uppercase leading-[0.85] tracking-tighter"
+            className="text-[2.5rem] sm:text-6xl md:text-7xl lg:text-[4rem] font-black uppercase leading-[0.85] tracking-tighter text-white"
           >
              Build exhibition <span className="font-serif italic text-neutral-400 font-medium">stalls </span>that<br />
              <span className="text-[#bbff1bff] font-serif italic  md:border-b-[6px] border-[#bbff1bff]/60 font-medium z-10 relative">stand out.</span>
@@ -81,18 +81,18 @@ export function Footer() {
           {/* Left Column */}
           <div className="flex flex-col text-left gap-1 sm:gap-2">
             <span className="text-[10px] tracking-[0.2em] text-[#bbff1bff] font-mono mb-2 sm:mb-4">PAGES</span>
-            <Link href="/" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase hover:text-[#bbff1bff] hover:translate-x-2 transition-all duration-300 select-none">HOME</Link>
-            <Link href="#services" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase hover:text-[#bbff1bff] hover:translate-x-2 transition-all duration-300 select-none">SERVICES</Link>
-            <Link href="#portfolio" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase hover:text-[#bbff1bff] hover:translate-x-2 transition-all duration-300 select-none">PORTFOLIO</Link>
-            <Link href="#portfolio" className="text-sm sm:text-md lg:text-lg font-black uppercase text-[#11120f] mt-4 sm:mt-6 hover:opacity-100 uppercase tracking-widest bg-[#bbff1bff] hover:bg-white py-2 px-4 rounded-lg w-fit transition-all shadow-[0_0_15px_rgba(187,255,27,0.3)]">STORE</Link>
+            <Link href="/" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:translate-x-2 transition-all duration-300 select-none">HOME</Link>
+            <Link href="/#services" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:translate-x-2 transition-all duration-300 select-none">SERVICES</Link>
+            <Link href="/portfolio" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:translate-x-2 transition-all duration-300 select-none">PORTFOLIO</Link>
+            <Link href="/portfolio" className="text-sm sm:text-md lg:text-lg font-black uppercase text-[#11120f] mt-4 sm:mt-6 hover:opacity-100 uppercase tracking-widest bg-[#bbff1bff] hover:bg-white py-2 px-4 rounded-lg w-fit transition-all shadow-[0_0_15px_rgba(187,255,27,0.3)]">EXPLORE STALLS</Link>
           </div>
 
           {/* Right Column */}
           <div className="flex flex-col text-right gap-1 sm:gap-2">
             <span className="text-[10px] tracking-[0.2em] text-[#bbff1bff] font-mono mb-2 sm:mb-4">FOLLOW ON</span>
-            <Link href="#" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">INSTAGRAM</Link>
-            <Link href="#" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">LINKEDIN</Link>
-            <Link href="#" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">YOUTUBE</Link>
+            <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">INSTAGRAM</Link>
+            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">LINKEDIN</Link>
+            <Link href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">YOUTUBE</Link>
           </div>
         </div>
 

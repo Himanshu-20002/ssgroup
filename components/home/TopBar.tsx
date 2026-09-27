@@ -17,10 +17,10 @@ export default function TopBar() {
           </span>
           <span className="hidden sm:inline-block text-neutral-600">|</span>
           <a
-            href="tel:+919876543210"
+            href="tel:+919661378767"
             className="hover:text-[#bbff1bff] transition-colors flex items-center gap-1.5"
           >
-            <Phone className="w-3.5 h-3.5 text-[#bbff1bff]" /> +91 (0) 98765 43210
+            <Phone className="w-3.5 h-3.5 text-[#bbff1bff]" /> +91 96613 78767
           </a>
           <a
             href="mailto:hello@ssgroup.com"
@@ -46,7 +46,7 @@ export default function TopBar() {
               <Instagram className="w-3.5 h-3.5" />
             </a>
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/919661378767"
               target="_blank"
               rel="noopener noreferrer"
               className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5 font-medium"

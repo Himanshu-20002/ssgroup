@@ -4,6 +4,7 @@ import { ContactProvider } from '@/context/ContactContext'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ssgroup.com'),
   title: 'SS Group - Premium Exhibition Stall Fabrication & Design',
   description: 'Elevate your brand with SS Group. We specialize in world-class exhibition stall fabrication, custom design, installation, and on-site support.',
   keywords: ['exhibition stall', 'stall design', 'fabrication', 'trade show booth', 'event management', 'SS Group'],

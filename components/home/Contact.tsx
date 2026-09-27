@@ -96,7 +96,7 @@ export function Contact() {
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={isContactOpen ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 20 }}
         transition={{ duration: 0.3 }}
-        className={`fixed inset-2 sm:inset-4 md:inset-8 lg:inset-12 z-50 max-w-5xl w-full mx-auto max-h-[95vh] overflow-y-auto rounded-xl sm:rounded-2xl md:rounded-3xl ${
+        className={`fixed inset-2 sm:inset-4 md:inset-8 lg:inset-12 z-50 max-w-5xl w-full mx-auto max-h-[95vh] overflow-y-auto custom-scrollbar rounded-xl sm:rounded-2xl md:rounded-3xl ${
           isContactOpen ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
       >

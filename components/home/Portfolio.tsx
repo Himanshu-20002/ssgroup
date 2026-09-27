@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -135,9 +136,20 @@ export function Portfolio() {
             BUILDING A <span className="text-lime-400 italic">LEGACY</span> IN EXHIBITIONS<br />
             ON AND OFF THE EVENT FLOOR.
           </h2>
-          <p className="mt-6 lg:mt-12 text-base md:text-xl text-neutral-400 font-sans max-w-2xl mx-auto font-medium tracking-wide">
+          <p className="mt-6 lg:mt-8 text-base md:text-xl text-neutral-400 font-sans max-w-2xl mx-auto font-medium tracking-wide">
             SS Group creates world-class exhibition stalls combining precision, aesthetics, and structural integrity.
           </p>
+          <div className="mt-6 pointer-events-auto">
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#bbff1bff] text-neutral-950 font-bold text-sm tracking-wide shadow-lg hover:bg-lime-300 transition-all hover:scale-105"
+            >
+              <span>Explore All Stalls &amp; 3D Showcase</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          </div>
         </motion.div>
       </div>
 
