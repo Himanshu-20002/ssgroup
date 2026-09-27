@@ -86,7 +86,7 @@ export function PortfolioHero({ searchQuery, onSearchChange, totalProjects }: Po
             className="pt-3 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
           >
             <a
-              href="https://wa.me/919876543210?text=Hi%20SS%20Group,%20I%20am%20reviewing%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20stall%20design%20for%20our%20upcoming%20expo."
+              href="https://wa.me/919661378767?text=Hi%20SS%20Group,%20I%20am%20reviewing%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20stall%20design%20for%20our%20upcoming%20expo."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"

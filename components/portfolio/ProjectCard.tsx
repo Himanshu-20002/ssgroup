@@ -109,7 +109,7 @@ export function ProjectCard({ project, onOpenDetails, priority = false }: Projec
 
           <div className="flex items-center gap-2">
             <a
-              href={`https://wa.me/919876543210?text=${encodedWhatsAppText}`}
+              href={`https://wa.me/919661378767?text=${encodedWhatsAppText}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}

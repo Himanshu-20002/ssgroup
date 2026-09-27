@@ -23,10 +23,10 @@ export default function TopBar() {
             <Phone className="w-3.5 h-3.5 text-[#bbff1bff]" /> +91 96613 78767
           </a>
           <a
-            href="mailto:hello@ssgroup.com"
+            href="mailto:info@ssgroupexhibition.com"
             className="hover:text-[#bbff1bff] transition-colors hidden md:flex items-center gap-1.5"
           >
-            <Mail className="w-3.5 h-3.5 text-[#bbff1bff]" /> ifo@ssgroupexhibition.com
+            <Mail className="w-3.5 h-3.5 text-[#bbff1bff]" /> info@ssgroupexhibition.com
           </a>
         </div>
 

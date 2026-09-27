@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Clock, X } from 'lucide-react'
+import WhatsAppIcon from '../icons/WhatsAppIcon'
 import { useContact } from '@/context/ContactContext'
 
 interface ContactFormData {
@@ -54,27 +55,38 @@ export function Contact() {
   const contactDetails = [
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+91 (0) 9876543210',
-      href: 'tel:+919876543210',
+      label: 'Call Direct',
+      value: '+91 96613 78767',
+      href: 'tel:+919661378767',
+      external: false,
+    },
+    {
+      icon: WhatsAppIcon,
+      label: 'WhatsApp',
+      value: '+91 96613 78767',
+      href: 'https://wa.me/919661378767?text=Hi%20SS%20Group,%20I%20would%20like%20to%20discuss%20an%20exhibition%20stall%20project.',
+      external: true,
     },
     {
       icon: Mail,
-      label: 'Email',
-      value: 'hello@ssgroup.com',
-      href: 'mailto:hello@ssgroup.com',
+      label: 'Email Enquiries',
+      value: 'info@ssgroupexhibition.com',
+      href: 'mailto:info@ssgroupexhibition.com',
+      external: false,
     },
     {
       icon: MapPin,
-      label: 'Address',
-      value: 'Mumbai, India',
+      label: 'Headquarters',
+      value: 'Delhi NCR & PAN India',
       href: '#',
+      external: false,
     },
     {
       icon: Clock,
-      label: 'Working Hours',
-      value: 'Mon - Fri: 9 AM - 6 PM',
+      label: 'Fabrication & Support',
+      value: '24/7 Active On-Site & Studio',
       href: '#',
+      external: false,
     },
   ]
 
@@ -130,6 +142,8 @@ export function Contact() {
                     <motion.a
                       key={idx}
                       href={detail.href}
+                      target={detail.external ? '_blank' : undefined}
+                      rel={detail.external ? 'noopener noreferrer' : undefined}
                       whileHover={{ x: 8 }}
                       className="flex gap-4 group cursor-pointer"
                     >
@@ -251,10 +265,23 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-[#bbff1bff] text-[#11120f] font-black uppercase tracking-widest rounded-lg hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm mt-4 sm:mt-6"
+                  className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-[#bbff1bff] text-[#11120f] font-black uppercase tracking-widest rounded-lg hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm mt-4 sm:mt-6 cursor-pointer"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Enquiry'}
                 </button>
+
+                {/* Direct WhatsApp Instant Action */}
+                <div className="pt-3 border-t border-neutral-800 text-center">
+                  <p className="text-xs text-neutral-400">Prefer instant messaging?</p>
+                  <a
+                    href="https://wa.me/919661378767?text=Hi%20SS%20Group,%20I%20would%20like%20to%20discuss%20an%20exhibition%20stall%20project."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 mt-2 px-4 py-2.5 rounded-lg bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 hover:text-white hover:bg-emerald-800/80 text-xs font-bold transition-all w-full"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" /> Chat on WhatsApp (+91 96613 78767)
+                  </a>
+                </div>
               </form>
             </motion.div>
           </div>

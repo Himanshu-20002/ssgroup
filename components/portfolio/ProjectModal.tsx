@@ -246,7 +246,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <a
-              href={`https://wa.me/919876543210?text=${encodedWhatsAppText}`}
+              href={`https://wa.me/919661378767?text=${encodedWhatsAppText}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all"
