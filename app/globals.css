@@ -233,4 +233,63 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(197, 155, 39, 0.85);
 }
+
+/* Premium Golden CTA with Lightweight Hover Shimmer */
+.btn-gold-cta {
+  background: linear-gradient(135deg, #d4af37 0%, #f7d770 50%, #c59b27 100%);
+  color: #1a1209 !important;
+  font-weight: 800;
+  border: 1px solid rgba(255, 235, 160, 0.7);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.28);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-gold-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
+  transition: transform 0.75s ease;
+  pointer-events: none;
+}
+
+.btn-gold-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 26px rgba(212, 175, 55, 0.45);
+  background: linear-gradient(135deg, #dfbc45 0%, #fbe183 50%, #d4aa33 100%);
+}
+
+.btn-gold-cta:hover::before {
+  transform: translateX(240%);
+}
+
+.btn-gold-cta:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+}
+
+/* Round icon button variant */
+.btn-gold-icon {
+  background: linear-gradient(135deg, #d4af37 0%, #f7d770 50%, #c59b27 100%);
+  color: #1a1209;
+  border: 1px solid rgba(255, 235, 160, 0.7);
+  box-shadow: 0 3px 12px rgba(212, 175, 55, 0.25);
+  transition: all 0.25s ease;
+}
+
+.btn-gold-icon:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, #dfbc45 0%, #fbe183 50%, #d4aa33 100%);
+}
+
+.btn-gold-icon:active {
+  transform: scale(0.94);
+}
+
 

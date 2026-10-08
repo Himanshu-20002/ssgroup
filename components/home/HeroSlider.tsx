@@ -62,18 +62,18 @@ export default function HeroSlider() {
 
   return (
     <div className="relative w-full max-w-2xl mx-auto lg:max-w-none">
-      {/* Background Visual Depth Glow (Gold & Lime) */}
-      <div className="absolute -inset-1.5 bg-gradient-to-r from-amber-400/20 via-[#bbff1bff]/20 to-amber-300/20 rounded-[2.5rem] blur-2xl opacity-70 pointer-events-none" />
+      {/* Background Visual Depth Glow (Warm Gold) */}
+      <div className="absolute -inset-1.5 bg-gradient-to-r from-amber-400/20 via-amber-200/25 to-amber-300/20 rounded-[2.5rem] blur-2xl opacity-70 pointer-events-none" />
 
       {/* Main Glassmorphic Showcase Card in Light Theme */}
       <div className="relative rounded-[2rem] border border-amber-900/10 bg-white/95 backdrop-blur-2xl p-4 sm:p-6 shadow-[0_20px_50px_rgba(50,30,15,0.07)] overflow-hidden">
 
-        {/* Top Header Row: Gold & Lime Badge & Counter */}
+        {/* Top Header Row: Gold Badge & Counter */}
         <div className="flex items-center justify-between gap-2 mb-3.5 z-20 relative">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-50 to-lime-50/60 border border-amber-200/80 text-xs font-bold text-[#7a5316] shadow-2xs">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-50 to-amber-100/60 border border-amber-200/80 text-xs font-bold text-[#7a5316] shadow-2xs">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#88cc00] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#88cc00]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af37] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af37]" />
             </span>
             <span className="truncate">{slides[currentSlide].badge}</span>
           </div>
@@ -106,7 +106,7 @@ export default function HeroSlider() {
 
           {/* Floating Pill Tag inside image */}
           <div className="absolute bottom-3 left-3 z-10 hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#11120f]/80 backdrop-blur-md border border-white/20 text-xs font-bold text-white shadow-lg">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#bbff1bff]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#d4af37]" />
             <span>{slides[currentSlide].tag}</span>
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function HeroSlider() {
                       initial={{ width: '0%' }}
                       animate={{ width: '100%' }}
                       transition={{ duration: 6, ease: 'linear' }}
-                      className="h-full bg-gradient-to-r from-[#c59b27] via-[#bbff1bff] to-[#c59b27] rounded-full"
+                      className="h-full bg-gradient-to-r from-[#d4af37] via-[#f7d770] to-[#c59b27] rounded-full"
                     />
                   )}
                 </button>
@@ -177,7 +177,7 @@ export default function HeroSlider() {
             </button>
             <button
               onClick={nextSlide}
-              className="w-8 h-8 rounded-full bg-[#bbff1bff] text-[#1a1209] hover:bg-[#a6ec00] transition flex items-center justify-center font-bold active:scale-95 shadow-sm border border-[#a0e800]/40 cursor-pointer"
+              className="w-8 h-8 rounded-full btn-gold-icon flex items-center justify-center font-bold cursor-pointer"
               aria-label="Next Slide"
             >
               <ChevronRight className="w-4 h-4" />

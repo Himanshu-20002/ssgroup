@@ -151,7 +151,7 @@ export function StallSolutions() {
         <div className="mt-8 text-center sm:text-left">
           <button
             onClick={() => setShowAll((prev) => !prev)}
-            className="inline-flex sm:hidden items-center justify-center px-8 py-3 text-sm font-bold tracking-wide text-black bg-[#bbff1bff] rounded-full shadow-lg hover:bg-[#bbff1bff]/90 transition-all duration-300"
+            className="inline-flex sm:hidden items-center justify-center px-8 py-3 text-sm font-bold tracking-wide rounded-full btn-gold-cta cursor-pointer"
           >
             {showAll ? 'Show Less' : 'Show More'}
           </button>

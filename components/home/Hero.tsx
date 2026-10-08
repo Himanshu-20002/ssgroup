@@ -34,7 +34,7 @@ export function Hero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#d4af37]/40 bg-gradient-to-r from-amber-50 via-white to-lime-50 text-xs sm:text-sm font-bold tracking-wide text-[#7a5316] uppercase shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#d4af37]/40 bg-gradient-to-r from-amber-50 via-white to-amber-50/60 text-xs sm:text-sm font-bold tracking-wide text-[#7a5316] uppercase shadow-sm"
             >
               <Sparkles className="w-4 h-4 text-[#c59b27]" />
               <span>EXHIBITION STALL DESIGN & FABRICATION EXPERTS</span>
@@ -55,7 +55,7 @@ export function Hero() {
                 <span className="px-3 py-1 rounded-lg bg-white/80 border border-amber-900/10 text-[#24150e] shadow-xs">Exhibition Booths</span>
                 <span className="text-[#c59b27] font-black">•</span>
                 <span className="px-3 py-1 rounded-lg bg-white/80 border border-amber-900/10 text-[#24150e] shadow-xs">Stall Fabrication</span>
-                <span className="text-[#88cc00] font-black">•</span>
+                <span className="text-[#c59b27] font-black">•</span>
                 <span className="px-3 py-1 rounded-lg bg-white/80 border border-amber-900/10 text-[#24150e] shadow-xs">On-site Support</span>
               </div>
             </motion.div>
@@ -77,8 +77,8 @@ export function Hero() {
             >
               {benefits.map((benefit, i) => (
                 <li key={i} className="flex items-start gap-3 text-[#3d2719] font-semibold">
-                  <div className="w-5 h-5 rounded-full bg-[#bbff1bff] flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#1b120a]" />
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b08518] flex items-center justify-center shrink-0 mt-0.5 shadow-xs border border-amber-300/40">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-white" />
                   </div>
                   <span>{benefit}</span>
                 </li>
@@ -94,13 +94,13 @@ export function Hero() {
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   onClick={openContact}
-                  className="w-full sm:w-auto text-base sm:text-lg px-9 h-14 bg-[#bbff1bff] hover:bg-[#a8f000] text-[#1a1209] font-black rounded-xl shadow-lg shadow-[#bbff1bff]/30 transition-all hover:scale-105 active:scale-95 border border-[#a0e800]/50"
+                  className="w-full sm:w-auto text-base sm:text-lg px-9 h-14 btn-gold-cta rounded-xl font-black cursor-pointer"
                 >
                   Plan Your Stall
                 </button>
                 <a
                   href="#portfolio"
-                  className="w-full sm:w-auto text-center text-sm sm:text-base px-7 h-14 inline-flex items-center justify-center bg-white hover:bg-stone-50 text-[#3d2719] font-bold rounded-xl border border-amber-900/15 shadow-sm transition hover:border-[#c59b27]"
+                  className="w-full sm:w-auto text-center text-sm sm:text-base px-7 h-14 inline-flex items-center justify-center bg-white hover:bg-stone-50 text-[#3d2719] font-bold rounded-xl border border-amber-900/15 shadow-sm transition hover:border-[#c59b27] hover:scale-[1.02] active:scale-[0.98]"
                 >
                   View 3D Stalls
                 </a>

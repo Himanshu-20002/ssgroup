@@ -62,7 +62,7 @@ export function Header() {
             {/* Desktop Action Button */}
             <button
               onClick={openContact}
-              className="hidden md:inline-flex px-6 py-2 bg-lime-400 text-black font-bold rounded-lg hover:bg-lime-300 transition shadow-sm hover:shadow"
+              className="hidden md:inline-flex px-6 py-2.5 btn-gold-cta rounded-xl text-sm font-black tracking-wide cursor-pointer"
             >
               Get Free Quote
             </button>
@@ -113,10 +113,13 @@ export function Header() {
             </div>
 
             <button
-              onClick={openContact}
-              className="w-full text-lg px-8 h-12 bg-lime-400 hover:bg-lime-300 text-black font-bold rounded-lg shadow-md mt-4 active:scale-95 transition-transform inline-flex items-center justify-center"
+              onClick={() => {
+                setIsOpen(false);
+                openContact();
+              }}
+              className="w-full text-base px-8 h-12 btn-gold-cta rounded-xl mt-4 inline-flex items-center justify-center cursor-pointer"
             >
-              Get Stall Quote
+              Get Free Quote
             </button>
           </div>
         </div>

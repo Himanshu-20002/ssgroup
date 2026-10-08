@@ -160,7 +160,7 @@ export function Portfolio({ projects }: PortfolioProps) {
           <div className="mt-6 pointer-events-auto">
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#bbff1bff] text-neutral-950 font-bold text-sm tracking-wide shadow-lg hover:bg-lime-300 transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full btn-gold-cta text-sm tracking-wide cursor-pointer"
             >
               <span>Explore All Stalls &amp; 3D Showcase</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

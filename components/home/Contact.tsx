@@ -292,7 +292,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-[#bbff1bff] text-[#11120f] font-black uppercase tracking-widest rounded-lg hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm mt-4 sm:mt-6 cursor-pointer"
+                  className="w-full px-4 sm:px-6 py-3.5 btn-gold-cta uppercase tracking-widest rounded-xl disabled:opacity-50 disabled:cursor-not-allowed text-sm mt-4 sm:mt-6 cursor-pointer font-black"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Enquiry'}
                 </button>
