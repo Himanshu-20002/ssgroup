@@ -8,7 +8,7 @@ import { useContact } from '@/context/ContactContext';
 
 const slides = [
   {
-    image: '/img/hero/hero-1.png',
+    image: '/img/hero/hero-1.jpg',
     badge: 'Custom 3D Wooden Fabrication',
     tag: 'Bespoke Pavilion',
     title: 'Custom Fabricated Exhibition Stalls',
@@ -16,7 +16,7 @@ const slides = [
     specs: ['Free 3D Design Concept', 'Factory Rate Pricing', 'Turnkey Fabrication'],
   },
   {
-    image: '/img/hero/hero-2.png',
+    image: '/img/hero/hero-2.jpg',
     badge: 'Double Decker & Mezzanine Stands',
     tag: 'Multi-Level Architecture',
     title: 'Two-Story VIP Exhibition Pavilions',
@@ -24,7 +24,7 @@ const slides = [
     specs: ['Structural Safety Certified', 'Private VIP Lounge', 'Panoramic View'],
   },
   {
-    image: '/img/hero/hero-3.png',
+    image: '/img/hero/hero-3.jpg',
     badge: 'Modular & Hybrid Booths',
     tag: 'Fast Turnaround Setup',
     title: 'Octanorm & Engineered Modular Stalls',
@@ -32,7 +32,7 @@ const slides = [
     specs: ['24-Hour Rapid Setup', 'Eco-Friendly Reusable', 'Seamless Graphic Finish'],
   },
   {
-    image: '/img/hero/hero-stall.png',
+    image: '/img/hero/hero-stall.jpg',
     badge: 'PAN India Turnkey Execution',
     tag: 'On-Site Setup Support',
     title: 'Complete On-Site Expo Management',
@@ -83,30 +83,30 @@ export default function HeroSlider() {
         </div>
 
         {/* 3D Stall Image Display Stage (Warm Alabaster/Champagne backdrop) */}
-        <div className="relative h-[250px] sm:h-[320px] lg:h-[380px] w-full flex items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-b from-[#fbf9f5] via-[#f4eee4] to-[#ebe1d2] border border-amber-900/10 shadow-inner">
+        <div className="relative h-[250px] sm:h-[320px] lg:h-[380px] w-full flex items-center justify-center overflow-hidden rounded-2xl bg-neutral-900 border border-amber-900/10 shadow-inner group">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
-              initial={{ opacity: 0, scale: 0.94, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 1.04, y: -10 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="relative w-full h-full p-4 sm:p-6 flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.03 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="relative w-full h-full overflow-hidden"
             >
               <Image
                 src={slides[currentSlide].image}
                 alt={slides[currentSlide].title}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 600px"
-                className="object-contain drop-shadow-[0_18px_35px_rgba(55,35,15,0.22)] filter"
+                className="object-cover object-center filter brightness-[1.02] contrast-[1.03]"
                 priority={currentSlide === 0}
               />
             </motion.div>
           </AnimatePresence>
 
           {/* Floating Pill Tag inside image */}
-          <div className="absolute bottom-3 left-3 z-10 hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-amber-900/15 text-[11px] font-bold text-[#442c1d] shadow-sm">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#c59b27]" />
+          <div className="absolute bottom-3 left-3 z-10 hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#11120f]/80 backdrop-blur-md border border-white/20 text-xs font-bold text-white shadow-lg">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#bbff1bff]" />
             <span>{slides[currentSlide].tag}</span>
           </div>
         </div>
