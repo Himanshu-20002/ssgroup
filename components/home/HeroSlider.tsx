@@ -66,24 +66,21 @@ export default function HeroSlider() {
       <div className="absolute -inset-1.5 bg-gradient-to-r from-black/5 via-amber-600/10 to-black/5 rounded-[2.5rem] blur-xl opacity-60 pointer-events-none" />
 
       {/* Main Glassmorphic Showcase Card in Light Theme */}
-      <div className="relative rounded-[2rem] border border-stone-200/80 bg-white p-4 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-hidden">
+      <div className="relative rounded-[1.75rem] sm:rounded-[2rem] border border-stone-200/80 bg-white p-3.5 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-hidden">
 
         {/* Top Header Row: Gold Badge & Counter */}
-        <div className="flex items-center justify-between gap-2 mb-3.5 z-20 relative">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-50 border border-stone-200 text-xs font-bold text-stone-700 shadow-2xs">
+        <div className="flex items-center justify-between gap-2 mb-3 z-20 relative">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-50 border border-stone-200 text-[11px] sm:text-xs font-bold text-stone-700 shadow-2xs">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#b88628] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#b88628]" />
             </span>
             <span className="truncate">{slides[currentSlide].badge}</span>
           </div>
-          {/* <div className="text-xs font-mono font-bold text-[#735338] bg-amber-50/80 border border-amber-200/60 px-2.5 py-1 rounded-full">
-            0{currentSlide + 1} / 0{slides.length}
-          </div> */}
         </div>
 
         {/* 3D Stall Image Display Stage (Warm Alabaster/Champagne backdrop) */}
-        <div className="relative h-[250px] sm:h-[320px] lg:h-[380px] w-full flex items-center justify-center overflow-hidden rounded-2xl bg-neutral-900 border border-amber-900/10 shadow-inner group">
+        <div className="relative h-[220px] sm:h-[270px] lg:h-[310px] xl:h-[330px] w-full flex items-center justify-center overflow-hidden rounded-2xl bg-neutral-900 border border-amber-900/10 shadow-inner group">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
@@ -105,20 +102,20 @@ export default function HeroSlider() {
           </AnimatePresence>
 
           {/* Floating Pill Tag inside image */}
-          <div className="absolute bottom-3 left-3 z-10 hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#11120f]/80 backdrop-blur-md border border-white/20 text-xs font-bold text-white shadow-lg">
+          <div className="absolute bottom-3 left-3 z-10 hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#11120f]/80 backdrop-blur-md border border-white/20 text-[11px] font-bold text-white shadow-lg">
             <ShieldCheck className="w-3.5 h-3.5 text-[#d4af37]" />
             <span>{slides[currentSlide].tag}</span>
           </div>
         </div>
 
         {/* Slide Title, Subtitle, & Feature Pills */}
-        <div className="mt-4 space-y-2.5">
+        <div className="mt-3.5 space-y-2">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <h3 className="text-base sm:text-xl font-black text-[#24150e] tracking-tight leading-snug">
+              <h3 className="text-sm sm:text-base lg:text-lg font-black text-[#24150e] tracking-tight leading-snug">
                 {slides[currentSlide].title}
               </h3>
-              <p className="text-xs sm:text-sm text-[#5e4535] mt-1 line-clamp-2 font-medium">
+              <p className="text-xs sm:text-[13px] text-[#5e4535] mt-1 line-clamp-2 font-medium">
                 {slides[currentSlide].subtitle}
               </p>
             </div>

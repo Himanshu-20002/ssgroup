@@ -44,7 +44,7 @@ export function WhyChooseUs() {
   }
 
   return (
-    <section className="py-32 min-h-screen lg:py-48 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[linear-gradient(to_bottom,#1a1c1a_0%,#1a1c1a_15%,#232520_25%,#3a3d35_45%,#666a5e_65%,#adb2a7_85%,white_100%)]">
+    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[linear-gradient(to_bottom,#1a1c1a_0%,#1a1c1a_15%,#232520_25%,#3a3d35_45%,#666a5e_65%,#adb2a7_85%,white_100%)]">
       {/* Mesmerizing Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Animated grid line */}
@@ -59,7 +59,7 @@ export function WhyChooseUs() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col lg:flex-row items-end justify-between gap-12 mb-24 lg:mb-32">
+        <div className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-12 lg:mb-16">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -67,10 +67,10 @@ export function WhyChooseUs() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="max-w-3xl"
           >
-            <span className="text-[#bbff1b] font-mono text-sm tracking-[0.4em] uppercase mb-8 block font-bold">
+            <span className="text-[#bbff1b] font-mono text-xs sm:text-sm tracking-[0.3em] uppercase mb-4 block font-bold">
               / THE ADVANTAGE
             </span>
-            <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-8 tracking-tighter leading-[0.85] text-white">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black mb-4 tracking-tighter leading-[0.95] text-white">
               ENGINEERED <br />
               FOR <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bbff1b] to-white">IMPACT.</span>
             </h2>
@@ -81,7 +81,7 @@ export function WhyChooseUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl text-neutral-400 max-w-sm leading-relaxed mb-4"
+            className="text-sm sm:text-base text-neutral-400 max-w-sm leading-relaxed mb-2"
           >
             We don't just build stalls; we create tactical spaces that dominate the exhibition floor.
           </motion.p>
@@ -92,7 +92,7 @@ export function WhyChooseUs() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5"
         >
           {features.map((feature, idx) => {
             const Icon = feature.icon;
@@ -100,9 +100,9 @@ export function WhyChooseUs() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                whileHover={{ y: -10 }}
-                whileTap={{ y: -5, scale: 0.98 }}
-                className="group relative cursor-pointer select-none h-[220px] sm:h-[400px] p-6 sm:p-8 rounded-[2rem] flex flex-col justify-end bg-[#11120f] border overflow-hidden transition-colors duration-500 border-[#bbff1b]/50 shadow-2xl"
+                whileHover={{ y: -6 }}
+                whileTap={{ y: -3, scale: 0.98 }}
+                className="group relative cursor-pointer select-none h-[200px] sm:h-[320px] md:h-[340px] p-5 sm:p-6 rounded-2xl sm:rounded-[1.75rem] flex flex-col justify-end bg-[#11120f] border overflow-hidden transition-colors duration-500 border-[#bbff1b]/50 shadow-xl"
               >
                 {/* Visual Depth Background */}
                 <div className="absolute inset-0 opacity-20 group-hover:opacity-40 group-active:opacity-40 transition-opacity duration-700">
@@ -114,20 +114,20 @@ export function WhyChooseUs() {
 
                 <div className="relative z-10">
                   {/* Floating Icon */}
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-[#bbff1b] group-active:bg-[#bbff1b] group-hover:border-[#bbff1b] group-active:border-[#bbff1b] transition-all duration-500 transform group-hover:scale-110 group-active:scale-110 group-hover:rotate-12 group-active:rotate-12">
-                    <Icon className="w-6 h-6 text-white group-hover:text-[#11120f] group-active:text-[#11120f] transition-colors duration-500" strokeWidth={1.5} />
+                  <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-5 group-hover:bg-[#bbff1b] group-active:bg-[#bbff1b] group-hover:border-[#bbff1b] group-active:border-[#bbff1b] transition-all duration-500 transform group-hover:scale-110 group-active:scale-110 group-hover:rotate-12 group-active:rotate-12">
+                    <Icon className="w-5 sm:w-5.5 h-5 sm:h-5.5 text-white group-hover:text-[#11120f] group-active:text-[#11120f] transition-colors duration-500" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-4 text-white tracking-tight group-hover:text-[#bbff1b] group-active:text-[#bbff1b] transition-colors duration-500">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 text-white tracking-tight group-hover:text-[#bbff1b] group-active:text-[#bbff1b] transition-colors duration-500">
                     {feature.title}
                   </h3>
-                  <p className="text-neutral-400 text-sm leading-relaxed group-hover:text-neutral-200 group-active:text-neutral-200 transition-colors duration-500">
+                  <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed group-hover:text-neutral-200 group-active:text-neutral-200 transition-colors duration-500">
                     {feature.desc}
                   </p>
                 </div>
 
                 {/* Index Number */}
-                <span className="absolute top-8 right-8 text-white/5 text-6xl font-black group-hover:text-[#bbff1b]/10 group-active:text-[#bbff1b]/10 transition-colors">
+                <span className="absolute top-6 right-6 text-white/5 text-4xl sm:text-5xl font-black group-hover:text-[#bbff1b]/10 group-active:text-[#bbff1b]/10 transition-colors">
                   0{idx + 1}
                 </span>
               </motion.div>

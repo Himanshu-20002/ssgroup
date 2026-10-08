@@ -142,28 +142,28 @@ export function Portfolio({ projects }: PortfolioProps) {
       </div>
 
       {/* Intro Block - Has normal vertical scroll flow, NOT pinned */}
-      <div className="relative w-full min-h-[30vh] lg:min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10 lg:py-20 z-20 overflow-hidden">
+      <div className="relative w-full min-h-[25vh] lg:min-h-[65vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10 lg:py-14 z-20 overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          className="max-w-6xl mx-auto text-center font-serif pointer-events-none"
+          className="max-w-5xl mx-auto text-center font-serif pointer-events-none"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[1.1] font-bold tracking-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] font-bold tracking-tight uppercase">
             BUILDING A <span className="text-lime-400 italic">LEGACY</span> IN EXHIBITIONS<br />
             ON AND OFF THE EVENT FLOOR.
           </h2>
-          <p className="mt-6 lg:mt-8 text-base md:text-xl text-neutral-400 font-sans max-w-2xl mx-auto font-medium tracking-wide">
+          <p className="mt-4 lg:mt-6 text-sm md:text-base text-neutral-400 font-sans max-w-2xl mx-auto font-medium tracking-wide">
             SS Group creates world-class exhibition stalls combining precision, aesthetics, and structural integrity.
           </p>
-          <div className="mt-6 pointer-events-auto">
+          <div className="mt-5 pointer-events-auto">
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full btn-gold-cta text-sm tracking-wide cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full btn-gold-cta text-xs sm:text-sm tracking-wide cursor-pointer"
             >
               <span>Explore All Stalls &amp; 3D Showcase</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </Link>

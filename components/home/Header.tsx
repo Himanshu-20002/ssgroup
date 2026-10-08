@@ -25,13 +25,13 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center ">
+            <Link href="/" className="flex items-center">
               <Image
                 src="/logo/logo.png"
                 alt="SS Group Logo"
                 width={200}
                 height={100}
-                className="h-10 sm:h-12 w-auto object-contain"
+                className="h-11 sm:h-13 w-auto object-contain"
                 priority
               />
             </Link>
@@ -43,7 +43,7 @@ export function Header() {
                   <button
                     key={link.name}
                     onClick={openContact}
-                    className="px-3.5 py-1.5 text-[15px] font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-100/80 rounded-full transition-all duration-200 cursor-pointer tracking-normal"
+                    className="px-3.5 py-1.5 text-sm font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-100/80 rounded-full transition-all duration-200 cursor-pointer tracking-normal"
                   >
                     {link.name}
                   </button>
@@ -51,7 +51,7 @@ export function Header() {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="px-3.5 py-1.5 text-[15px] font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-100/80 rounded-full transition-all duration-200 tracking-normal"
+                    className="px-3.5 py-1.5 text-sm font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-100/80 rounded-full transition-all duration-200 tracking-normal"
                   >
                     {link.name}
                   </a>
@@ -62,7 +62,7 @@ export function Header() {
             {/* Desktop Action Button */}
             <button
               onClick={openContact}
-              className="hidden md:inline-flex px-6 py-2.5 btn-gold-cta rounded-xl text-sm font-black tracking-wide cursor-pointer"
+              className="hidden md:inline-flex px-5 py-2 btn-gold-cta rounded-xl text-xs sm:text-sm font-black tracking-wide cursor-pointer"
             >
               Get Free Quote
             </button>
