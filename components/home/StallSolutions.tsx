@@ -51,10 +51,6 @@ export function StallSolutions() {
     }
   ]
 
-  const mobileVisibleSolutions = showAll
-    ? solutions
-    : solutions.filter((_, index) => !hiddenIndices.includes(index))
-
   const displaySolutions = solutions
 
   return (
@@ -92,9 +88,6 @@ export function StallSolutions() {
           {displaySolutions.map((solution, idx) => {
             const originalIndex = solutions.findIndex((s) => s.title === solution.title)
             const isMobileHidden = !showAll && hiddenIndices.includes(originalIndex)
-            const mobileIndex = mobileVisibleSolutions.findIndex((s) => s.title === solution.title)
-            const displayIndex = showAll ? originalIndex : mobileIndex
-            const formattedIndex = displayIndex >= 0 ? displayIndex + 1 : originalIndex + 1
 
             return (
               <motion.div
@@ -131,11 +124,6 @@ export function StallSolutions() {
 
               {/* Text Overlay - Mobile optimized */}
               <div className="absolute inset-x-0 bottom-0 p-4 sm:p-8 md:p-10 z-20">
-                  {/* Index Number */}
-                  <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-2 sm:mb-3 block group-hover:text-[#bbff1bff]/10 transition-colors duration-700 text-white/10">
-                    {formattedIndex < 10 ? `0${formattedIndex}` : formattedIndex}
-                  </span>
-
                 <h3 className="text-sm sm:text-base md:text-xl lg:text-2xl font-black text-white leading-tight tracking-tight group-hover:text-[#bbff1bff] transition-colors duration-500 uppercase">
                   {solution.title}
                 </h3>
