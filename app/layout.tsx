@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: 'SS Group Exhibition',
     images: [
       {
-        url: '/og-image.png',
+        url: '/icons/og-image.png',
         width: 1200,
         height: 630,
         alt: 'SS Group Exhibition Stall Fabrication',
@@ -27,28 +27,28 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'SS Group - Premium Exhibition Stall Fabrication & Design',
     description: 'Elevate your brand with SS Group. World-class exhibition stall fabrication, custom designs, and 24/7 on-site support.',
-    images: ['/og-image.png'],
+    images: ['/icons/og-image.png'],
   },
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/icons/icon-light-32x32.png',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/icons/icon-dark-32x32.png',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
+        url: '/icons/icon.svg',
         type: 'image/svg+xml',
       },
       {
         url: '/logo/white-logo.png',
       },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/apple-icon.png',
+    shortcut: '/icons/favicon.ico',
+    apple: '/icons/apple-icon.png',
   },
 }
 

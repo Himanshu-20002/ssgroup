@@ -22,6 +22,22 @@ const nextConfig = {
     '192.168.31.148',
     '192.168.31.27',
   ],
+  async rewrites() {
+    return [
+      {
+        source: '/favicon.ico',
+        destination: '/icons/favicon.ico',
+      },
+      {
+        source: '/og-image.png',
+        destination: '/icons/og-image.png',
+      },
+      {
+        source: '/apple-icon.png',
+        destination: '/icons/apple-icon.png',
+      },
+    ]
+  },
 }
 
 export default nextConfig
