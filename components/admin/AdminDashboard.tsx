@@ -261,7 +261,7 @@ export function AdminDashboard({ initialProjects }: AdminDashboardProps) {
                           <div className="flex items-center gap-3">
                             <div className="relative w-16 h-12 rounded-lg overflow-hidden bg-neutral-900 border border-white/10 shrink-0">
                               <Image
-                                src={project.primaryImage || '/hero-stall.png'}
+                                src={project.primaryImage || '/img/hero/hero-stall.png'}
                                 alt={project.title}
                                 fill
                                 className="object-cover"

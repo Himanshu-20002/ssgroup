@@ -48,9 +48,9 @@
     "completionYear": "2024",
     "featured": true,
     "status": "published",
-    "primaryImage": "/modular_shell_upgrade_png_1774886735919.png",
+    "primaryImage": "/img/solutions/modular-shell-upgrade.png",
     "gallery": [
-      "/modular_shell_upgrade_png_1774886735919.png"
+      "/img/solutions/modular-shell-upgrade.png"
     ],
     "videoUrl": "",
     "shortDescription": "A sustainable, reconfigurable hybrid stall combining engineered aluminum extrusion profiles with bespoke wooden brand fascias.",
@@ -83,9 +83,9 @@
     "completionYear": "2024",
     "featured": true,
     "status": "published",
-    "primaryImage": "/double_decker_stall_png_1774886790718.png",
+    "primaryImage": "/img/solutions/double-decker-stall.png",
     "gallery": [
-      "/double_decker_stall_png_1774886790718.png"
+      "/img/solutions/double-decker-stall.png"
     ],
     "videoUrl": "",
     "shortDescription": "Heavy-duty certified steel & wood mezzanine stand with executive buyer lounge, panoramic upper terrace, and ground-level machinery display.",
@@ -118,9 +118,9 @@
     "completionYear": "2024",
     "featured": true,
     "status": "published",
-    "primaryImage": "/custom_fabricated_stall_png_1774886755662.png",
+    "primaryImage": "/img/solutions/custom-fabricated-stall.png",
     "gallery": [
-      "/custom_fabricated_stall_png_1774886755662.png"
+      "/img/solutions/custom-fabricated-stall.png"
     ],
     "videoUrl": "",
     "shortDescription": "High-fashion geometric wooden pavilion with luxury acoustic timber fins, illuminated brass trims, and an elevated VIP runway backdrop.",
@@ -152,9 +152,9 @@
     "completionYear": "2024",
     "featured": true,
     "status": "published",
-    "primaryImage": "/island_corner_stall_png_1774886772675.png",
+    "primaryImage": "/img/solutions/island-corner-stall.png",
     "gallery": [
-      "/island_corner_stall_png_1774886772675.png"
+      "/img/solutions/island-corner-stall.png"
     ],
     "videoUrl": "",
     "shortDescription": "An unobstructed 4-side open island booth engineered with a towering central illuminated fascia, model display plinths, and 8 consultation tables.",
@@ -187,10 +187,10 @@
     "completionYear": "2024",
     "featured": true,
     "status": "published",
-    "primaryImage": "/product_launch_booth_png_1774886810577.png",
+    "primaryImage": "/img/solutions/product-launch-booth.png",
     "gallery": [
-      "/product_launch_booth_png_1774886810577.png",
-      "/experience_demo_zone_png_1774886856936.png"
+      "/img/solutions/product-launch-booth.png",
+      "/img/solutions/experience-demo-zone.png"
     ],
     "videoUrl": "",
     "shortDescription": "Dark-aesthetic futuristic booth with seamless LED video walls, interactive touchscreen demo pods, and synchronized RGB accent lighting.",
@@ -223,9 +223,9 @@
     "completionYear": "2023",
     "featured": true,
     "status": "published",
-    "primaryImage": "/conference_seminar_booth_png_1774886833646.png",
+    "primaryImage": "/img/solutions/conference-seminar-booth.png",
     "gallery": [
-      "/conference_seminar_booth_png_1774886833646.png"
+      "/img/solutions/conference-seminar-booth.png"
     ],
     "videoUrl": "",
     "shortDescription": "Sleek, minimalist Scandinavian-inspired executive booth featuring warm oak slat accents, open discussion lounges, and private meeting pods.",
@@ -258,9 +258,9 @@
     "completionYear": "2024",
     "featured": true,
     "status": "published",
-    "primaryImage": "/experience_demo_zone_png_1774886856936.png",
+    "primaryImage": "/img/solutions/experience-demo-zone.png",
     "gallery": [
-      "/experience_demo_zone_png_1774886856936.png"
+      "/img/solutions/experience-demo-zone.png"
     ],
     "videoUrl": "",
     "shortDescription": "State-of-the-art interactive aerospace exhibit stand featuring flight simulator pods, panoramic LED screens, and aerospace hospitality suite.",
@@ -294,7 +294,7 @@
     "primaryImage": "/uploads/projects/octanorm_modular_stall.jpg",
     "gallery": [
       "/uploads/projects/octanorm_modular_stall.jpg",
-      "/modular_shell_upgrade_png_1774886735919.png"
+      "/img/solutions/modular-shell-upgrade.png"
     ],
     "videoUrl": "",
     "shortDescription": "Standard German-engineered 8-sided aluminum extrusion shell scheme stall with branded header fascia, lockable reception desk, and spotlight arms.",

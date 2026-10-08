@@ -11,42 +11,42 @@ export function StallSolutions() {
   const solutions = [
     {
       title: 'Modular Shell Scheme Upgrades',
-      img: '/modular_shell_upgrade_png_1774886735919.png',
+      img: '/img/solutions/modular-shell-upgrade.png',
       tag: 'Adaptive'
     },
     {
       title: 'Custom Fabricated Stalls',
-      img: '/custom_fabricated_stall_png_1774886755662.png',
+      img: '/img/solutions/custom-fabricated-stall.png',
       tag: 'Bespoke'
     },
     {
       title: 'Island & Corner Stalls',
-      img: '/island_corner_stall_png_1774886772675.png',
+      img: '/img/solutions/island-corner-stall.png',
       tag: 'Strategic'
     },
     {
       title: 'Double-Decker Stalls',
-      img: '/double_decker_stall_png_1774886790718.png',
+      img: '/img/solutions/double-decker-stall.png',
       tag: 'Maximum Impact'
     },
     {
       title: 'Product Launch Booths',
-      img: '/product_launch_booth_png_1774886810577.png',
+      img: '/img/solutions/product-launch-booth.png',
       tag: 'Event Focus'
     },
     {
       title: 'Conference & Seminar Booths',
-      img: '/conference_seminar_booth_png_1774886833646.png',
+      img: '/img/solutions/conference-seminar-booth.png',
       tag: 'Engagement'
     },
     {
       title: 'Experience & Demo Zones',
-      img: '/experience_demo_zone_png_1774886856936.png',
+      img: '/img/solutions/experience-demo-zone.png',
       tag: 'Interactive'
     },
     {
       title: 'Roadshow & Mall ',
-      img: '/roadshow_mall_kiosk_png_1774887097490.png',
+      img: '/img/solutions/roadshow-mall-kiosk.png',
       tag: 'Versatile'
     }
   ]
