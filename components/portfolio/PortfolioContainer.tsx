@@ -12,41 +12,71 @@ import { useSearchParams, useRouter } from 'next/navigation';
 
 interface PortfolioContainerProps {
   initialProjects: Project[];
+  defaultSlug?: string;
 }
 
-export function PortfolioContainer({ initialProjects }: PortfolioContainerProps) {
+export function PortfolioContainer({ initialProjects, defaultSlug }: PortfolioContainerProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isDismissed, setIsDismissed] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(() => {
+    if (defaultSlug) {
+      return initialProjects.find((p) => p.slug === defaultSlug) || null;
+    }
+    return null;
+  });
 
-  // Sync initial query parameter `?project=slug`
+  // Sync query parameter `?project=slug` or pathname slug on mount/navigation
   useEffect(() => {
-    const projectSlug = searchParams.get('project');
+    if (isDismissed) return;
+    const projectSlug = searchParams.get('project') || defaultSlug;
     if (projectSlug) {
       const found = initialProjects.find((p) => p.slug === projectSlug);
       if (found) {
         setSelectedProject(found);
       }
     }
-  }, [searchParams, initialProjects]);
+  }, [searchParams, defaultSlug, initialProjects, isDismissed]);
+
+  // Handle browser back/forward buttons cleanly
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      const match = path.match(/^\/portfolio\/([^/]+)/);
+      if (match) {
+        const slug = match[1];
+        const found = initialProjects.find((p) => p.slug === slug);
+        setIsDismissed(false);
+        setSelectedProject(found || null);
+      } else {
+        setIsDismissed(true);
+        setSelectedProject(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [initialProjects]);
 
   // Handle open modal and update URL
   const handleOpenDetails = (project: Project) => {
+    setIsDismissed(false);
     setSelectedProject(project);
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.set('project', project.slug);
-    window.history.pushState({}, '', newUrl.toString());
+    window.history.pushState({}, '', `/portfolio/${project.slug}`);
   };
 
-  // Handle close modal and remove URL query param
+  // Handle close modal and update URL
   const handleCloseDetails = () => {
+    setIsDismissed(true);
     setSelectedProject(null);
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.delete('project');
-    window.history.pushState({}, '', newUrl.toString());
+    if (defaultSlug) {
+      router.push('/portfolio');
+    } else {
+      window.history.pushState({}, '', '/portfolio');
+    }
   };
 
   // Category Counts
@@ -89,6 +119,9 @@ export function PortfolioContainer({ initialProjects }: PortfolioContainerProps)
       }
 
       return true;
+
+
+      
     });
   }, [initialProjects, activeCategory, searchQuery]);
 

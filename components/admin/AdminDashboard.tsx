@@ -183,10 +183,10 @@ export function AdminDashboard({ initialProjects }: AdminDashboardProps) {
 
           <div className="p-4 sm:p-5 rounded-2xl bg-[#181916] border border-white/10 space-y-1">
             <span className="text-[11px] font-mono tracking-wider text-[#bbff1bff] uppercase font-bold">
-              Featured Stalls
+              Homepage Gallery ⭐
             </span>
             <div className="text-2xl sm:text-3xl font-black text-[#bbff1bff]">{stats.featured}</div>
-            <p className="text-[11px] text-neutral-500">Pinned with star</p>
+            <p className="text-[11px] text-neutral-500">Stalls pinned to Homepage Gallery</p>
           </div>
         </div>
 
@@ -242,7 +242,7 @@ export function AdminDashboard({ initialProjects }: AdminDashboardProps) {
                     <th className="py-3.5 px-4 hidden md:table-cell">Dimensions</th>
                     <th className="py-3.5 px-4 hidden sm:table-cell">Category</th>
                     <th className="py-3.5 px-4 text-center">Status</th>
-                    <th className="py-3.5 px-4 text-center">Featured</th>
+                    <th className="py-3.5 px-4 text-center">Homepage ⭐</th>
                     <th className="py-3.5 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
@@ -327,7 +327,7 @@ export function AdminDashboard({ initialProjects }: AdminDashboardProps) {
                           <button
                             type="button"
                             onClick={(e) => handleToggleFeatured(project.id, e)}
-                            title={project.featured ? 'Unfeature' : 'Feature on Showcase'}
+                            title={project.featured ? 'Remove from Homepage Gallery' : 'Feature in Homepage Gallery'}
                             className="p-1.5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
                           >
                             <Star

@@ -7,28 +7,44 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { motion } from 'framer-motion'
+import type { Project } from '@/lib/portfolioService'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP)
 }
 
-const portfolioImages = [
-  { src: '/img/RENDER-01.jpg', alt: 'Global Tech Expo', text: 'Global Tech Expo, 2024' },
-  { src: '/modular_shell_upgrade_png_1774886735919.png', alt: 'Auto Show', text: 'Auto Show Pavilion' },
-  { src: '/double_decker_stall_png_1774886790718.png', alt: 'Health Summit', text: 'Health & Wellness Summit' },
-  { src: '/custom_fabricated_stall_png_1774886755662.png', alt: 'Fashion Week', text: 'Fashion Week Backdrop' },
-  { src: '/island_corner_stall_png_1774886772675.png', alt: 'Real Estate', text: 'Real Estate Convention' },
-  { src: '/product_launch_booth_png_1774886810577.png', alt: 'Gaming Setup', text: 'Gaming Arena Setup' },
-  { src: '/conference_seminar_booth_png_1774886833646.png', alt: 'Corporate Symposium', text: 'Corporate Symposium' },
-  { src: '/experience_demo_zone_png_1774886856936.png', alt: 'Airshow', text: 'Aviation Airshow Stand' },
-]
+interface PortfolioProps {
+  projects?: Project[];
+}
 
-export function Portfolio() {
+export function Portfolio({ projects }: PortfolioProps) {
   const rootRef = useRef<HTMLElement>(null)
   const scrollSectionRef = useRef<HTMLDivElement>(null)
   const pinContainerRef = useRef<HTMLDivElement>(null)
   const entryContainerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
+
+  const displayItems = (projects && projects.length > 0 ? projects : [])
+    .map((p) => ({
+      src: p.primaryImage || (p.gallery && p.gallery[0]) || '',
+      alt: p.title || 'Exhibition Stall',
+      text: p.client ? `${p.client}${p.completionYear ? `, ${p.completionYear}` : ''}` : p.title,
+      slug: p.slug,
+    }))
+    .filter((item) => Boolean(item.src));
+
+  const getItem = (idx: number) => {
+    if (displayItems.length === 0) return { src: '', alt: '', text: '', slug: '' };
+    return displayItems[idx % displayItems.length];
+  };
+
+  const item0 = getItem(0);
+  const item1 = getItem(1);
+  const item2 = getItem(2);
+  const item3 = getItem(3);
+  const item4 = getItem(4);
+  const item5 = getItem(5);
+  const item6 = getItem(6);
 
   useGSAP(() => {
     const track = trackRef.current
@@ -75,12 +91,14 @@ export function Portfolio() {
       }
     });
 
-    // Removed inner-card parallax completely to keep 100% image boundaries static
-
     // Refresh ScrollTrigger when layout shifts
     ScrollTrigger.refresh()
 
   }, { scope: rootRef })
+
+  if (displayItems.length === 0) {
+    return null;
+  }
 
   return (
     <section id="portfolio" ref={rootRef} className="bg-[#1a1c1a] text-[#e0e0d5] relative z-10 rounded-t-3xl sm:rounded-t-[4rem]">
@@ -161,26 +179,38 @@ export function Portfolio() {
 
               {/* Gallery Cluster 1 - Smaller Wide */}
               <div className="relative w-[35rem] h-[25rem] shrink-0 flex items-center justify-center mt-12">
-                <div className="absolute -top-8 left-0 text-xs tracking-widest uppercase font-mono text-lime-400 drop-shadow-md">{portfolioImages[0].text}</div>
-                <div className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                  <Image src={portfolioImages[0].src} alt={portfolioImages[0].alt} fill sizes="(max-width: 1024px) 100vw, 560px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
+                <div className="absolute -top-8 left-0 text-xs tracking-widest uppercase font-mono text-lime-400 drop-shadow-md">{item0.text}</div>
+                <Link
+                  href={`/portfolio/${item0.slug}`}
+                  className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
+                  style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                >
+                  <Image src={item0.src} alt={item0.alt} fill sizes="(max-width: 1024px) 100vw, 560px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                </Link>
               </div>
 
               {/* Gallery Cluster 2 - Dynamic Double */}
               <div className="relative w-[30rem] h-[45rem] shrink-0 flex flex-col justify-between">
                 <div className="relative w-full self-start">
-                  <div className="absolute -top-6 right-0 z-10 text-xs tracking-widest uppercase font-mono text-neutral-400">{portfolioImages[1].text}</div>
-                  <div className="w-full h-[22rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                    <Image src={portfolioImages[1].src} alt={portfolioImages[1].alt} fill sizes="(max-width: 1024px) 100vw, 480px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  </div>
+                  <div className="absolute -top-6 right-0 z-10 text-xs tracking-widest uppercase font-mono text-neutral-400">{item1.text}</div>
+                  <Link
+                    href={`/portfolio/${item1.slug}`}
+                    className="w-full h-[22rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
+                    style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                  >
+                    <Image src={item1.src} alt={item1.alt} fill sizes="(max-width: 1024px) 100vw, 480px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  </Link>
                 </div>
 
                 <div className="relative self-start">
-                  <div className="w-[18rem] h-[18rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                    <Image src={portfolioImages[2].src} alt={portfolioImages[2].alt} fill sizes="(max-width: 1024px) 100vw, 300px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  </div>
-                  <div className="absolute top-0 -right-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] tracking-[0.3em]">{portfolioImages[2].text}</div>
+                  <Link
+                    href={`/portfolio/${item2.slug}`}
+                    className="w-[18rem] h-[18rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
+                    style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                  >
+                    <Image src={item2.src} alt={item2.alt} fill sizes="(max-width: 1024px) 100vw, 300px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  </Link>
+                  <div className="absolute top-0 -right-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] tracking-[0.3em]">{item2.text}</div>
                 </div>
               </div>
 
@@ -192,36 +222,52 @@ export function Portfolio() {
 
               {/* Gallery Cluster 3 - Massive Hero */}
               <div className="relative w-[50rem] h-[45rem] shrink-0 flex items-center justify-center">
-                <div className="absolute top-0 -left-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] -rotate-180 tracking-[0.3em]">{portfolioImages[3].text}</div>
-                <div className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl shadow-lime-900/10" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                  <Image src={portfolioImages[3].src} alt={portfolioImages[3].alt} fill sizes="(max-width: 1024px) 100vw, 800px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
+                <div className="absolute top-0 -left-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] -rotate-180 tracking-[0.3em]">{item3.text}</div>
+                <Link
+                  href={`/portfolio/${item3.slug}`}
+                  className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl shadow-lime-900/10 block cursor-pointer"
+                  style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                >
+                  <Image src={item3.src} alt={item3.alt} fill sizes="(max-width: 1024px) 100vw, 800px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                </Link>
               </div>
 
               {/* Gallery Cluster 4 - Asymmetric Tall */}
               <div className="relative w-[28rem] h-[48rem] shrink-0 flex flex-col justify-around">
                 <div className="relative self-end">
-                  <div className="absolute top-0 -left-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] -rotate-180 tracking-[0.3em]">{portfolioImages[4].text}</div>
-                  <div className="w-[20rem] h-[20rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                    <Image src={portfolioImages[4].src} alt={portfolioImages[4].alt} fill sizes="(max-width: 1024px) 100vw, 350px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  </div>
+                  <div className="absolute top-0 -left-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] -rotate-180 tracking-[0.3em]">{item4.text}</div>
+                  <Link
+                    href={`/portfolio/${item4.slug}`}
+                    className="w-[20rem] h-[20rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
+                    style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                  >
+                    <Image src={item4.src} alt={item4.alt} fill sizes="(max-width: 1024px) 100vw, 350px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  </Link>
                 </div>
 
                 <div className="relative w-full self-start">
-                  <div className="w-full h-[22rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                    <Image src={portfolioImages[5].src} alt={portfolioImages[5].alt} fill sizes="(max-width: 1024px) 100vw, 450px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  </div>
-                  <div className="absolute -bottom-8 right-0 z-10 text-xs tracking-widest uppercase font-mono text-neutral-400">{portfolioImages[5].text}</div>
+                  <Link
+                    href={`/portfolio/${item5.slug}`}
+                    className="w-full h-[22rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
+                    style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                  >
+                    <Image src={item5.src} alt={item5.alt} fill sizes="(max-width: 1024px) 100vw, 450px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  </Link>
+                  <div className="absolute -bottom-8 right-0 z-10 text-xs tracking-widest uppercase font-mono text-neutral-400">{item5.text}</div>
                 </div>
               </div>
 
               {/* Gallery Cluster 5 - Small Accent */}
               <div className="relative w-[22rem] h-[30rem] shrink-0 flex items-center justify-center pr-16 xl:pr-32">
                 <div className="relative w-full h-full">
-                  <div className="absolute top-4 -right-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] tracking-[0.3em]">{portfolioImages[6].text}</div>
-                  <div className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl" style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}>
-                    <Image src={portfolioImages[6].src} alt={portfolioImages[6].alt} fill sizes="(max-width: 1024px) 100vw, 350px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  </div>
+                  <div className="absolute top-4 -right-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] tracking-[0.3em]">{item6.text}</div>
+                  <Link
+                    href={`/portfolio/${item6.slug}`}
+                    className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
+                    style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                  >
+                    <Image src={item6.src} alt={item6.alt} fill sizes="(max-width: 1024px) 100vw, 350px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  </Link>
                 </div>
               </div>
 
@@ -244,9 +290,9 @@ export function Portfolio() {
         </div>
 
         <div className="flex overflow-x-auto gap-5 px-5 pb-8 snap-x snap-mandatory no-scrollbar">
-          {portfolioImages.map((img, idx) => (
+          {displayItems.map((img, idx) => (
             <motion.div
-              key={idx}
+              key={img.slug || idx}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -263,12 +309,12 @@ export function Portfolio() {
                     <div className="w-8 h-[1px] bg-white/20 mt-2" />
                   </div>
                   <h4 className="text-xl font-serif text-white leading-tight mb-3">{img.text}</h4>
-                  <div className="flex items-center gap-2 group/btn">
+                  <Link href={`/portfolio/${img.slug}`} className="flex items-center gap-2 group/btn cursor-pointer">
                     <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest group-hover/btn:text-lime-400 transition-colors">View Details</span>
                     <svg className="w-3 h-3 text-lime-400 transform transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -279,3 +325,4 @@ export function Portfolio() {
     </section>
   )
 }
+

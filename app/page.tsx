@@ -7,9 +7,18 @@ import { Process } from '@/components/home/Process'
 import { Portfolio } from '@/components/home/Portfolio'
 import { WhyChooseUs } from '@/components/home/WhyChooseUs'
 import { Footer } from '@/components/home/Footer'
+import { getStoredProjects } from '@/lib/storage/dbStorage'
 
+export const revalidate = 0; // Ensures immediate updates when admin makes changes
 
-export default function Home() {
+export default async function Home() {
+  const allProjects = await getStoredProjects();
+  const publishedProjects = allProjects.filter((p) => p.status !== 'draft');
+  const featured = publishedProjects.filter((p) => p.featured);
+  const nonFeatured = publishedProjects.filter((p) => !p.featured);
+  // Prioritize featured projects first, then remaining published projects
+  const homepageProjects = [...featured, ...nonFeatured];
+
   return (
     <div className="w-full min-h-screen dark bg-background text-foreground overflow-hidden no-scrollbar">
       <Header />
@@ -18,9 +27,10 @@ export default function Home() {
       <Services />
       <Stats />
       <Process />
-      <Portfolio />
+      <Portfolio projects={homepageProjects} />
       <WhyChooseUs />
       <Footer />
     </div>
   )
 }
+

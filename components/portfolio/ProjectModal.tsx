@@ -101,7 +101,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             </button>
 
             <button
-              onClick={onClose}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
               className="p-1.5 rounded-lg hover:bg-neutral-200 text-neutral-600 hover:text-black transition-colors cursor-pointer"
               aria-label="Close modal"
             >

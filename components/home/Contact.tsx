@@ -25,6 +25,7 @@ export function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -34,19 +35,46 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+    setSubmitStatus('idle')
+    setErrorMessage('')
+
     try {
-      // Simulate API call - replace with actual endpoint
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', phone: '', company: '', message: '' })
-      setTimeout(() => {
-        setSubmitStatus('idle')
-        closeContact()
-      }, 2000)
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || 'a3d7b305-17a8-4600-b164-919cb369a41a',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company || 'Not Specified',
+          message: formData.message,
+          from_name: 'SS Group Website Enquiry',
+          subject: `New Exhibition Stall Enquiry from ${formData.name}`,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', phone: '', company: '', message: '' })
+        setTimeout(() => {
+          setSubmitStatus('idle')
+          closeContact()
+        }, 2500)
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(result.message || 'Error sending message. Please try again.')
+        setTimeout(() => setSubmitStatus('idle'), 5000)
+      }
     } catch {
       setSubmitStatus('error')
-      setTimeout(() => setSubmitStatus('idle'), 3000)
+      setErrorMessage('Network error. Please try again or connect directly on WhatsApp.')
+      setTimeout(() => setSubmitStatus('idle'), 5000)
     } finally {
       setIsSubmitting(false)
     }
@@ -108,9 +136,8 @@ export function Contact() {
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={isContactOpen ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 20 }}
         transition={{ duration: 0.3 }}
-        className={`fixed inset-2 sm:inset-4 md:inset-8 lg:inset-12 z-50 max-w-5xl w-full mx-auto max-h-[95vh] overflow-y-auto custom-scrollbar rounded-xl sm:rounded-2xl md:rounded-3xl ${
-          isContactOpen ? 'pointer-events-auto' : 'pointer-events-none'
-        }`}
+        className={`fixed inset-2 sm:inset-4 md:inset-8 lg:inset-12 z-50 max-w-5xl w-full mx-auto max-h-[95vh] overflow-y-auto custom-scrollbar rounded-xl sm:rounded-2xl md:rounded-3xl ${isContactOpen ? 'pointer-events-auto' : 'pointer-events-none'
+          }`}
       >
         <div className="bg-[#11120f] border border-[#bbff1bff]/30 rounded-xl sm:rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 lg:p-12 relative shadow-2xl">
           <button
@@ -257,7 +284,7 @@ export function Contact() {
                 )}
                 {submitStatus === 'error' && (
                   <div className="p-2.5 sm:p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-xs sm:text-sm">
-                    ✗ Error sending message. Please try again.
+                    ✗ {errorMessage || 'Error sending message. Please try again.'}
                   </div>
                 )}
 
