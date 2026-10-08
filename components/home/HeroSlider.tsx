@@ -62,18 +62,18 @@ export default function HeroSlider() {
 
   return (
     <div className="relative w-full max-w-2xl mx-auto lg:max-w-none">
-      {/* Background Visual Depth Glow (Warm Gold) */}
-      <div className="absolute -inset-1.5 bg-gradient-to-r from-amber-400/20 via-amber-200/25 to-amber-300/20 rounded-[2.5rem] blur-2xl opacity-70 pointer-events-none" />
+      {/* Background Visual Depth Glow (Subtle Luxury Shadow) */}
+      <div className="absolute -inset-1.5 bg-gradient-to-r from-black/5 via-amber-600/10 to-black/5 rounded-[2.5rem] blur-xl opacity-60 pointer-events-none" />
 
       {/* Main Glassmorphic Showcase Card in Light Theme */}
-      <div className="relative rounded-[2rem] border border-amber-900/10 bg-white/95 backdrop-blur-2xl p-4 sm:p-6 shadow-[0_20px_50px_rgba(50,30,15,0.07)] overflow-hidden">
+      <div className="relative rounded-[2rem] border border-stone-200/80 bg-white p-4 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-hidden">
 
         {/* Top Header Row: Gold Badge & Counter */}
         <div className="flex items-center justify-between gap-2 mb-3.5 z-20 relative">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-50 to-amber-100/60 border border-amber-200/80 text-xs font-bold text-[#7a5316] shadow-2xs">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-50 border border-stone-200 text-xs font-bold text-stone-700 shadow-2xs">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af37] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af37]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#b88628] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#b88628]" />
             </span>
             <span className="truncate">{slides[currentSlide].badge}</span>
           </div>

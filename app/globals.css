@@ -37,6 +37,20 @@
   --sidebar-accent-foreground: #111111;
   --sidebar-border: #e2e2e2;
   --sidebar-ring: #d4ff00;
+
+  /* =========================================================================
+     GLOBAL GOLDEN CTA PALETTE (Change these values to adjust color anytime)
+     ========================================================================= */
+  --cta-gold-from: #b88628;          /* Rich burnished metallic gold */
+  --cta-gold-via: #e0b84e;           /* Luminous champagne reflection */
+  --cta-gold-to: #996c16;            /* Warm antique bronze shadow */
+  --cta-gold-hover-from: #c79632;    /* Hover top gold */
+  --cta-gold-hover-via: #ecd16d;     /* Hover bright highlight */
+  --cta-gold-hover-to: #ab7a1d;      /* Hover bottom bronze */
+  --cta-gold-text: #120d04;          /* Ultra-dark obsidian text */
+  --cta-gold-border: rgba(250, 224, 140, 0.75); /* Metallic bezel border */
+  --cta-gold-glow: rgba(184, 134, 40, 0.28);
+  --cta-gold-glow-hover: rgba(184, 134, 40, 0.48);
 }
 
 .dark {
@@ -234,58 +248,58 @@ body {
   background: rgba(197, 155, 39, 0.85);
 }
 
-/* Premium Golden CTA with Lightweight Hover Shimmer */
+/* Premium Metallic Golden CTA with Reusable CSS Variables */
 .btn-gold-cta {
-  background: linear-gradient(135deg, #d4af37 0%, #f7d770 50%, #c59b27 100%);
-  color: #1a1209 !important;
+  background: linear-gradient(135deg, var(--cta-gold-from) 0%, var(--cta-gold-via) 48%, var(--cta-gold-to) 100%);
+  color: var(--cta-gold-text) !important;
   font-weight: 800;
-  border: 1px solid rgba(255, 235, 160, 0.7);
-  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.28);
+  border: 1px solid var(--cta-gold-border);
+  box-shadow: 0 4px 18px var(--cta-gold-glow), inset 0 1px 1.5px rgba(255, 255, 255, 0.55);
   position: relative;
   overflow: hidden;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-gold-cta::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -120%;
+  left: -130%;
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
-  transition: transform 0.75s ease;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 
 .btn-gold-cta:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 26px rgba(212, 175, 55, 0.45);
-  background: linear-gradient(135deg, #dfbc45 0%, #fbe183 50%, #d4aa33 100%);
+  box-shadow: 0 8px 28px var(--cta-gold-glow-hover), inset 0 1px 1.5px rgba(255, 255, 255, 0.75);
+  background: linear-gradient(135deg, var(--cta-gold-hover-from) 0%, var(--cta-gold-hover-via) 48%, var(--cta-gold-hover-to) 100%);
 }
 
 .btn-gold-cta:hover::before {
-  transform: translateX(240%);
+  transform: translateX(250%);
 }
 
 .btn-gold-cta:active {
   transform: translateY(0) scale(0.97);
-  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 3px 10px var(--cta-gold-glow);
 }
 
 /* Round icon button variant */
 .btn-gold-icon {
-  background: linear-gradient(135deg, #d4af37 0%, #f7d770 50%, #c59b27 100%);
-  color: #1a1209;
-  border: 1px solid rgba(255, 235, 160, 0.7);
-  box-shadow: 0 3px 12px rgba(212, 175, 55, 0.25);
+  background: linear-gradient(135deg, var(--cta-gold-from) 0%, var(--cta-gold-via) 48%, var(--cta-gold-to) 100%);
+  color: var(--cta-gold-text);
+  border: 1px solid var(--cta-gold-border);
+  box-shadow: 0 3px 14px var(--cta-gold-glow), inset 0 1px 1.5px rgba(255, 255, 255, 0.5);
   transition: all 0.25s ease;
 }
 
 .btn-gold-icon:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
-  background: linear-gradient(135deg, #dfbc45 0%, #fbe183 50%, #d4aa33 100%);
+  box-shadow: 0 6px 20px var(--cta-gold-glow-hover), inset 0 1px 1.5px rgba(255, 255, 255, 0.7);
+  background: linear-gradient(135deg, var(--cta-gold-hover-from) 0%, var(--cta-gold-hover-via) 48%, var(--cta-gold-hover-to) 100%);
 }
 
 .btn-gold-icon:active {
