@@ -26,7 +26,7 @@ export function Hero() {
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
 
           {/* Left Side Content - Crisp Clean Modern Theme */}
-          <div className="order-1 lg:order-1 space-y-5 lg:space-y-7 pt-4 lg:pt-6">
+          <div className="order-1 lg:order-1 space-y-5 lg:space-y-7 max-lg:pt-10 pt-4 lg:pt-6">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}

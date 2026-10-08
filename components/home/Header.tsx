@@ -31,7 +31,7 @@ export function Header() {
                 alt="SS Group Logo"
                 width={200}
                 height={100}
-                className="h-11 sm:h-13 w-auto object-contain"
+                className="h-12 sm:h-14 w-auto object-contain"
                 priority
               />
             </Link>
