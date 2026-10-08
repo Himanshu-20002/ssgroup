@@ -19,7 +19,7 @@ const slides = [
     image: '/img/hero/hero-2.jpg',
     badge: 'Double Decker & Mezzanine Stands',
     tag: 'Multi-Level Architecture',
-    title: 'Two-Story VIP Exhibition Pavilions',
+    title: 'Two-Story Exhibition Pavilions',
     subtitle: 'Double your expo footprint with private upper-deck buyer lounges and VIP suites.',
     specs: ['Structural Safety Certified', 'Private VIP Lounge', 'Panoramic View'],
   },
@@ -32,7 +32,7 @@ const slides = [
     specs: ['24-Hour Rapid Setup', 'Eco-Friendly Reusable', 'Seamless Graphic Finish'],
   },
   {
-    image: '/img/hero/hero-stall.jpg',
+    image: '/img/hero/hero-stall.png',
     badge: 'PAN India Turnkey Execution',
     tag: 'On-Site Setup Support',
     title: 'Complete On-Site Expo Management',
