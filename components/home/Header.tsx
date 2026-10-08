@@ -29,21 +29,21 @@ export function Header() {
               <Image
                 src="/logo/logo.png"
                 alt="SS Group Logo"
-                width={150}
-                height={51}
+                width={200}
+                height={100}
                 className="h-10 sm:h-12 w-auto object-contain"
                 priority
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
               {navLinks.map((link) => (
                 link.name === 'Contact' ? (
                   <button
                     key={link.name}
                     onClick={openContact}
-                    className="text-sm text-slate-600 hover:text-slate-900 transition font-semibold"
+                    className="px-3.5 py-1.5 text-[15px] font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-100/80 rounded-full transition-all duration-200 cursor-pointer tracking-normal"
                   >
                     {link.name}
                   </button>
@@ -51,7 +51,7 @@ export function Header() {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-sm text-slate-600 hover:text-slate-900 transition font-semibold"
+                    className="px-3.5 py-1.5 text-[15px] font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-100/80 rounded-full transition-all duration-200 tracking-normal"
                   >
                     {link.name}
                   </a>
