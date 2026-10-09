@@ -5,8 +5,13 @@ import { motion } from 'framer-motion'
 import { Sparkles, Star, CheckCircle2 } from 'lucide-react'
 import { useContact } from '@/context/ContactContext'
 import HeroSlider from './HeroSlider'
+import { HeroSlide } from '@/lib/heroService'
 
-export function Hero() {
+interface HeroProps {
+  slides?: HeroSlide[];
+}
+
+export function Hero({ slides }: HeroProps) {
   const { openContact } = useContact()
   const benefits = [
     "FREE 3D Stall Design Concept",
@@ -114,7 +119,7 @@ export function Hero() {
 
           {/* Exhibition Showcase Slider: Positioned at bottom on mobile (order-2), top-aligned on desktop (lg:order-2 lg:self-start) */}
           <div className="order-2 lg:order-2 w-full lg:self-start lg:sticky lg:top-28 pt-4 lg:pt-0">
-            <HeroSlider />
+            <HeroSlider slides={slides} />
           </div>
 
         </div>

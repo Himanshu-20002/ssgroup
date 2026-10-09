@@ -11,7 +11,7 @@ export function Footer() {
   const { openContact } = useContact()
   return (
     <footer
-      className="w-full h-full sm:min-h-screen pt-10 sm:pt-14 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-between"
+      className="w-full h-full sm:min-h-screen pt-10 sm:pt-14 pb-8 sm:pb-7 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-between"
       style={{
         /* Lando‑style gradient – top‑center almost white → deep lime */
         background:

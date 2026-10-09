@@ -8,11 +8,16 @@ import { Portfolio } from '@/components/home/Portfolio'
 import { WhyChooseUs } from '@/components/home/WhyChooseUs'
 import { Footer } from '@/components/home/Footer'
 import { getStoredProjects } from '@/lib/storage/dbStorage'
+import { getStoredHeroSlides } from '@/lib/storage/heroStorage'
 
 export const revalidate = 0; // Ensures immediate updates when admin makes changes
 
 export default async function Home() {
-  const allProjects = await getStoredProjects();
+  const [allProjects, heroSlides] = await Promise.all([
+    getStoredProjects(),
+    getStoredHeroSlides(),
+  ]);
+
   const publishedProjects = allProjects.filter((p) => p.status !== 'draft');
   const featured = publishedProjects.filter((p) => p.featured);
   const nonFeatured = publishedProjects.filter((p) => !p.featured);
@@ -22,7 +27,7 @@ export default async function Home() {
   return (
     <div className="w-full min-h-screen dark bg-background text-foreground overflow-hidden no-scrollbar">
       <Header />
-      <Hero />
+      <Hero slides={heroSlides} />
       <StallSolutions />
       <Services />
       <Stats />
@@ -33,4 +38,3 @@ export default async function Home() {
     </div>
   )
 }
-

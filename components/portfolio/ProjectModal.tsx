@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import WhatsAppIcon from '../icons/WhatsAppIcon';
 import { useContact } from '@/context/ContactContext';
+import { parseVideoUrl } from '@/lib/videoHelper';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -53,6 +54,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   if (!project) return null;
 
   const currentImage = project.gallery[selectedMediaIdx] || project.primaryImage;
+  const parsedVideo = project.videoUrl ? parseVideoUrl(project.videoUrl) : null;
 
   const handleShare = () => {
     const url = `${window.location.origin}/portfolio?project=${project.slug}`;
@@ -119,14 +121,24 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Main Media Showcase */}
           <div className="space-y-3">
             <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200 shadow-inner flex items-center justify-center">
-              {showVideo && project.videoUrl ? (
-                <iframe
-                  src={project.videoUrl}
-                  title={project.title}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+              {showVideo && parsedVideo ? (
+                parsedVideo.type === 'direct' ? (
+                  <video
+                    src={parsedVideo.embedUrl}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="w-full h-full object-contain bg-black"
+                  />
+                ) : (
+                  <iframe
+                    src={parsedVideo.embedUrl}
+                    title={project.title}
+                    className="w-full h-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                )
               ) : (
                 <Image
                   src={currentImage}
@@ -139,7 +151,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               )}
 
               {/* Toggle Video Button Overlay */}
-              {project.videoUrl && (
+              {parsedVideo && (
                 <button
                   onClick={() => setShowVideo(!showVideo)}
                   className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-black/80 hover:bg-black text-white text-xs font-bold backdrop-blur-md shadow-lg transition-all cursor-pointer"

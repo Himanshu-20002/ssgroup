@@ -5,20 +5,26 @@ import { AlertTriangle, Trash2, X, Loader2 } from 'lucide-react';
 
 interface ConfirmDeleteModalProps {
   isOpen: boolean;
-  stallTitle: string;
+  stallTitle?: string;
+  title?: string;
+  itemType?: string;
   isDeleting: boolean;
-  onConfirm: () => void;
+  onConfirm: () => void | Promise<void>;
   onCancel: () => void;
 }
 
 export function ConfirmDeleteModal({
   isOpen,
   stallTitle,
+  title,
+  itemType = 'Exhibition Stall',
   isDeleting,
   onConfirm,
   onCancel,
 }: ConfirmDeleteModalProps) {
   if (!isOpen) return null;
+
+  const displayTitle = title || stallTitle || 'Item';
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
@@ -30,13 +36,13 @@ export function ConfirmDeleteModal({
             <AlertTriangle className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-white">Delete Exhibition Stall?</h3>
+            <h3 className="text-base sm:text-lg font-bold text-white">Delete {itemType}?</h3>
             <p className="text-xs text-neutral-400">This action cannot be undone.</p>
           </div>
         </div>
 
         <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs text-neutral-300">
-          You are about to delete <strong className="text-white font-bold">&ldquo;{stallTitle}&rdquo;</strong> from your portfolio showcase.
+          You are about to delete <strong className="text-white font-bold">&ldquo;{displayTitle}&rdquo;</strong> from your records.
         </div>
 
         <div className="flex items-center justify-end gap-2.5 pt-2">

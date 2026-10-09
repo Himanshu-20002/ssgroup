@@ -27,13 +27,19 @@ import {
   CheckCircle2,
   AlertCircle,
   Video,
+  Sparkles,
+  Sliders,
 } from 'lucide-react';
+import { HeroSlide } from '@/lib/heroService';
+import { HeroSlideList } from './HeroSlideList';
 
 interface AdminDashboardProps {
   initialProjects: Project[];
+  initialHeroSlides?: HeroSlide[];
 }
 
-export function AdminDashboard({ initialProjects }: AdminDashboardProps) {
+export function AdminDashboard({ initialProjects, initialHeroSlides = [] }: AdminDashboardProps) {
+  const [activeTab, setActiveTab] = useState<'stalls' | 'hero'>('stalls');
   const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -153,10 +159,48 @@ export function AdminDashboard({ initialProjects }: AdminDashboardProps) {
       {/* Header */}
       <AdminHeader onAddNew={handleAddNew} />
 
+      {/* Modern High-Tech Navigation Tabs */}
+      <div className="border-b border-white/10 bg-[#141512] sticky top-0 z-30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setActiveTab('stalls')}
+            className={`flex items-center gap-2 py-3.5 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all cursor-pointer ${
+              activeTab === 'stalls'
+                ? 'border-[#bbff1bff] text-[#bbff1bff]'
+                : 'border-transparent text-neutral-400 hover:text-white'
+            }`}
+          >
+            <Layers className="w-4 h-4" />
+            <span>Exhibition Stalls ({projects.length})</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('hero')}
+            className={`flex items-center gap-2 py-3.5 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all cursor-pointer ${
+              activeTab === 'hero'
+                ? 'border-[#bbff1bff] text-[#bbff1bff]'
+                : 'border-transparent text-neutral-400 hover:text-white'
+            }`}
+          >
+            <Sparkles className="w-4 h-4 text-[#bbff1bff]" />
+            <span>Homepage Hero Slider</span>
+            <span className="px-1.5 py-0.2 rounded-md bg-[#bbff1bff]/15 text-[#bbff1bff] text-[10px] font-mono">
+              DYNAMIC
+            </span>
+          </button>
+        </div>
+      </div>
+
       {/* Main Container */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        {/* Top Metrics Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {activeTab === 'hero' ? (
+          <HeroSlideList initialSlides={initialHeroSlides} />
+        ) : (
+          <>
+            {/* Top Metrics Row */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="p-4 sm:p-5 rounded-2xl bg-[#181916] border border-white/10 space-y-1">
             <span className="text-[11px] font-mono tracking-wider text-neutral-400 uppercase font-bold">
               Total Stalls
@@ -414,7 +458,9 @@ export function AdminDashboard({ initialProjects }: AdminDashboardProps) {
             </div>
           )}
         </div>
-      </main>
+        </>
+      )}
+    </main>
 
       {/* Slide-over Studio Drawer */}
       <ProjectDrawer

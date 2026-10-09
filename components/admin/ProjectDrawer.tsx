@@ -5,6 +5,7 @@ import { Project, CATEGORIES } from '@/lib/portfolioService';
 import { ImageUploader } from './ImageUploader';
 import { DynamicListInput } from './DynamicListInput';
 import { saveProjectAction } from '@/lib/adminActions';
+import { parseVideoUrl } from '@/lib/videoHelper';
 import {
   X,
   Save,
@@ -394,20 +395,32 @@ export function ProjectDrawer({ isOpen, project, onClose, onSaved }: ProjectDraw
             />
 
             {/* Video Link */}
+            {/* Video Link */}
             <div className="space-y-1.5 pt-2">
-              <label className="text-xs font-bold text-neutral-300 flex items-center gap-1.5">
-                <Video className="w-3.5 h-3.5 text-red-500" />
-                Video Walkthrough URL (Optional)
-              </label>
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-bold text-neutral-300 flex items-center gap-1.5">
+                  <Video className="w-3.5 h-3.5 text-red-500" />
+                  Video Walkthrough URL (Optional)
+                </label>
+                {formData.videoUrl && (() => {
+                  const parsed = parseVideoUrl(formData.videoUrl);
+                  if (!parsed) return null;
+                  return (
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#bbff1bff]/10 text-[#bbff1bff] border border-[#bbff1bff]/20 uppercase">
+                      ✓ {parsed.type} ready
+                    </span>
+                  );
+                })()}
+              </div>
               <input
                 type="url"
                 value={formData.videoUrl || ''}
                 onChange={(e) => setFormData({ ...formData, videoUrl: e.target.value })}
-                placeholder="e.g. https://www.youtube.com/embed/dQw4w9WgXcQ"
+                placeholder="e.g. https://www.youtube.com/watch?v=... or https://youtu.be/..."
                 className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-xs text-neutral-200 placeholder:text-neutral-600 focus:outline-none focus:border-[#bbff1bff]"
               />
               <span className="text-[11px] text-neutral-500 block">
-                Paste YouTube embed link or direct MP4 URL to enable video walkthrough playback.
+                Paste any YouTube link (watch, share, shorts), Vimeo, or direct .mp4 URL. It will automatically convert to high-speed embed.
               </span>
             </div>
           </div>

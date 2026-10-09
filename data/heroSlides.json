@@ -1,0 +1,62 @@
+[
+  {
+    "id": "slide-custom-wooden",
+    "image": "/img/hero/hero-1.jpg",
+    "badge": "Custom 3D Wooden Fabrication",
+    "tag": "Bespoke Pavilion",
+    "title": "Custom Fabricated Exhibition Stalls",
+    "subtitle": "High-impact brand pavilions tailored for maximum visitor engagement and footfall.",
+    "specs": [
+      "Free 3D Design Concept",
+      "Factory Rate Pricing",
+      "Turnkey Fabrication"
+    ],
+    "order": 0,
+    "active": true
+  },
+  {
+    "id": "slide-double-decker",
+    "image": "/img/hero/hero-2.jpg",
+    "badge": "Double Decker & Mezzanine Stands",
+    "tag": "Multi-Level Architecture",
+    "title": "Two-Story Exhibition Pavilions",
+    "subtitle": "Double your expo footprint with private upper-deck buyer lounges and VIP suites.",
+    "specs": [
+      "Structural Safety Certified",
+      "Private VIP Lounge",
+      "Panoramic View"
+    ],
+    "order": 1,
+    "active": true
+  },
+  {
+    "id": "slide-modular-hybrid",
+    "image": "/img/hero/hero-3.jpg",
+    "badge": "Modular & Hybrid Booths",
+    "tag": "Fast Turnaround Setup",
+    "title": "Octanorm & Engineered Modular Stalls",
+    "subtitle": "Cost-effective, sustainable, and precision-fitted stalls built for fast 24-hr turnaround.",
+    "specs": [
+      "24-Hour Rapid Setup",
+      "Eco-Friendly Reusable",
+      "Seamless Graphic Finish"
+    ],
+    "order": 2,
+    "active": true
+  },
+  {
+    "id": "slide-pan-india",
+    "image": "/img/hero/hero-stall.png",
+    "badge": "PAN India Turnkey Execution",
+    "tag": "On-Site Setup Support",
+    "title": "Complete On-Site Expo Management",
+    "subtitle": "Dedicated fabrication, transport, setup, and teardown across Delhi NCR, IEML & Mumbai.",
+    "specs": [
+      "On-Site Project Manager",
+      "Pragati Maidan & IEML",
+      "100% On-Time Delivery"
+    ],
+    "order": 3,
+    "active": true
+  }
+]

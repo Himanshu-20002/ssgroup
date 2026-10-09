@@ -3,55 +3,41 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Sparkles, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { useContact } from '@/context/ContactContext';
+import { HeroSlide, DEFAULT_HERO_SLIDES } from '@/lib/heroService';
 
-const slides = [
-  {
-    image: '/img/hero/hero-1.jpg',
-    badge: 'Custom 3D Wooden Fabrication',
-    tag: 'Bespoke Pavilion',
-    title: 'Custom Fabricated Exhibition Stalls',
-    subtitle: 'High-impact brand pavilions tailored for maximum visitor engagement and footfall.',
-    specs: ['Free 3D Design Concept', 'Factory Rate Pricing', 'Turnkey Fabrication'],
-  },
-  {
-    image: '/img/hero/hero-2.jpg',
-    badge: 'Double Decker & Mezzanine Stands',
-    tag: 'Multi-Level Architecture',
-    title: 'Two-Story Exhibition Pavilions',
-    subtitle: 'Double your expo footprint with private upper-deck buyer lounges and VIP suites.',
-    specs: ['Structural Safety Certified', 'Private VIP Lounge', 'Panoramic View'],
-  },
-  {
-    image: '/img/hero/hero-3.jpg',
-    badge: 'Modular & Hybrid Booths',
-    tag: 'Fast Turnaround Setup',
-    title: 'Octanorm & Engineered Modular Stalls',
-    subtitle: 'Cost-effective, sustainable, and precision-fitted stalls built for fast 24-hr turnaround.',
-    specs: ['24-Hour Rapid Setup', 'Eco-Friendly Reusable', 'Seamless Graphic Finish'],
-  },
-  {
-    image: '/img/hero/hero-stall.png',
-    badge: 'PAN India Turnkey Execution',
-    tag: 'On-Site Setup Support',
-    title: 'Complete On-Site Expo Management',
-    subtitle: 'Dedicated fabrication, transport, setup, and teardown across Delhi NCR, IEML & Mumbai.',
-    specs: ['On-Site Project Manager', 'Pragati Maidan & IEML', '100% On-Time Delivery'],
-  },
-];
+interface HeroSliderProps {
+  slides?: HeroSlide[];
+}
 
-export default function HeroSlider() {
+export default function HeroSlider({ slides: propSlides }: HeroSliderProps) {
+  // Use active slides from database, or fallback to defaults
+  const activeSlides = propSlides && propSlides.length > 0
+    ? propSlides.filter((s) => s.active !== false)
+    : DEFAULT_HERO_SLIDES;
+
+  const slides = activeSlides.length > 0 ? activeSlides : DEFAULT_HERO_SLIDES;
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const { openContact } = useContact();
 
+  // Reset currentSlide if it exceeds slides array length
   useEffect(() => {
+    if (currentSlide >= slides.length) {
+      setCurrentSlide(0);
+    }
+  }, [slides.length, currentSlide]);
+
+  useEffect(() => {
+    if (slides.length <= 1) return;
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   const goToSlide = (idx: number) => {
     setCurrentSlide(idx);
@@ -59,6 +45,8 @@ export default function HeroSlider() {
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+
+  const active = slides[currentSlide] || slides[0];
 
   return (
     <div className="relative w-full max-w-2xl mx-auto lg:max-w-none">
@@ -75,7 +63,7 @@ export default function HeroSlider() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#b88628] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#b88628]" />
             </span>
-            <span className="truncate">{slides[currentSlide].badge}</span>
+            <span className="truncate">{active.badge}</span>
           </div>
         </div>
 
@@ -91,8 +79,8 @@ export default function HeroSlider() {
               className="relative w-full h-full overflow-hidden"
             >
               <Image
-                src={slides[currentSlide].image}
-                alt={slides[currentSlide].title}
+                src={active.image}
+                alt={active.title}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 600px"
                 className="object-cover object-center filter brightness-[1.02] contrast-[1.03]"
@@ -102,10 +90,12 @@ export default function HeroSlider() {
           </AnimatePresence>
 
           {/* Floating Pill Tag inside image */}
-          <div className="absolute bottom-3 left-3 z-10 hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#11120f]/80 backdrop-blur-md border border-white/20 text-[11px] font-bold text-white shadow-lg">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#d4af37]" />
-            <span>{slides[currentSlide].tag}</span>
-          </div>
+          {active.tag && (
+            <div className="absolute bottom-3 left-3 z-10 hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#11120f]/80 backdrop-blur-md border border-white/20 text-[11px] font-bold text-white shadow-lg">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#d4af37]" />
+              <span>{active.tag}</span>
+            </div>
+          )}
         </div>
 
         {/* Slide Title, Subtitle, & Feature Pills */}
@@ -113,26 +103,30 @@ export default function HeroSlider() {
           <div className="flex items-start justify-between gap-3">
             <div>
               <h3 className="text-sm sm:text-base lg:text-lg font-black text-[#24150e] tracking-tight leading-snug">
-                {slides[currentSlide].title}
+                {active.title}
               </h3>
-              <p className="text-xs sm:text-[13px] text-[#5e4535] mt-1 line-clamp-2 font-medium">
-                {slides[currentSlide].subtitle}
-              </p>
+              {active.subtitle && (
+                <p className="text-xs sm:text-[13px] text-[#5e4535] mt-1 line-clamp-2 font-medium">
+                  {active.subtitle}
+                </p>
+              )}
             </div>
           </div>
 
           {/* Quick Specifications Pills */}
-          <div className="flex flex-wrap items-center gap-2 pt-1">
-            {slides[currentSlide].specs.map((spec, i) => (
-              <span
-                key={i}
-                className="text-[11px] sm:text-xs px-2.5 py-1 rounded-lg bg-[#faf7f2] border border-amber-900/10 text-[#3d2719] font-semibold flex items-center gap-1.5"
-              >
-                <CheckCircle2 className="w-3 h-3 text-[#88cc00]" />
-                {spec}
-              </span>
-            ))}
-          </div>
+          {active.specs && active.specs.length > 0 && (
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              {active.specs.map((spec, i) => (
+                <span
+                  key={i}
+                  className="text-[11px] sm:text-xs px-2.5 py-1 rounded-lg bg-[#faf7f2] border border-amber-900/10 text-[#3d2719] font-semibold flex items-center gap-1.5"
+                >
+                  <CheckCircle2 className="w-3 h-3 text-[#88cc00]" />
+                  {spec}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Bottom Interactive Controls Bar */}
@@ -145,8 +139,9 @@ export default function HeroSlider() {
                 <button
                   key={idx}
                   onClick={() => goToSlide(idx)}
-                  className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden cursor-pointer ${isActive ? 'w-12 sm:w-16 bg-amber-200' : 'w-2 sm:w-2.5 bg-stone-200 hover:bg-stone-300'
-                    }`}
+                  className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden cursor-pointer ${
+                    isActive ? 'w-12 sm:w-16 bg-amber-200' : 'w-2 sm:w-2.5 bg-stone-200 hover:bg-stone-300'
+                  }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 >
                   {isActive && (
@@ -179,7 +174,6 @@ export default function HeroSlider() {
             >
               <ChevronRight className="w-4 h-4" />
             </button>
-
           </div>
         </div>
 
@@ -187,6 +181,3 @@ export default function HeroSlider() {
     </div>
   );
 }
-
-
-
