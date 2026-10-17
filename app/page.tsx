@@ -10,7 +10,8 @@ import { Footer } from '@/components/home/Footer'
 import { getStoredProjects } from '@/lib/storage/dbStorage'
 import { getStoredHeroSlides } from '@/lib/storage/heroStorage'
 
-export const revalidate = 0; // Ensures immediate updates when admin makes changes
+// High-performance Incremental Static Regeneration (ISR): cached at Edge, revalidated on demand via admin server actions
+export const revalidate = 60;
 
 export default async function Home() {
   const [allProjects, heroSlides] = await Promise.all([
@@ -27,7 +28,7 @@ export default async function Home() {
   return (
     <div className="w-full min-h-screen dark bg-background text-foreground overflow-hidden no-scrollbar">
       <Header />
-      <Hero slides={heroSlides} />
+      <Hero slides={heroSlides} projects={homepageProjects} />
       <StallSolutions />
       <Services />
       <Stats />

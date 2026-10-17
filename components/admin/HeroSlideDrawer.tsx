@@ -19,12 +19,16 @@ import {
   Type,
   ListPlus,
   Image as ImageIcon,
+  Link as LinkIcon,
+  ExternalLink,
 } from 'lucide-react';
+import type { Project } from '@/lib/portfolioService';
 
 interface HeroSlideDrawerProps {
   isOpen: boolean;
   slide: HeroSlide | null;
   totalSlidesCount: number;
+  projects?: Project[];
   onClose: () => void;
   onSaved: (savedSlide: HeroSlide) => void;
 }
@@ -33,6 +37,7 @@ export function HeroSlideDrawer({
   isOpen,
   slide,
   totalSlidesCount,
+  projects = [],
   onClose,
   onSaved,
 }: HeroSlideDrawerProps) {
@@ -45,6 +50,7 @@ export function HeroSlideDrawer({
     specs: [],
     order: 0,
     active: true,
+    projectSlug: '',
   });
 
   const [isUploading, setIsUploading] = useState(false);
@@ -66,6 +72,7 @@ export function HeroSlideDrawer({
         specs: slide.specs || [],
         order: slide.order ?? 0,
         active: slide.active ?? true,
+        projectSlug: slide.projectSlug || '',
       });
     } else {
       setFormData({
@@ -78,6 +85,7 @@ export function HeroSlideDrawer({
         specs: ['Free 3D Design Concept', 'Factory Rate Pricing', 'Turnkey Fabrication'],
         order: totalSlidesCount,
         active: true,
+        projectSlug: '',
       });
     }
     setError(null);
@@ -145,6 +153,7 @@ export function HeroSlideDrawer({
         specs: formData.specs && formData.specs.length > 0 ? formData.specs : ['Turnkey Fabrication'],
         order: Number(formData.order) || 0,
         active: formData.active ?? true,
+        projectSlug: formData.projectSlug ? formData.projectSlug.trim() : undefined,
       };
 
       const result = await saveHeroSlideAction(fullSlide);
@@ -380,6 +389,104 @@ export function HeroSlideDrawer({
                   className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-[#bbff1bff]"
                 />
               </div>
+            </div>
+          </div>
+
+          {/* Section: Click Redirect & Portfolio Destination */}
+          <div className="space-y-4 pt-2">
+            <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-wider flex items-center gap-1.5 pb-1 border-b border-white/10">
+              <LinkIcon className="w-3.5 h-3.5 text-[#bbff1bff]" />
+              Click Redirect &amp; Portfolio Destination
+            </h3>
+
+            <div className="space-y-3 p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+              {/* Select from existing Portfolio Projects */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-neutral-300 flex items-center justify-between">
+                  <span>Link to Portfolio Project</span>
+                  <span className="text-[11px] font-normal text-[#bbff1bff]">Opens 3D detail modal</span>
+                </label>
+                <select
+                  value={
+                    projects.some((p) => p.slug === formData.projectSlug || p.slug.trim() === formData.projectSlug?.trim())
+                      ? projects.find((p) => p.slug === formData.projectSlug || p.slug.trim() === formData.projectSlug?.trim())?.slug
+                      : ''
+                  }
+                  onChange={(e) => {
+                    const selectedSlug = e.target.value;
+                    setFormData((prev) => ({ ...prev, projectSlug: selectedSlug }));
+                  }}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#22231f] border border-white/15 text-xs text-white focus:outline-none focus:border-[#bbff1bff] cursor-pointer"
+                >
+                  <option value="">-- Choose from Published Portfolio Projects ({projects.length}) --</option>
+                  {projects.map((p) => (
+                    <option key={p.id} value={p.slug}>
+                      {p.title} {p.client ? `(${p.client})` : ''} • {p.categoryLabel || p.category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Direct Slug or Custom URL Input */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-bold text-neutral-300">
+                    Target Slug or Custom Path
+                  </label>
+                  {formData.projectSlug && (
+                    <a
+                      href={
+                        formData.projectSlug.startsWith('/') || formData.projectSlug.startsWith('http')
+                          ? formData.projectSlug
+                          : `/portfolio/${encodeURIComponent(formData.projectSlug.trim())}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] text-[#bbff1bff] hover:underline flex items-center gap-1 font-mono"
+                    >
+                      <span>Test Redirect</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  )}
+                </div>
+                <input
+                  type="text"
+                  value={formData.projectSlug || ''}
+                  onChange={(e) => setFormData({ ...formData, projectSlug: e.target.value })}
+                  placeholder="e.g. robot-mining-equipments-custom-stall-fabrication"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-xs text-white font-mono placeholder:text-neutral-600 focus:outline-none focus:border-[#bbff1bff]"
+                />
+                <p className="text-[11px] text-neutral-400">
+                  When a user clicks on this hero stall card or title, they will be taken straight to this detail page.
+                </p>
+              </div>
+
+              {/* 1-Click Autofill from Selected Project */}
+              {formData.projectSlug && projects.some((p) => p.slug === formData.projectSlug || p.slug.trim() === formData.projectSlug?.trim()) && (
+                <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-[11px] text-neutral-400">Want to sync content with this project?</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const p = projects.find((proj) => proj.slug === formData.projectSlug || proj.slug.trim() === formData.projectSlug?.trim());
+                      if (!p) return;
+                      setFormData((prev) => ({
+                        ...prev,
+                        title: p.title || prev.title,
+                        subtitle: p.shortDescription || p.description || prev.subtitle,
+                        badge: p.categoryLabel || prev.badge || 'Custom 3D Wooden Fabrication',
+                        tag: p.dimensions ? `${p.dimensions} Pavilion` : (prev.tag || 'Exhibition Stand'),
+                        image: p.primaryImage || prev.image,
+                        specs: p.features && p.features.length > 0 ? p.features.slice(0, 3) : (prev.specs && prev.specs.length > 0 ? prev.specs : [p.venue || 'Exhibition Stand', 'Factory Rate Pricing', 'Turnkey Fabrication']),
+                      }));
+                    }}
+                    className="text-[11px] text-[#bbff1bff] hover:text-[#a8ec08] font-bold flex items-center gap-1 cursor-pointer transition-colors bg-white/5 px-2.5 py-1 rounded-lg border border-white/10"
+                  >
+                    <Sparkles className="w-3 h-3" />
+                    <span>Autofill Slide Data</span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 

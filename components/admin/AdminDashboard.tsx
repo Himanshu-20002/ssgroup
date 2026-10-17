@@ -196,7 +196,7 @@ export function AdminDashboard({ initialProjects, initialHeroSlides = [] }: Admi
       {/* Main Container */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {activeTab === 'hero' ? (
-          <HeroSlideList initialSlides={initialHeroSlides} />
+          <HeroSlideList initialSlides={initialHeroSlides} projects={projects} />
         ) : (
           <>
             {/* Top Metrics Row */}

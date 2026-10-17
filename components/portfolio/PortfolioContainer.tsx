@@ -24,7 +24,8 @@ export function PortfolioContainer({ initialProjects, defaultSlug }: PortfolioCo
   const [isDismissed, setIsDismissed] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(() => {
     if (defaultSlug) {
-      return initialProjects.find((p) => p.slug === defaultSlug) || null;
+      const decoded = decodeURIComponent(defaultSlug).trim();
+      return initialProjects.find((p) => p.slug === defaultSlug || p.slug.trim() === decoded || p.slug === decoded) || null;
     }
     return null;
   });
@@ -34,7 +35,8 @@ export function PortfolioContainer({ initialProjects, defaultSlug }: PortfolioCo
     if (isDismissed) return;
     const projectSlug = searchParams.get('project') || defaultSlug;
     if (projectSlug) {
-      const found = initialProjects.find((p) => p.slug === projectSlug);
+      const decoded = decodeURIComponent(projectSlug).trim();
+      const found = initialProjects.find((p) => p.slug === projectSlug || p.slug.trim() === decoded || p.slug === decoded);
       if (found) {
         setSelectedProject(found);
       }
@@ -47,8 +49,8 @@ export function PortfolioContainer({ initialProjects, defaultSlug }: PortfolioCo
       const path = window.location.pathname;
       const match = path.match(/^\/portfolio\/([^/]+)/);
       if (match) {
-        const slug = match[1];
-        const found = initialProjects.find((p) => p.slug === slug);
+        const decoded = decodeURIComponent(match[1]).trim();
+        const found = initialProjects.find((p) => p.slug === match[1] || p.slug.trim() === decoded || p.slug === decoded);
         setIsDismissed(false);
         setSelectedProject(found || null);
       } else {

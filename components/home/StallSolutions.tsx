@@ -3,24 +3,21 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useContact } from '@/context/ContactContext'
 
 export function StallSolutions() {
   const [showAll, setShowAll] = useState(false)
-  const hiddenIndices = [3, 4, 6]
+  const { openContact } = useContact()
+  const hiddenIndices = [4, 5, 6, 7]
 
   const solutions = [
     {
-      title: 'Modular Shell Scheme Upgrades',
-      img: '/img/solutions/modular-shell-upgrade.png',
-      tag: 'Adaptive'
-    },
-    {
-      title: 'Custom Fabricated Stalls',
+      title: 'Custom Wooden Fabricated Stalls',
       img: '/img/solutions/custom-fabricated-stall.png',
       tag: 'Bespoke'
     },
     {
-      title: 'Island & Corner Stalls',
+      title: 'Island Stalls (4-Side Open)',
       img: '/img/solutions/island-corner-stall.png',
       tag: 'Strategic'
     },
@@ -30,24 +27,29 @@ export function StallSolutions() {
       tag: 'Maximum Impact'
     },
     {
-      title: 'Product Launch Booths',
-      img: '/img/solutions/product-launch-booth.png',
-      tag: 'Event Focus'
+      title: 'Peninsula & Corner Stalls',
+      img: '/img/solutions/peninsula-corner-stall.jpg',
+      tag: 'Strategic'
     },
     {
-      title: 'Conference & Seminar Booths',
-      img: '/img/solutions/conference-seminar-booth.png',
-      tag: 'Engagement'
-    },
-    {
-      title: 'Experience & Demo Zones',
+      title: 'Tech & Interactive Booths',
       img: '/img/solutions/experience-demo-zone.png',
       tag: 'Interactive'
     },
     {
-      title: 'Roadshow & Mall ',
-      img: '/img/solutions/roadshow-mall-kiosk.png',
-      tag: 'Versatile'
+      title: 'Octanorm Modular Stalls',
+      img: '/img/solutions/modular-shell-upgrade.png',
+      tag: 'Octanorm'
+    },
+    {
+      title: 'Heavy Machinery & Industrial',
+      img: '/img/solutions/machinery-industrial-stall.jpg',
+      tag: 'Engineered'
+    },
+    {
+      title: 'Pharma & Healthcare Pavilions',
+      img: '/img/solutions/pharma-healthcare-stall.jpg',
+      tag: 'Clinical'
     }
   ]
 
@@ -86,48 +88,47 @@ export function StallSolutions() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {displaySolutions.map((solution, idx) => {
-            const originalIndex = solutions.findIndex((s) => s.title === solution.title)
-            const isMobileHidden = !showAll && hiddenIndices.includes(originalIndex)
+            const isMobileHidden = !showAll && hiddenIndices.includes(idx)
 
             return (
               <motion.div
-                key={originalIndex}
+                key={solution.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.08 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group relative min-h-[190px] sm:h-[250px] md:h-[340px] lg:h-[360px] xl:h-[390px] rounded-2xl sm:rounded-[1.75rem] overflow-hidden bg-[#11120f] border border-white/5 hover:border-[#bbff1bff]/40 transition-all duration-700 shadow-lg md:shadow-2xl ${isMobileHidden ? 'hidden sm:block' : ''}`}>
-
-                {/* Image with subtle zoom and parallax feel */}
+                onClick={() => openContact(`Hi SS Group, I am interested in getting a 3D design concept & quote for ${solution.title}.`)}
+                className={`group relative min-h-[190px] sm:h-[250px] md:h-[340px] lg:h-[360px] xl:h-[390px] rounded-2xl sm:rounded-[1.75rem] overflow-hidden bg-[#11120f] border border-white/5 hover:border-[#bbff1bff]/40 transition-all duration-700 shadow-lg md:shadow-2xl cursor-pointer ${isMobileHidden ? 'hidden sm:block' : ''}`}
+              >
+                {/* Image without darkness: clear and vivid */}
                 <div className="absolute inset-0 z-0">
                   <Image
                     src={solution.img}
                     alt={solution.title}
                     fill
-                    priority={idx < 2}
-                    loading={idx < 2 ? "eager" : "lazy"}
+                    priority={idx < 4}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-80"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                   />
-                  {/* Dynamic Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#11120f] via-[#11120f]/60 to-transparent group-hover:via-[#11120f]/40 transition-all duration-700"></div>
+                  {/* Subtle bottom-only gradient to ensure text readability without dimming the stall */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#11120f]/90 via-[#11120f]/25 via-35% to-transparent transition-all duration-700"></div>
                 </div>
 
                 {/* Tag - Premium Look */}
-              <div className="absolute top-3.5 sm:top-6 left-3.5 sm:left-6 z-20">
-                <span className="px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[#bbff1bff] font-mono text-[8px] sm:text-[10px] tracking-widest uppercase font-bold group-hover:bg-[#bbff1bff] group-hover:text-[#11120f] transition-all duration-500">
-                  {solution.tag}
-                </span>
-              </div>
+                <div className="absolute top-3.5 sm:top-6 left-3.5 sm:left-6 z-20">
+                  <span className="px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[#bbff1bff] font-mono text-[8px] sm:text-[10px] tracking-widest uppercase font-bold group-hover:bg-[#bbff1bff] group-hover:text-[#11120f] transition-all duration-500">
+                    {solution.tag}
+                  </span>
+                </div>
 
-              {/* Text Overlay - Mobile optimized */}
-              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 md:p-7 z-20">
-                <h3 className="text-xs sm:text-sm md:text-base lg:text-lg font-black text-white leading-tight tracking-tight group-hover:text-[#bbff1bff] transition-colors duration-500 uppercase">
-                  {solution.title}
-                </h3>
-              </div>
+                {/* Text Overlay - Mobile optimized */}
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 md:p-7 z-20">
+                  <h3 className="text-xs sm:text-sm md:text-base lg:text-lg font-black text-white leading-tight tracking-tight group-hover:text-[#bbff1bff] transition-colors duration-500 uppercase">
+                    {solution.title}
+                  </h3>
+                </div>
 
                 {/* Hover Glow Scan Line */}
                 <div className="absolute bottom-0 left-0 w-full h-1 bg-[#bbff1bff] transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700"></div>
@@ -148,3 +149,4 @@ export function StallSolutions() {
     </section>
   )
 }
+

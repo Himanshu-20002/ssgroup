@@ -179,11 +179,10 @@ export function Portfolio({ projects }: PortfolioProps) {
 
               {/* Gallery Cluster 1 - Smaller Wide */}
               <div className="relative w-[35rem] h-[25rem] shrink-0 flex items-center justify-center mt-12">
-                <div className="absolute -top-8 left-0 text-xs tracking-widest uppercase font-mono text-lime-400 drop-shadow-md">{item0.text}</div>
+                <div className="absolute -top-8 left-0 text-xs tracking-widest uppercase font-mono text-[#d4af37] drop-shadow-md">{item0.text}</div>
                 <Link
                   href={`/portfolio/${item0.slug}`}
-                  className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
-                  style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                  className="w-full h-full relative overflow-hidden group transform-gpu rounded-2xl border-2 sm:border-[2.5px] border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.22)] hover:border-[#f3ce63] hover:shadow-[0_0_35px_rgba(243,206,99,0.45)] block cursor-pointer transition-all duration-300"
                 >
                   <Image src={item0.src} alt={item0.alt} fill sizes="(max-width: 1024px) 100vw, 560px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 </Link>
@@ -195,8 +194,7 @@ export function Portfolio({ projects }: PortfolioProps) {
                   <div className="absolute -top-6 right-0 z-10 text-xs tracking-widest uppercase font-mono text-neutral-400">{item1.text}</div>
                   <Link
                     href={`/portfolio/${item1.slug}`}
-                    className="w-full h-[22rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
-                    style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                    className="w-full h-[22rem] relative overflow-hidden group transform-gpu rounded-2xl border-2 sm:border-[2.5px] border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.22)] hover:border-[#f3ce63] hover:shadow-[0_0_35px_rgba(243,206,99,0.45)] block cursor-pointer transition-all duration-300"
                   >
                     <Image src={item1.src} alt={item1.alt} fill sizes="(max-width: 1024px) 100vw, 480px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </Link>
@@ -205,8 +203,7 @@ export function Portfolio({ projects }: PortfolioProps) {
                 <div className="relative self-start">
                   <Link
                     href={`/portfolio/${item2.slug}`}
-                    className="w-[18rem] h-[18rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
-                    style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                    className="w-[18rem] h-[18rem] relative overflow-hidden group transform-gpu rounded-2xl border-2 sm:border-[2.5px] border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.22)] hover:border-[#f3ce63] hover:shadow-[0_0_35px_rgba(243,206,99,0.45)] block cursor-pointer transition-all duration-300"
                   >
                     <Image src={item2.src} alt={item2.alt} fill sizes="(max-width: 1024px) 100vw, 300px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </Link>
@@ -225,8 +222,7 @@ export function Portfolio({ projects }: PortfolioProps) {
                 <div className="absolute top-0 -left-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] -rotate-180 tracking-[0.3em]">{item3.text}</div>
                 <Link
                   href={`/portfolio/${item3.slug}`}
-                  className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl shadow-lime-900/10 block cursor-pointer"
-                  style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                  className="w-full h-full relative overflow-hidden group transform-gpu rounded-2xl border-2 sm:border-[2.5px] border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.25)] hover:border-[#f3ce63] hover:shadow-[0_0_35px_rgba(243,206,99,0.5)] block cursor-pointer transition-all duration-300"
                 >
                   <Image src={item3.src} alt={item3.alt} fill sizes="(max-width: 1024px) 100vw, 800px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 </Link>
@@ -238,8 +234,7 @@ export function Portfolio({ projects }: PortfolioProps) {
                   <div className="absolute top-0 -left-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] -rotate-180 tracking-[0.3em]">{item4.text}</div>
                   <Link
                     href={`/portfolio/${item4.slug}`}
-                    className="w-[20rem] h-[20rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
-                    style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                    className="w-[20rem] h-[20rem] relative overflow-hidden group transform-gpu rounded-2xl border-2 sm:border-[2.5px] border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.22)] hover:border-[#f3ce63] hover:shadow-[0_0_35px_rgba(243,206,99,0.45)] block cursor-pointer transition-all duration-300"
                   >
                     <Image src={item4.src} alt={item4.alt} fill sizes="(max-width: 1024px) 100vw, 350px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </Link>
@@ -248,8 +243,7 @@ export function Portfolio({ projects }: PortfolioProps) {
                 <div className="relative w-full self-start">
                   <Link
                     href={`/portfolio/${item5.slug}`}
-                    className="w-full h-[22rem] relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
-                    style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                    className="w-full h-[22rem] relative overflow-hidden group transform-gpu rounded-2xl border-2 sm:border-[2.5px] border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.22)] hover:border-[#f3ce63] hover:shadow-[0_0_35px_rgba(243,206,99,0.45)] block cursor-pointer transition-all duration-300"
                   >
                     <Image src={item5.src} alt={item5.alt} fill sizes="(max-width: 1024px) 100vw, 450px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </Link>
@@ -263,8 +257,7 @@ export function Portfolio({ projects }: PortfolioProps) {
                   <div className="absolute top-4 -right-10 z-10 text-xs tracking-widest uppercase font-mono text-[10px] sm:text-xs text-neutral-400 [writing-mode:vertical-rl] tracking-[0.3em]">{item6.text}</div>
                   <Link
                     href={`/portfolio/${item6.slug}`}
-                    className="w-full h-full relative overflow-hidden group transform-gpu rounded-lg shadow-2xl block cursor-pointer"
-                    style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                    className="w-full h-full relative overflow-hidden group transform-gpu rounded-2xl border-2 sm:border-[2.5px] border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.22)] hover:border-[#f3ce63] hover:shadow-[0_0_35px_rgba(243,206,99,0.45)] block cursor-pointer transition-all duration-300"
                   >
                     <Image src={item6.src} alt={item6.alt} fill sizes="(max-width: 1024px) 100vw, 350px" loading="lazy" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </Link>
@@ -291,13 +284,9 @@ export function Portfolio({ projects }: PortfolioProps) {
 
         <div className="flex overflow-x-auto gap-5 px-5 pb-8 snap-x snap-mandatory no-scrollbar">
           {displayItems.map((img, idx) => (
-            <motion.div
+            <div
               key={img.slug || idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="min-w-[82vw] snap-center relative rounded-3xl overflow-hidden aspect-[4/5] bg-neutral-900 border border-white/5 shadow-2xl"
+              className="min-w-[82vw] snap-center relative rounded-3xl overflow-hidden aspect-[4/5] bg-neutral-900 border-2 border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.25)] hover:border-[#f3ce63] transition-all duration-300"
             >
               <Image src={img.src} alt={img.alt} fill sizes="(max-width: 768px) 85vw, 400px" loading="lazy" className="object-cover" />
 
@@ -317,7 +306,7 @@ export function Portfolio({ projects }: PortfolioProps) {
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

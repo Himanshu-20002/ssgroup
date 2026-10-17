@@ -9,8 +9,14 @@ const BACKUP_FILE_PATH = path.join(process.cwd(), 'data', 'heroSlides.backup.jso
 const DB_NAME = process.env.MONGODB_DB_NAME || 'ssgroup';
 const COLLECTION_NAME = 'hero_slides';
 
-let memoryCache: HeroSlide[] | null = null;
-let isInitializedInMongo = false;
+const globalForHero = globalThis as unknown as {
+  _heroSlidesCache?: HeroSlide[] | null;
+  _heroSlidesLastFetch?: number;
+  _heroSlidesInFlight?: Promise<HeroSlide[]> | null;
+  _isInitializedInMongo?: boolean;
+};
+
+const CACHE_TTL_MS = 60 * 1000;
 
 async function getMongoCollection() {
   if (!clientPromise) return null;
@@ -65,65 +71,87 @@ function saveToLocalFileSafely(slides: HeroSlide[]) {
 }
 
 /**
- * Reads hero slides sorted by order ascending.
+ * Reads hero slides with singleflight request coalescing and in-memory TTL caching.
  */
 export async function getStoredHeroSlides(): Promise<HeroSlide[]> {
-  const collection = await getMongoCollection();
+  const now = Date.now();
+  const cache = globalForHero._heroSlidesCache;
+  const lastFetch = globalForHero._heroSlidesLastFetch || 0;
 
-  if (collection) {
+  if (cache !== null && cache !== undefined && (now - lastFetch < CACHE_TTL_MS)) {
+    return cache;
+  }
+
+  if (globalForHero._heroSlidesInFlight) {
+    return globalForHero._heroSlidesInFlight;
+  }
+
+  globalForHero._heroSlidesInFlight = (async () => {
     try {
-      const docs = await collection.find({}).sort({ order: 1 }).toArray();
+      const collection = await getMongoCollection();
 
-      if (docs && docs.length > 0) {
-        isInitializedInMongo = true;
-        const freshSlides = docs.map(({ _id, ...slide }) => slide as HeroSlide);
-        memoryCache = freshSlides;
-        return freshSlides;
-      }
+      if (collection) {
+        const docs = await collection.find({}).sort({ order: 1 }).toArray();
 
-      // If database collection is brand new and empty, seed it once with default hero slides
-      if (!isInitializedInMongo) {
-        const localSlides = readFromLocalFile();
-        if (localSlides.length > 0) {
-          await collection.insertMany(localSlides.map((s) => ({ ...s })));
-          isInitializedInMongo = true;
-          memoryCache = localSlides;
-          console.log(`🌱 [MongoDB] Auto-seeded ${localSlides.length} initial hero slides into Cloud Database.`);
-          return localSlides;
+        if (docs && docs.length > 0) {
+          globalForHero._isInitializedInMongo = true;
+          const freshSlides = docs.map(({ _id, ...slide }) => slide as HeroSlide);
+          globalForHero._heroSlidesCache = freshSlides;
+          globalForHero._heroSlidesLastFetch = Date.now();
+          return freshSlides;
         }
-      }
 
-      memoryCache = [];
-      return [];
+        if (!globalForHero._isInitializedInMongo) {
+          const localSlides = readFromLocalFile();
+          if (localSlides.length > 0) {
+            await collection.insertMany(localSlides.map((s) => ({ ...s })));
+            globalForHero._isInitializedInMongo = true;
+            globalForHero._heroSlidesCache = localSlides;
+            globalForHero._heroSlidesLastFetch = Date.now();
+            console.log(`🌱 [MongoDB] Auto-seeded ${localSlides.length} initial hero slides.`);
+            return localSlides;
+          }
+        }
+
+        globalForHero._heroSlidesCache = [];
+        globalForHero._heroSlidesLastFetch = Date.now();
+        return [];
+      }
     } catch (err: any) {
       console.warn(`⚠️ [MongoDB] Error fetching hero slides: ${err?.message || err}. Serving from cache/fallback.`);
-      if (memoryCache !== null) {
-        return memoryCache;
+      if (globalForHero._heroSlidesCache) {
+        return globalForHero._heroSlidesCache;
       }
+    } finally {
+      globalForHero._heroSlidesInFlight = null;
     }
-  }
 
-  if (memoryCache !== null) {
-    return memoryCache;
-  }
+    if (globalForHero._heroSlidesCache) {
+      return globalForHero._heroSlidesCache;
+    }
 
-  const local = readFromLocalFile();
-  memoryCache = local;
-  return local;
+    const local = readFromLocalFile();
+    globalForHero._heroSlidesCache = local;
+    globalForHero._heroSlidesLastFetch = Date.now();
+    return local;
+  })();
+
+  return globalForHero._heroSlidesInFlight;
 }
 
 /**
  * Upsert a single hero slide
  */
 export async function upsertHeroSlide(slide: HeroSlide): Promise<HeroSlide> {
-  if (memoryCache) {
-    const idx = memoryCache.findIndex((s) => s.id === slide.id);
+  globalForHero._heroSlidesLastFetch = Date.now();
+  if (globalForHero._heroSlidesCache) {
+    const idx = globalForHero._heroSlidesCache.findIndex((s) => s.id === slide.id);
     if (idx >= 0) {
-      memoryCache[idx] = { ...memoryCache[idx], ...slide };
+      globalForHero._heroSlidesCache[idx] = { ...globalForHero._heroSlidesCache[idx], ...slide };
     } else {
-      memoryCache.push(slide);
+      globalForHero._heroSlidesCache.push(slide);
     }
-    memoryCache.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+    globalForHero._heroSlidesCache.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
   }
 
   const collection = await getMongoCollection();
@@ -134,7 +162,7 @@ export async function upsertHeroSlide(slide: HeroSlide): Promise<HeroSlide> {
         { $set: slide },
         { upsert: true }
       );
-      saveToLocalFileSafely(memoryCache || [slide]);
+      saveToLocalFileSafely(globalForHero._heroSlidesCache || [slide]);
       console.log(`💾 [MongoDB] Successfully saved Hero Slide: "${slide.title}"`);
       return slide;
     } catch (err: any) {
@@ -150,7 +178,7 @@ export async function upsertHeroSlide(slide: HeroSlide): Promise<HeroSlide> {
     slides.push(slide);
   }
   slides.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-  memoryCache = slides;
+  globalForHero._heroSlidesCache = slides;
   saveToLocalFileSafely(slides);
   return slide;
 }
@@ -159,15 +187,16 @@ export async function upsertHeroSlide(slide: HeroSlide): Promise<HeroSlide> {
  * Delete a hero slide by id
  */
 export async function deleteHeroSlide(id: string): Promise<boolean> {
-  if (memoryCache) {
-    memoryCache = memoryCache.filter((s) => s.id !== id);
+  globalForHero._heroSlidesLastFetch = Date.now();
+  if (globalForHero._heroSlidesCache) {
+    globalForHero._heroSlidesCache = globalForHero._heroSlidesCache.filter((s) => s.id !== id);
   }
 
   const collection = await getMongoCollection();
   if (collection) {
     try {
       const res = await collection.deleteOne({ id });
-      saveToLocalFileSafely(memoryCache || []);
+      saveToLocalFileSafely(globalForHero._heroSlidesCache || []);
       console.log(`🗑️ [MongoDB] Deleted hero slide: ${id}`);
       return res.deletedCount > 0;
     } catch (err: any) {
@@ -178,7 +207,7 @@ export async function deleteHeroSlide(id: string): Promise<boolean> {
   const slides = readFromLocalFile();
   const filtered = slides.filter((s) => s.id !== id);
   if (filtered.length === slides.length) return false;
-  memoryCache = filtered;
+  globalForHero._heroSlidesCache = filtered;
   saveToLocalFileSafely(filtered);
   return true;
 }
@@ -187,9 +216,10 @@ export async function deleteHeroSlide(id: string): Promise<boolean> {
  * Toggle hero slide active status
  */
 export async function toggleHeroSlideActive(id: string): Promise<boolean> {
+  globalForHero._heroSlidesLastFetch = Date.now();
   let newActive = true;
-  if (memoryCache) {
-    const s = memoryCache.find((item) => item.id === id);
+  if (globalForHero._heroSlidesCache) {
+    const s = globalForHero._heroSlidesCache.find((item) => item.id === id);
     if (s) {
       s.active = !s.active;
       newActive = s.active;
@@ -203,7 +233,7 @@ export async function toggleHeroSlideActive(id: string): Promise<boolean> {
       if (!doc) return false;
       newActive = !doc.active;
       await collection.updateOne({ id }, { $set: { active: newActive } });
-      saveToLocalFileSafely(memoryCache || []);
+      saveToLocalFileSafely(globalForHero._heroSlidesCache || []);
       return newActive;
     } catch (err: any) {
       console.error('Error toggling hero slide active in MongoDB:', err?.message || err);
@@ -239,7 +269,8 @@ export async function reorderHeroSlides(orderedIds: string[]): Promise<HeroSlide
     }
   });
 
-  memoryCache = reordered;
+  globalForHero._heroSlidesCache = reordered;
+  globalForHero._heroSlidesLastFetch = Date.now();
 
   const collection = await getMongoCollection();
   if (collection) {

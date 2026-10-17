@@ -12,7 +12,8 @@
       "Turnkey Fabrication"
     ],
     "order": 0,
-    "active": true
+    "active": true,
+    "projectSlug": "bespoke-tech-pavilion"
   },
   {
     "id": "slide-double-decker",
@@ -27,7 +28,8 @@
       "Panoramic View"
     ],
     "order": 1,
-    "active": true
+    "active": true,
+    "projectSlug": "two-story-vip-pavilion"
   },
   {
     "id": "slide-modular-hybrid",
@@ -42,7 +44,8 @@
       "Seamless Graphic Finish"
     ],
     "order": 2,
-    "active": true
+    "active": true,
+    "projectSlug": "CustomWoodenWithMetalironceilings"
   },
   {
     "id": "slide-pan-india",
@@ -57,6 +60,7 @@
       "100% On-Time Delivery"
     ],
     "order": 3,
-    "active": true
+    "active": true,
+    "projectSlug": "aviation-airshow-stand"
   }
 ]

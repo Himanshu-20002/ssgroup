@@ -13,6 +13,7 @@ import {
   Share2,
   Check,
   Video,
+  Play,
   ArrowRight,
   Phone,
 } from 'lucide-react';
@@ -162,25 +163,59 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               )}
             </div>
 
-            {/* Gallery Thumbnails */}
-            {project.gallery.length > 1 && (
-              <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2">
+            {/* Gallery & Video Thumbnails Strip */}
+            {(project.gallery.length > 1 || Boolean(parsedVideo)) && (
+              <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 custom-scrollbar">
+                {/* Photo Thumbnails */}
                 {project.gallery.map((imgSrc, idx) => (
                   <button
                     key={idx}
+                    type="button"
                     onClick={() => {
                       setSelectedMediaIdx(idx);
                       setShowVideo(false);
                     }}
                     className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition-all cursor-pointer ${
                       selectedMediaIdx === idx && !showVideo
-                        ? 'border-[#c59b27] ring-2 ring-[#c59b27]/30 scale-102'
+                        ? 'border-[#c59b27] ring-2 ring-[#c59b27]/30 scale-102 shadow-sm'
                         : 'border-transparent opacity-70 hover:opacity-100'
                     }`}
+                    aria-label={`View photo ${idx + 1}`}
                   >
                     <Image src={imgSrc} alt="" fill className="object-cover" sizes="96px" />
                   </button>
                 ))}
+
+                {/* Video Walkthrough Thumbnail */}
+                {parsedVideo && (
+                  <button
+                    type="button"
+                    onClick={() => setShowVideo(true)}
+                    className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition-all cursor-pointer group bg-black ${
+                      showVideo
+                        ? 'border-[#c59b27] ring-2 ring-[#c59b27]/30 scale-102 shadow-sm'
+                        : 'border-transparent opacity-85 hover:opacity-100'
+                    }`}
+                    aria-label="Watch Video Walkthrough"
+                  >
+                    <Image
+                      src={project.primaryImage || project.gallery[0] || '/img/hero/hero-stall.png'}
+                      alt="Video Walkthrough"
+                      fill
+                      className="object-cover opacity-60 group-hover:opacity-75 transition-opacity"
+                      sizes="96px"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/40 flex items-center justify-center">
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-red-600 transition-all">
+                        <Play className="w-3 h-3 fill-white ml-0.5" />
+                      </div>
+                    </div>
+                    <span className="absolute bottom-1 left-1 z-10 px-1.5 py-0.5 rounded bg-black/85 text-[9px] font-bold text-white flex items-center gap-1 backdrop-blur-xs">
+                      <Video className="w-2.5 h-2.5 text-red-500" />
+                      <span>Video</span>
+                    </span>
+                  </button>
+                )}
               </div>
             )}
           </div>

@@ -1,15 +1,22 @@
 import dns from 'dns';
 import { MongoClient } from 'mongodb';
 
-// Ensure DNS SRV records resolve smoothly on Windows and local networks
+// Ensure DNS SRV records resolve smoothly on local development networks
 try {
-  dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
+  if (process.env.NODE_ENV === 'development') {
+    dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
+  }
 } catch {
   // Ignore in restricted environments
 }
 
 const uri = process.env.MONGODB_URI;
-const options = {};
+const options = {
+  maxPoolSize: 10,
+  minPoolSize: 1,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+};
 
 let client: MongoClient;
 let clientPromise: Promise<MongoClient> | null = null;

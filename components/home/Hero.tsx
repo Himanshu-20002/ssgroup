@@ -6,15 +6,17 @@ import { Sparkles, Star, CheckCircle2 } from 'lucide-react'
 import { useContact } from '@/context/ContactContext'
 import HeroSlider from './HeroSlider'
 import { HeroSlide } from '@/lib/heroService'
+import type { Project } from '@/lib/portfolioService'
 
 interface HeroProps {
   slides?: HeroSlide[];
+  projects?: Project[];
 }
 
-export function Hero({ slides }: HeroProps) {
+export function Hero({ slides, projects }: HeroProps) {
   const { openContact } = useContact()
   const benefits = [
-    "FREE 3D Stall Design Concept",
+    "Customised 3D Stall Design Concept",
     "Octanorm / Wooden / Hybrid Stall Fabrication",
     "On-time Setup + Installation Support",
     "Factory Rate Pricing + Transparent Quote"
@@ -119,7 +121,7 @@ export function Hero({ slides }: HeroProps) {
 
           {/* Exhibition Showcase Slider: Positioned at bottom on mobile (order-2), top-aligned on desktop (lg:order-2 lg:self-start) */}
           <div className="order-2 lg:order-2 w-full lg:self-start lg:sticky lg:top-28 pt-4 lg:pt-0">
-            <HeroSlider slides={slides} />
+            <HeroSlider slides={slides} projects={projects} />
           </div>
 
         </div>

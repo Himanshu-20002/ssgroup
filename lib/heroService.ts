@@ -8,6 +8,7 @@ export interface HeroSlide {
   specs: string[];
   order: number;
   active: boolean;
+  projectSlug?: string;
 }
 
 export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
@@ -21,6 +22,7 @@ export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
     specs: ['Free 3D Design Concept', 'Factory Rate Pricing', 'Turnkey Fabrication'],
     order: 0,
     active: true,
+    projectSlug: 'bespoke-tech-pavilion',
   },
   {
     id: 'slide-double-decker',
@@ -32,6 +34,7 @@ export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
     specs: ['Structural Safety Certified', 'Private VIP Lounge', 'Panoramic View'],
     order: 1,
     active: true,
+    projectSlug: 'two-story-vip-pavilion',
   },
   {
     id: 'slide-modular-hybrid',
@@ -43,6 +46,7 @@ export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
     specs: ['24-Hour Rapid Setup', 'Eco-Friendly Reusable', 'Seamless Graphic Finish'],
     order: 2,
     active: true,
+    projectSlug: 'CustomWoodenWithMetalironceilings',
   },
   {
     id: 'slide-pan-india',
@@ -54,5 +58,6 @@ export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
     specs: ['On-Site Project Manager', 'Pragati Maidan & IEML', '100% On-Time Delivery'],
     order: 3,
     active: true,
+    projectSlug: 'aviation-airshow-stand',
   },
 ];

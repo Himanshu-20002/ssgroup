@@ -23,13 +23,16 @@ import {
   CheckCircle2,
   Sliders,
   ExternalLink,
+  Link as LinkIcon,
 } from 'lucide-react';
+import type { Project } from '@/lib/portfolioService';
 
 interface HeroSlideListProps {
   initialSlides: HeroSlide[];
+  projects?: Project[];
 }
 
-export function HeroSlideList({ initialSlides }: HeroSlideListProps) {
+export function HeroSlideList({ initialSlides, projects = [] }: HeroSlideListProps) {
   const [slides, setSlides] = useState<HeroSlide[]>(initialSlides);
   const [activeSlide, setActiveSlide] = useState<HeroSlide | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -248,6 +251,32 @@ export function HeroSlideList({ initialSlides }: HeroSlideListProps) {
                     ))}
                   </div>
                 )}
+
+                {/* Destination Redirect Info */}
+                <div className="pt-1 flex items-center gap-1.5 text-[11px]">
+                  <span className="text-neutral-500 font-medium">Redirects to:</span>
+                  {slide.projectSlug ? (
+                    <a
+                      href={
+                        slide.projectSlug.startsWith('/') || slide.projectSlug.startsWith('http')
+                          ? slide.projectSlug
+                          : `/portfolio/${encodeURIComponent(slide.projectSlug.trim())}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[#bbff1bff] hover:underline font-mono text-[10px] bg-white/5 px-2 py-0.5 rounded border border-white/10"
+                    >
+                      <span className="truncate max-w-[200px] sm:max-w-[280px]">
+                        {projects.find((p) => p.slug === slide.projectSlug || p.slug.trim() === slide.projectSlug?.trim())?.title || slide.projectSlug}
+                      </span>
+                      <ExternalLink className="w-2.5 h-2.5 shrink-0" />
+                    </a>
+                  ) : (
+                    <span className="text-neutral-500 italic text-[10px]">
+                      Default (/portfolio)
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -314,6 +343,7 @@ export function HeroSlideList({ initialSlides }: HeroSlideListProps) {
         isOpen={isDrawerOpen}
         slide={activeSlide}
         totalSlidesCount={slides.length}
+        projects={projects}
         onClose={() => setIsDrawerOpen(false)}
         onSaved={handleSaved}
       />

@@ -9,12 +9,14 @@ const BACKUP_FILE_PATH = path.join(process.cwd(), 'data', 'projects.backup.json'
 const DB_NAME = process.env.MONGODB_DB_NAME || 'ssgroup';
 const COLLECTION_NAME = 'projects';
 
-/**
- * In-memory cache to ensure that once MongoDB is active,
- * stale local projects.json NEVER resurrects deleted stalls or overwrites new stalls.
- */
-let memoryCache: Project[] | null = null;
-let isInitializedInMongo = false;
+const globalForProjects = globalThis as unknown as {
+  _dbProjectsCache?: Project[] | null;
+  _dbProjectsLastFetch?: number;
+  _dbProjectsInFlight?: Promise<Project[]> | null;
+  _isInitializedInMongo?: boolean;
+};
+
+const CACHE_TTL_MS = 60 * 1000;
 
 /**
  * Gets MongoDB collection if MONGODB_URI is provided
@@ -85,63 +87,81 @@ function saveToLocalFileSafely(projects: Project[]) {
  * 3. Local projects.json (ONLY used if MONGODB_URI is not set at all or on cold start before DB connects)
  */
 export async function getStoredProjects(): Promise<Project[]> {
-  // If MongoDB URI is configured, MongoDB is the authoritative truth
-  const collection = await getMongoCollection();
+  const now = Date.now();
+  const cache = globalForProjects._dbProjectsCache;
+  const lastFetch = globalForProjects._dbProjectsLastFetch || 0;
 
-  if (collection) {
+  // 1. Instant response from memory cache if within TTL
+  if (cache !== null && cache !== undefined && (now - lastFetch < CACHE_TTL_MS)) {
+    return cache;
+  }
+
+  // 2. Coalesce concurrent calls to a single MongoDB request
+  if (globalForProjects._dbProjectsInFlight) {
+    return globalForProjects._dbProjectsInFlight;
+  }
+
+  globalForProjects._dbProjectsInFlight = (async () => {
     try {
-      const docs = await collection.find({}).toArray();
+      const collection = await getMongoCollection();
 
-      if (docs && docs.length > 0) {
-        isInitializedInMongo = true;
-        const freshProjects = docs.map(({ _id, ...project }) => project as Project);
-        memoryCache = freshProjects;
-        console.log(`📦 [MongoDB] Loaded ${freshProjects.length} stalls from Cloud Database.`);
-        return freshProjects;
-      }
+      if (collection) {
+        const docs = await collection.find({}).toArray();
 
-      // If database collection is brand new and empty, seed it once with initial stalls
-      if (!isInitializedInMongo) {
-        const localProjects = readFromLocalFile();
-        if (localProjects.length > 0) {
-          await collection.insertMany(localProjects.map((p) => ({ ...p })));
-          isInitializedInMongo = true;
-          memoryCache = localProjects;
-          console.log(`🌱 [MongoDB] Auto-seeded ${localProjects.length} initial stalls into empty Cloud Database.`);
-          return localProjects;
+        if (docs && docs.length > 0) {
+          globalForProjects._isInitializedInMongo = true;
+          const freshProjects = docs.map(({ _id, ...project }) => project as Project);
+          globalForProjects._dbProjectsCache = freshProjects;
+          globalForProjects._dbProjectsLastFetch = Date.now();
+          console.log(`📦 [MongoDB] Loaded ${freshProjects.length} stalls from Cloud Database.`);
+          return freshProjects;
         }
-      }
 
-      // If admin intentionally deleted all stalls from MongoDB, return empty list (do not resurrect!)
-      memoryCache = [];
-      return [];
+        if (!globalForProjects._isInitializedInMongo) {
+          const localProjects = readFromLocalFile();
+          if (localProjects.length > 0) {
+            await collection.insertMany(localProjects.map((p) => ({ ...p })));
+            globalForProjects._isInitializedInMongo = true;
+            globalForProjects._dbProjectsCache = localProjects;
+            globalForProjects._dbProjectsLastFetch = Date.now();
+            console.log(`🌱 [MongoDB] Auto-seeded ${localProjects.length} initial stalls.`);
+            return localProjects;
+          }
+        }
+
+        globalForProjects._dbProjectsCache = [];
+        globalForProjects._dbProjectsLastFetch = Date.now();
+        return [];
+      }
     } catch (err: any) {
       console.warn(`⚠️ [MongoDB] Disconnected or query failed: ${err?.message || err}. Serving from In-Memory/Local fallback.`);
-      // If we already had data loaded from MongoDB, return the memory cache!
-      // This prevents the old local projects.json from resurrecting deleted stalls!
-      if (memoryCache !== null) {
-        return memoryCache;
+      if (globalForProjects._dbProjectsCache) {
+        return globalForProjects._dbProjectsCache;
       }
+    } finally {
+      globalForProjects._dbProjectsInFlight = null;
     }
-  }
 
-  // If memory cache exists from earlier, serve it
-  if (memoryCache !== null) {
-    return memoryCache;
-  }
+    if (globalForProjects._dbProjectsCache) {
+      return globalForProjects._dbProjectsCache;
+    }
 
-  // Fallback for offline dev or cold start without MONGODB_URI
-  const local = readFromLocalFile();
-  memoryCache = local;
-  return local;
+    const local = readFromLocalFile();
+    globalForProjects._dbProjectsCache = local;
+    globalForProjects._dbProjectsLastFetch = Date.now();
+    return local;
+  })();
+
+  return globalForProjects._dbProjectsInFlight;
 }
 
 /**
  * Saves projects array
  */
 export async function saveStoredProjects(projects: Project[]): Promise<void> {
-  memoryCache = projects;
-  isInitializedInMongo = true;
+  globalForProjects._dbProjectsCache = projects;
+  globalForProjects._dbProjectsLastFetch = Date.now();
+  globalForProjects._isInitializedInMongo = true;
 
   const collection = await getMongoCollection();
   if (collection) {
@@ -164,13 +184,14 @@ export async function saveStoredProjects(projects: Project[]): Promise<void> {
  * Upsert (insert or update) a project
  */
 export async function upsertProject(project: Project): Promise<Project> {
+  globalForProjects._dbProjectsLastFetch = Date.now();
   // Update memory cache immediately
-  if (memoryCache) {
-    const idx = memoryCache.findIndex((p) => p.id === project.id);
+  if (globalForProjects._dbProjectsCache) {
+    const idx = globalForProjects._dbProjectsCache.findIndex((p) => p.id === project.id);
     if (idx >= 0) {
-      memoryCache[idx] = { ...memoryCache[idx], ...project };
+      globalForProjects._dbProjectsCache[idx] = { ...globalForProjects._dbProjectsCache[idx], ...project };
     } else {
-      memoryCache.unshift(project);
+      globalForProjects._dbProjectsCache.unshift(project);
     }
   }
 
@@ -182,7 +203,7 @@ export async function upsertProject(project: Project): Promise<Project> {
         { $set: project },
         { upsert: true }
       );
-      saveToLocalFileSafely(memoryCache || [project]);
+      saveToLocalFileSafely(globalForProjects._dbProjectsCache || [project]);
       console.log(`💾 [MongoDB] Successfully saved stall to Cloud Database: "${project.title}" (ID: ${project.id})`);
       return project;
     } catch (err: any) {
@@ -198,7 +219,7 @@ export async function upsertProject(project: Project): Promise<Project> {
   } else {
     projects.unshift(project);
   }
-  memoryCache = projects;
+  globalForProjects._dbProjectsCache = projects;
   saveToLocalFileSafely(projects);
   console.log(`💾 [Local] Saved stall to local fallback: "${project.title}"`);
   return project;
@@ -208,16 +229,17 @@ export async function upsertProject(project: Project): Promise<Project> {
  * Delete a project by id
  */
 export async function deleteProjectById(id: string): Promise<boolean> {
+  globalForProjects._dbProjectsLastFetch = Date.now();
   // Remove from memory cache immediately so it never shows up again
-  if (memoryCache) {
-    memoryCache = memoryCache.filter((p) => p.id !== id);
+  if (globalForProjects._dbProjectsCache) {
+    globalForProjects._dbProjectsCache = globalForProjects._dbProjectsCache.filter((p) => p.id !== id);
   }
 
   const collection = await getMongoCollection();
   if (collection) {
     try {
       const res = await collection.deleteOne({ id });
-      saveToLocalFileSafely(memoryCache || []);
+      saveToLocalFileSafely(globalForProjects._dbProjectsCache || []);
       console.log(`🗑️ [MongoDB] Successfully deleted stall from Cloud Database (ID: ${id})`);
       return res.deletedCount > 0;
     } catch (err: any) {
@@ -231,7 +253,7 @@ export async function deleteProjectById(id: string): Promise<boolean> {
   if (filtered.length === projects.length) {
     return false;
   }
-  memoryCache = filtered;
+  globalForProjects._dbProjectsCache = filtered;
   saveToLocalFileSafely(filtered);
   return true;
 }
@@ -240,9 +262,10 @@ export async function deleteProjectById(id: string): Promise<boolean> {
  * Toggle featured flag
  */
 export async function toggleProjectFeatured(id: string): Promise<boolean> {
+  globalForProjects._dbProjectsLastFetch = Date.now();
   let updatedFeatured = false;
-  if (memoryCache) {
-    const p = memoryCache.find((item) => item.id === id);
+  if (globalForProjects._dbProjectsCache) {
+    const p = globalForProjects._dbProjectsCache.find((item) => item.id === id);
     if (p) {
       p.featured = !p.featured;
       updatedFeatured = p.featured;
@@ -256,7 +279,7 @@ export async function toggleProjectFeatured(id: string): Promise<boolean> {
       if (!doc) return false;
       const newFeatured = !doc.featured;
       await collection.updateOne({ id }, { $set: { featured: newFeatured } });
-      saveToLocalFileSafely(memoryCache || []);
+      saveToLocalFileSafely(globalForProjects._dbProjectsCache || []);
       return newFeatured;
     } catch (err) {
       console.error('Error toggling featured in MongoDB:', err);
@@ -293,10 +316,10 @@ export async function cloneProject(id: string): Promise<Project | null> {
         status: 'draft',
       };
       await collection.insertOne(cloned);
-      if (memoryCache) {
-        memoryCache.unshift(cloned);
+      if (globalForProjects._dbProjectsCache) {
+        globalForProjects._dbProjectsCache.unshift(cloned);
       }
-      saveToLocalFileSafely(memoryCache || [cloned]);
+      saveToLocalFileSafely(globalForProjects._dbProjectsCache || [cloned]);
       return cloned;
     } catch (err) {
       console.error('Error cloning project in MongoDB:', err);
@@ -318,7 +341,7 @@ export async function cloneProject(id: string): Promise<Project | null> {
   };
 
   projects.unshift(cloned);
-  memoryCache = projects;
+  globalForProjects._dbProjectsCache = projects;
   saveToLocalFileSafely(projects);
   return cloned;
 }

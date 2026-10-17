@@ -5,7 +5,19 @@ import { Footer } from '@/components/home/Footer';
 import { PortfolioContainer } from '@/components/portfolio/PortfolioContainer';
 import { getStoredProjects } from '@/lib/storage/dbStorage';
 
-export const revalidate = 0;
+// High-performance ISR: cached at Edge, revalidated on demand via admin server actions
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  try {
+    const allProjects = await getStoredProjects();
+    return allProjects
+      .filter((p) => p.status !== 'draft' && p.slug)
+      .map((p) => ({ slug: p.slug }));
+  } catch {
+    return [];
+  }
+}
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -13,8 +25,9 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const decodedSlug = decodeURIComponent(slug).trim();
   const allProjects = await getStoredProjects();
-  const project = allProjects.find((p) => p.slug === slug);
+  const project = allProjects.find((p) => p.slug === slug || p.slug.trim() === decodedSlug);
   if (!project) {
     return { title: 'Exhibition Stall | SS Group Portfolio' };
   }

@@ -5,7 +5,8 @@ import { Footer } from '@/components/home/Footer';
 import { PortfolioContainer } from '@/components/portfolio/PortfolioContainer';
 import { getStoredProjects } from '@/lib/storage/dbStorage';
 
-export const revalidate = 0; // Ensures fresh data after admin mutations
+// High-performance ISR: cached at Edge, revalidated on demand via admin server actions
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Portfolio & Fabrication Showcase | SS Group Exhibition Stalls',

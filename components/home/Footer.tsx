@@ -11,7 +11,7 @@ export function Footer() {
   const { openContact } = useContact()
   return (
     <footer
-      className="w-full h-full sm:min-h-screen pt-10 sm:pt-14 pb-8 sm:pb-7 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-between"
+      className="w-full h-[88dvh] pt-10 sm:pt-14 pb-10 sm:pb-13 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-between"
       style={{
         /* Lando‑style gradient – top‑center almost white → deep lime */
         background:
@@ -91,8 +91,8 @@ export function Footer() {
           <div className="flex flex-col text-right gap-1 sm:gap-2">
             <span className="text-[10px] tracking-[0.2em] text-[#bbff1bff] font-mono mb-2 sm:mb-4">FOLLOW ON</span>
             <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">INSTAGRAM</Link>
-            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">LINKEDIN</Link>
-            <Link href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">YOUTUBE</Link>
+            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">FACEBOOK</Link>
+            <Link href="https://www.youtube.com/@ssgroupexhibition" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white hover:text-[#bbff1bff] hover:-translate-x-2 transition-all duration-300 select-none">YOUTUBE</Link>
           </div>
         </div>
 
