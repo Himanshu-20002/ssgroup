@@ -100,12 +100,12 @@ export function Footer() {
         <div className="w-full relative z-30 px-6 sm:px-16 lg:px-32 hidden sm:block">
           <div className="w-full flex flex-wrap items-center justify-between gap-6 overflow-hidden pb-4 opacity-50 hover:opacity-100 transition-opacity duration-500">
             <div className="font-black text-lg sm:text-2xl tracking-tighter text-white/50 w-full flex justify-between items-center sm:px-8">
-              <span className="hover:text-white transition-colors cursor-pointer tracking-wider">TATA</span>
-              <span className="hover:text-white transition-colors cursor-pointer">RELIANCE</span>
-              <span className="hover:text-white transition-colors cursor-pointer border-2 border-white/50 px-3 py-1 rounded-md italic">L&T</span>
-              <span className="hover:text-white transition-colors cursor-pointer hidden md:block">JIO</span>
-              <span className="hover:text-white transition-colors cursor-pointer hidden md:block tracking-widest">BELL</span>
-              <span className="hover:text-white transition-colors cursor-pointer hidden lg:block italic pr-2 font-serif text-3xl font-medium tracking-tight">Mahindra</span>
+              <span className="hover:text-white transition-colors cursor-pointer tracking-wider">PV BLINK</span>
+              <span className="hover:text-white transition-colors cursor-pointer font-serif italic text-2xl">KDSG</span>
+              <span className="hover:text-white transition-colors cursor-pointer border-2 border-white/50 px-3 py-0.5 rounded-md tracking-widest text-lg">EXFO</span>
+              <span className="hover:text-white transition-colors cursor-pointer hidden md:block tracking-wide">INVAS</span>
+              <span className="hover:text-white transition-colors cursor-pointer hidden md:block font-mono text-xl tracking-tight">ROBOT MINING</span>
+              <span className="hover:text-white transition-colors cursor-pointer hidden lg:block uppercase tracking-widest font-sans text-xl">OCTANORM</span>
             </div>
           </div>
         </div>
