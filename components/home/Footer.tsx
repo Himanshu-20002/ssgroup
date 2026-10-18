@@ -11,7 +11,7 @@ export function Footer() {
   const { openContact } = useContact()
   return (
     <footer
-      className="w-full min-h-screen pt-10 sm:pt-14 pb-8 sm:pb-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-between"
+      className="w-full  pt-10 sm:pt-14  pb-10 sm:pb-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-between"
       style={{
         /* Lando‑style gradient – top‑center almost white → deep lime */
         background:
@@ -112,7 +112,7 @@ export function Footer() {
       </div>
 
       {/* The Bottom Bright Lime Bar overlapping outside the rounded box */}
-      <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 text-[#11120f] text-[10px] sm:text-xs font-bold font-mono tracking-tight mt-6 px-4 sm:px-8 relative z-40">
+      <div className="w-full pt-2 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 text-[#11120f] text-[10px] sm:text-xs font-bold font-mono tracking-tight mt-6 px-4 sm:px-8 relative z-40">
         <p className="whitespace-nowrap overflow-hidden text-ellipsis order-2 md:order-1 text-center md:text-left w-full md:w-auto mt-4 md:mt-0 opacity-80 md:opacity-100">&copy; 2026 SS Group. All rights reserved.</p>
 
         {/* Central glowing yellow button resting on the bottom edge */}
