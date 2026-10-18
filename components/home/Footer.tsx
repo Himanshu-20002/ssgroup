@@ -20,7 +20,7 @@ export function Footer() {
   const { openContact } = useContact()
   return (
     <footer
-      className="w-full  pt-10 sm:pt-14  pb-10 sm:pb-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-between"
+      className="w-full  pt-10 sm:pt-14  pb-6 sm:pb-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-between"
       style={{
         /* Lando‑style gradient – top‑center almost white → deep lime */
         background:
@@ -34,7 +34,7 @@ export function Footer() {
 
 
       {/* Main Dark Footer Container */}
-      <div className="relative max-w-8xl max-lg:py-15 py-5 pb-8 sm:pb-10 mx-auto w-full bg-[#11120f] text-white rounded-[3rem] sm:rounded-[4rem] footer-mask">
+      <div className="relative max-w-8xl max-lg:py-9 py-5  sm:pb-10 mx-auto w-full bg-[#11120f] text-white rounded-[3rem] sm:rounded-[4rem] footer-mask">
         <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden rounded-[2.5rem] sm:rounded-[4rem]">
           <svg className="w-full h-full object-cover" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
             <path d="M-100,200 Q 150,50 300,250 T 700,100 T 1100,300" fill="none" stroke="#bbff1bff" strokeWidth="1.5" />
@@ -119,7 +119,7 @@ export function Footer() {
               ))}
             </div>
           </div>
-        </div> 
+        </div>
       </div>
 
       {/* The Bottom Bright Lime Bar overlapping outside the rounded box */}
@@ -142,7 +142,7 @@ export function Footer() {
           BUSINESS ENQUIRIES <span className="group-hover:translate-x-1 transition-transform">↗</span>
         </button>
 
-        <div className="flex gap-4 sm:gap-6 whitespace-nowrap order-3 md:order-3 pt-2 md:pt-0 pb-2 md:pb-0">
+        <div className="flex gap-4 sm:gap-6 whitespace-nowrap order-3 md:order-3 pt-2 md:pt-0  md:pb-0">
           <Link href="#" className="hover:underline opacity-80 hover:opacity-100 transition-opacity">PRIVACY POLICY</Link>
           <Link href="#" className="hover:underline opacity-80 hover:opacity-100 transition-opacity">TERMS</Link>
           <Link href="https://github.com/your-dev-handle" target="_blank" rel="noopener noreferrer" className="hover:underline opacity-80 hover:opacity-100 transition-opacity">
