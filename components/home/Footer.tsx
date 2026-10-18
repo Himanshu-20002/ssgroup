@@ -108,7 +108,7 @@ export function Footer() {
         {/* Bottom Partners Logostrip: Continuous Infinite Right-to-Left Marquee */}
         <div className="w-full relative z-30 px-4 sm:px-12 lg:px-24 overflow-hidden">
           <div className="w-full relative overflow-hidden pb-4 opacity-60 hover:opacity-100 transition-opacity duration-300 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-            <div className="animate-marquee-scroll flex items-center gap-12 sm:gap-16 lg:gap-24 w-max py-1">
+            <div className="animate-marquee-scroll flex items-center gap-20 sm:gap-32 lg:gap-44 w-max py-1">
               {[...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS].map((partner, index) => (
                 <span
                   key={`${partner.name}-${index}`}
