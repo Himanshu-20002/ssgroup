@@ -11,7 +11,7 @@ export function Footer() {
   const { openContact } = useContact()
   return (
     <footer
-      className="w-full h-[88dvh] pt-10 sm:pt-14 pb-10 sm:pb-13 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-between"
+      className="w-full min-h-screen pt-10 sm:pt-14 pb-8 sm:pb-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col justify-between"
       style={{
         /* Lando‑style gradient – top‑center almost white → deep lime */
         background:
@@ -25,7 +25,7 @@ export function Footer() {
 
 
       {/* Main Dark Footer Container */}
-      <div className="relative max-w-8xl max-lg:py-15 py-5 mx-auto w-full bg-[#11120f] text-white rounded-[3rem] sm:rounded-[4rem] footer-mask">
+      <div className="relative max-w-8xl max-lg:py-15 py-5 pb-8 sm:pb-10 mx-auto w-full bg-[#11120f] text-white rounded-[3rem] sm:rounded-[4rem] footer-mask">
         <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden rounded-[2.5rem] sm:rounded-[4rem]">
           <svg className="w-full h-full object-cover" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
             <path d="M-100,200 Q 150,50 300,250 T 700,100 T 1100,300" fill="none" stroke="#bbff1bff" strokeWidth="1.5" />
