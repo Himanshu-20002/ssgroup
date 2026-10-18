@@ -7,6 +7,15 @@ import { motion } from 'framer-motion'
 import { Contact } from './Contact'
 import { useContact } from '@/context/ContactContext'
 
+const PARTNER_LOGOS = [
+  { name: 'PV BLINK', style: 'tracking-wider font-black text-lg sm:text-2xl' },
+  { name: 'KDSG', style: 'font-serif italic font-bold text-xl sm:text-3xl' },
+  { name: 'EXFO', style: 'border-2 border-white/50 px-3 py-0.5 rounded-md tracking-widest text-base sm:text-xl font-black' },
+  { name: 'INVAS', style: 'tracking-wide font-black text-lg sm:text-2xl' },
+  { name: 'ROBOT MINING', style: 'font-mono text-base sm:text-xl tracking-tight font-black' },
+  { name: 'OCTANORM', style: 'uppercase tracking-widest font-sans text-base sm:text-xl font-black' },
+]
+
 export function Footer() {
   const { openContact } = useContact()
   return (
@@ -96,19 +105,21 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Partners Logostrip */}
-        <div className="w-full relative z-30 px-6 sm:px-16 lg:px-32 hidden sm:block">
-          <div className="w-full flex flex-wrap items-center justify-between gap-6 overflow-hidden pb-4 opacity-50 hover:opacity-100 transition-opacity duration-500">
-            <div className="font-black text-lg sm:text-2xl tracking-tighter text-white/50 w-full flex justify-between items-center sm:px-8">
-              <span className="hover:text-white transition-colors cursor-pointer tracking-wider">PV BLINK</span>
-              <span className="hover:text-white transition-colors cursor-pointer font-serif italic text-2xl">KDSG</span>
-              <span className="hover:text-white transition-colors cursor-pointer border-2 border-white/50 px-3 py-0.5 rounded-md tracking-widest text-lg">EXFO</span>
-              <span className="hover:text-white transition-colors cursor-pointer hidden md:block tracking-wide">INVAS</span>
-              <span className="hover:text-white transition-colors cursor-pointer hidden md:block font-mono text-xl tracking-tight">ROBOT MINING</span>
-              <span className="hover:text-white transition-colors cursor-pointer hidden lg:block uppercase tracking-widest font-sans text-xl">OCTANORM</span>
+        {/* Bottom Partners Logostrip: Continuous Infinite Right-to-Left Marquee */}
+        <div className="w-full relative z-30 px-4 sm:px-12 lg:px-24 overflow-hidden">
+          <div className="w-full relative overflow-hidden pb-4 opacity-60 hover:opacity-100 transition-opacity duration-300 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+            <div className="animate-marquee-scroll flex items-center gap-12 sm:gap-16 lg:gap-24 w-max py-1">
+              {[...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS].map((partner, index) => (
+                <span
+                  key={`${partner.name}-${index}`}
+                  className={`text-white/60 hover:text-white transition-colors cursor-pointer whitespace-nowrap select-none shrink-0 ${partner.style}`}
+                >
+                  {partner.name}
+                </span>
+              ))}
             </div>
           </div>
-        </div>
+        </div> 
       </div>
 
       {/* The Bottom Bright Lime Bar overlapping outside the rounded box */}

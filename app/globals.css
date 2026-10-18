@@ -312,4 +312,27 @@ body {
   transform: scale(0.94);
 }
 
+/* ==========================================================
+   INFINITE MARQUEE ANIMATION (GPU-Accelerated 60fps)
+   ========================================================== */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-scroll {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-scroll 28s linear infinite;
+}
+
+.animate-marquee-scroll:hover {
+  animation-play-state: paused;
+}
+
 
